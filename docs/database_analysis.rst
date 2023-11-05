@@ -35,7 +35,7 @@ API_Keys
        .. qiskit-card::
            :header: PubMed NCBI Database
            :card_description: Fetch PubMed NCBI database, providing alternatives to analyze scientific articles interest over the time, on a specific subject.
-           :image: ../../../static/ncbi.svg
+           :image: _static/ncbi.svg
            :link: https://www.ncbi.nlm.nih.gov/account/
 
     .. tab-item:: Elsevier
@@ -47,7 +47,7 @@ API_Keys
        .. qiskit-card::
            :header: Elsevier Scopus Database
            :card_description: Fetch Elsevier articles Scopus database, aiming data analysis of articles time evolution.
-           :image: ./static/Elsevier.svg
+           :image: _static/Elsevier.svg
            :link: https://dev.elsevier.com/apikey/manage
 
 |
@@ -76,7 +76,7 @@ Packages Installation
         .. qiskit-card::
            :header: Metapub Package
            :card_description: Interaction with the NCBI Database is done through the Metapub package
-           :image: .../../../../static/metapub.jpg
+           :image: _static/metapub.jpg
            :link: https://pypi.org/project/metapub/
 
     .. tab-item:: Elsevier
