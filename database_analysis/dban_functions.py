@@ -938,3 +938,90 @@ def bar_plot_df(**kwargs):
     if save_path:
         plt.savefig(f"{save_path}/{title}.png")
     plt.show()
+
+
+def fetch_springer(keyword, year_1, year_2, **kwargs):
+    """
+
+    Fetches number of specific keyword containing articles, published 
+    in each year from a range.
+
+    Parameters
+    ----------
+    keyword : str
+        keyword that the fetched articles have to present
+
+    year_1 : int
+        First year to search the database for
+
+    year_2 : int
+        Last year to search the database for
+
+    save_path : str
+        Path to save the results to a csv.
+        Optional
+
+    Returns
+    -------
+    df : pd.DataFrame
+        Results dataframe, with one column containing each year, and the other
+        column containing the number of published articles that contains 
+        the keyword
+
+    Example
+    -------
+    >>> springer_test = fetch_springer('Plasmonic', 2010, 2023)
+    2010:  536
+    2011:  845
+    2012:  1323
+    2013:  2347
+    2014:  2530
+    2015:  2964
+    2016:  3155
+    2017:  3300
+    2018:  3301
+    2019:  3383
+    2020:  3744
+    2021:  4059
+    2022:  4722
+    2023:  4905
+    >>> print(springer_test)
+        year  articles
+    0   2010       536
+    1   2011       845
+    2   2012      1323
+    3   2013      2347
+    4   2014      2530
+    5   2015      2964
+    6   2016      3155
+    7   2017      3300
+    8   2018      3301
+    9   2019      3383
+    10  2020      3744
+    11  2021      4059
+    12  2022      4722
+    13  2023      4905
+    """
+    springer_api_key = "56580f5684a4934af904f1edf8f07706"
+    base_url_springer = 'http://api.springer.com/metadata/json'
+    date_list = np.arange(year_1, year_2 + 1, 1)
+    url_params_springer = {}
+    url_params_springer["api_key"] = springer_api_key
+    url_params_springer["p"] = 200   #10 results will be returned
+    df = pd.DataFrame({'Year': [],
+                       'Articles': []})
+    for date_int in date_list:
+        springer_keyword = "?q=("+ "%22" + keyword.replace(" ", "%20") + "%22" + "%20AND%20year:" + str(date_int) + ")"
+
+    # Building the Springer Metadata API parameters dictionary
+        d_springer = requests.get(base_url_springer + springer_keyword,
+                                params=url_params_springer).json()
+        articles = pd.DataFrame([d_springer])
+        articles = articles.result
+        articles = articles[0]
+        articles = pd.DataFrame(articles)
+        articles = int(articles.total[0])
+        print(f'{date_int}:  {articles}')
+        df.loc[len(df)] = [date_int, articles]
+
+    return df
