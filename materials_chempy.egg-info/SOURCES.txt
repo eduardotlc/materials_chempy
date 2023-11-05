@@ -1,0 +1,10 @@
+LICENSE
+README.md
+setup.py
+chromatography/__init__.py
+materials_chempy.egg-info/PKG-INFO
+materials_chempy.egg-info/SOURCES.txt
+materials_chempy.egg-info/dependency_links.txt
+materials_chempy.egg-info/entry_points.txt
+materials_chempy.egg-info/requires.txt
+materials_chempy.egg-info/top_level.txt
