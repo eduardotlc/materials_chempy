@@ -12,6 +12,8 @@ dependencies:
   - pytest
   - coverage
   - flake8
+  - unidecode
+  - coloredlogs
 
   # Mass spectrometry dependencies
   - pip:

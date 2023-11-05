@@ -4,7 +4,7 @@ SPHINXBUILD   = sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = build
 TEST		  = '../mass_spectrometry/ms_functions.py' '../utils.py' '../spectrophotometry/spec_functions.py' '../database_analysis/dban_functions.py'
-PYTHON		  = '/home/eduardotc/mambaforge/bin/python'
+PYTHON		  = which python
 .PHONY: help Makefile build_test
 # @$(SPHINXBUILD) -M help '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 # doctest:
