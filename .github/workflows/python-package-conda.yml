@@ -10,10 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.10
+    - name: Set up Python 3.11.6
       uses: actions/setup-python@v3
       with:
-        python-version: '3.10'
+        python-version: '3.11.6'
     - name: Add conda to system path
       run: |
         # $CONDA is an environment variable pointing to the root of the miniconda directory
@@ -24,11 +24,11 @@ jobs:
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev,notebooks
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev,notebooks
     - name: Test with pytest
       run: |
         cd ./docs
-        make build_test
+        make test
         # python -m pytest --doctest-modules -v --ignore=dev --ignore=notebooks --basetemp=dev/tmp --maxfail=4 --rootdir ./docs .
