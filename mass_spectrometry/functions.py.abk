@@ -1,0 +1,432 @@
+# /home/eduardotc/mambaforge/envs/materials_chempy/bin python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Oct 12 17:58:00 2023
+
+@author: eduardotcampos@usp.br
+"""
+
+import pandas as pd
+import pyopenms
+import matplotlib.pyplot as plt
+import os
+# sys.path.insert(1, '/home/eduardotc/Programação/my_gits/materials_chempy')
+
+
+def mzmldf(mzmlpath):
+    """
+
+    Gets a m/z and intensity dataframe.
+
+    Returns a pandas dataframe, with one 'm/z' column and ond 'intensity'
+    column, from a user given .mzML mass spectra file.
+
+    Parameters
+    ----------
+    mzmlpath : String
+           String of the path to the .mzML file.
+
+    Returns
+    -------
+    df : pd.DataFrame
+           Pandas dataframe, with one 'm/z' and one 'intensity' columns.
+
+    """
+    exp = pyopenms.MSExperiment()
+    pyopenms.MzMLFile().load(mzmlpath, exp)
+    mz_values = []
+    intensity_values = []
+
+    # Extract the mass-to-charge ratios (m/z) and intensity values
+    for spectrum in exp:
+        mz_array = spectrum.get_peaks()[0]
+        intensity_array = spectrum.get_peaks()[1]
+        mz_values.extend(mz_array)
+        intensity_values.extend(intensity_array)
+
+    df = pd.DataFrame({'mz': mz_values,
+                       'intensity': intensity_values})
+
+    baseline = df['intensity'].mean()
+    df['intensity'] = df['intensity'] - baseline
+    return df
+
+
+def dfpltlimits(df):
+    """
+
+    Gets plot limits based on the m/z and intensity dataframe.
+
+    Parameters
+    ----------
+        df : pd.DataFrame.
+            m/z and intensity columns mass spectra dataframe
+
+    Returns
+    -------
+        xlimit : List.
+            list of the plot x axis limits
+
+        ylimit : List.
+            list of the plot y axis limits
+
+    """
+    ylimit = [0, (df['intensity'].max()) * 1.2]
+    xlimit = [(df['mz'].min()) * 0.8, (df['mz'].max()) * 1.2]
+    return xlimit, ylimit
+
+
+def msmplcfg(xlimit,
+             ylimit,
+             mzmlpath,
+             subtitle='default'):
+    """
+
+    Configure matplotlib plot for a mass spectra.
+
+    Parameters
+    ----------
+        subtitle : String.
+            Subtitle of the plot.
+
+        mzmlpath : String (opt)
+            String to the path of the .mzML file that will be plotted, used
+            to define a subtitle based on the file name, in case a subtitle
+            is not defined.
+
+        xlimit : List.
+            List containing x axis limits
+
+        ylimit : List.
+            List containing y axis limits
+
+    Returns
+    -------
+        fig : matplotlib.figure.Figure.
+            Matplotlib figure class.
+
+        ax : matplotlib.axes._subplots.AxesSubplot.
+            Axes subplot matplotlib class.
+
+    """
+    fig, ax = plt.subplots(figsize=(10, 6), dpi=400)
+    ax.set_ylim(ylimit)
+    ax.set_xlim(xlimit)
+    ax.set_xlabel("m/z")
+    ax.set_ylabel("Intensity")
+    ax.set_title("Mass spectrum")
+    if subtitle == 'default':
+        subtitle = os.path.basename(mzmlpath)
+    fig.suptitle(f"{subtitle}", fontsize=15, color='#3333b2')
+    return fig, ax
+
+
+def dfhighests(df,
+               resolution_thrs=0.3,
+               n_highest=20):
+    """
+
+    Sort from the m/z and intensity dataframe the n highest intensity rows,
+    with the sorted values having a m/z difference between then higher than
+    resolution_thrs.
+
+    Parameters
+    ----------
+        fig : matplotlib.figure.Figure.
+            Matplotlib figure class.
+
+        ax : matplotlib.axes._subplots.AxesSubplot.
+            Axes subplot matplotlib class.
+
+        df : pd.DataFrame.
+            m/z and intensity columns dataframe, from which will be extracte
+            the interested peaks.
+
+        resolution_thrs : Float.
+            m/z difference between 2 peaks to have both of them plotted.
+
+        n_highest : Integer.
+            Number of most intense peaks ('intenisty' dataframe column values)
+            to be extracted and plotted.
+
+    Returns
+    -------
+        result_df : pd.DataFrame.
+            extracted m/z and intensity columns dataframe, cleaned from too
+            close peaks and low intensity peaks.
+
+    """
+    df = df.sort_values(by='intensity', ascending=False)
+
+    # Initialize an empty list to store the selected rows
+    selected_rows = []
+
+    # Loop through the sorted DataFrame and select rows
+    for _, row in df.iterrows():
+        if len(selected_rows) >= n_highest:
+            break
+
+        # Check if the current 'x' value has a difference of at least 1 from
+        # previously selected 'x' values
+        if all(abs(row['mz'] - prev_row['mz']) >= resolution_thrs for prev_row
+               in selected_rows):
+            selected_rows.append(row)
+
+    # Create a new DataFrame from the selected rows
+    result_df = pd.DataFrame(selected_rows)
+    return result_df
+
+
+def auto_annotate(fig,
+                  ax,
+                  result_df,
+                  n_labels):
+    """
+
+    Annotate matplotlib spectra with the given m/z highest intensity peaks.
+
+    Parameters
+    ----------
+        fig : matplotlib.figure.Figure.
+            Matplotlib figure class.
+
+        ax : matplotlib.axes._subplots.AxesSubplot.
+            Axes subplot matplotlib class.
+
+        result_df : pd.DataFrame.
+            m/z and intensity mzml dataframe from the plotted spectra which
+            will be annotated.
+
+        n_labels : Integer.
+            Number of spectra peaks, based on the highests intensities, the is
+            desired to label.
+
+    Returns
+    -------
+        None.
+
+    """
+    peakannotateds = 0
+    while peakannotateds < n_labels:
+        # Getting a result_df row based on the number of the loop, being a pd
+        # series containing a m/z and its intensity
+        mzannot = result_df.iloc[peakannotateds]
+        ax.annotate(
+            (
+                f'{round(mzannot[0], 2)}'
+            ),
+            xy=(mzannot[0], mzannot[1]),
+            fontsize=10,
+            fontweight='bold',
+        )
+        peakannotateds += 1
+
+
+def manual_peak(fig,
+                ax,
+                result_df,
+                manual_peak_mz,
+                manual_peak_label):
+    """
+
+    Annotate a user given string in a desired m/z peak.
+
+    Parameters
+    ----------
+        fig : matplotlib.figure.Figure.
+            Matplotlib figure class.
+
+        ax : matplotlib.axes._subplots.AxesSubplot.
+            Axes subplot matplotlib class.
+
+        result_df : pd.DataFrame.
+            m/z and intensity mzml dataframe.
+
+        manual_peak_mz : List.
+            List containing the m/z (float) peaks to be annotated.
+
+        manual_peak_label : List.
+            List containing the annotations (string).
+
+    Returns
+    -------
+        None.
+
+    """
+    for n in manual_peak_mz:
+        # Getting the row from the dataFrame that contains the closest m/z
+        # Value from the one given
+        mzreal = result_df.iloc[(result_df['mz'] - n).abs().
+                                argsort()[:1]]
+        # Getting the corresponding manual peak label list element
+        # (same index from the actual loop m/z), and annotating it
+        ax.annotate(
+            (
+                f'{manual_peak_label[(manual_peak_mz.index(n))]}'
+                '\n'
+            ),
+            # Adding xy coordinates, extracting from the above defined
+            # closest m/z row
+            xy=(mzreal['mz'], mzreal['intensity']),
+            fontsize=10,
+            fontweight='bold',
+        )
+
+
+def mpl_labelbox(fig,
+                 ax,
+                 xlimit,
+                 ylimit,
+                 label1='Ion Trap ESI-MS',
+                 label2='Direct injection'):
+    """
+
+    Create an upper right box in the plot, with 2 labels written inside it.
+
+    Parameters
+    ----------
+        xlimit : List.
+            x axis limits.
+
+        ylimit : List.
+            y axis limits.
+
+        label1 : String.
+            first line written in the label box.
+
+        label2 : String.
+            second line written in the label box.
+
+    Returns
+    -------
+        None.
+
+    """
+
+    label_list = [label1, label2]
+    label_size = (len(max(label_list, key=len))) * 0.015
+    mz_label_offset = 12.48 / (len(max(label_list, key=len)))
+
+    # Defining a legend colored box
+    ax.indicate_inset([(mz_label_offset * xlimit[1]),
+                       (0.82 * ylimit[1]),
+                       (label_size * (xlimit[1] - xlimit[0])),
+                       (0.15 * (ylimit[1] - ylimit[0]))],
+                      facecolor='#a6bcf8',
+                      edgecolor='#252a2d',
+                      alpha=0.35)
+
+    # Defining the writtent content of the legend box
+    ax.annotate(
+        (
+            f'{label1}'
+            '\n'
+            '\n'
+            f'{label2}'
+        ),
+        xy=(1.03 * (mz_label_offset * xlimit[1]), 0.85 * ylimit[1]),
+        fontsize=12,
+        fontfamily='QTHelvet-black',
+        fontweight='normal',
+        color='#000000',
+    )
+
+
+def msplot(mzmlpath="./example_data/anad2.mzML",
+           resolution_thrs=0.3,
+           n_highest=20,
+           n_labels=8,
+           subtitle='default',
+           manual_peak_bool=False,
+           manual_peak_mz=[236],
+           manual_peak_label=['default'],
+           label1='Ion Trap ESI-MS',
+           label2='Direct injection'):
+    """
+
+    Plot a .mzML file in matplotlib.
+
+    Plot a .mzML file in matplotlib, as a mz traces plot, of the user defined
+    (or predefined) n highest mz peaks, with the possibility of adding general
+    annotated labels to the plot, to define the number of mz peaks labeled with
+    their value, minimal mz difference between two peaks to have both of the
+    plotted and custom manual labeling of single mz peaks (to write to wich
+    molecule it belongs for example).
+
+    Parameters
+    ----------
+    mzmlpath : String
+        String of the path to the .mzML file.
+
+    resolution_thrs : Float
+        m/z necessary difference between 2 peaks for both being plotted,
+        otherwise, if the difference between the 2 peaks is lower, only one of
+        them is plotted
+
+    n_highest : Integer
+        Number of total mz peaks to be drawn, based on the highest intensities.
+
+    n_labels : Integer
+        Number of most intese peaks to be labeled with their m/z value.
+
+    manual_peak_bool : Boolean
+        Define the manual labeling, with custom label, of one m/z peak.
+
+    subtitle : String
+        Plot subtitle, if not defined will be the parsed .mzML file name.
+
+    manual_peak_mz : List
+        List of the float m/z values of desired manual annotated peaks.
+
+    manual_peak_label : List
+        list of strings annotations of the peaks, for example, the molecule to
+        which it belongs.
+
+    label1 : String
+        First label that appears in a box in the top right of the plot, for
+        example, the mass spectrometry technique used.
+
+    label2 : String
+        Second label that appears in a box in the top right of the plot, for
+        example, the injection method (like direct injection or hplc).
+
+    Returns
+    -------
+    None
+        Don't have return, but plot the spectrum and save it to a png.
+
+    """
+    # Defining errors
+    if mzmlpath == 'default':
+        raise Exception("A path to a .mzml file should be given")
+
+    # Load the spectra from the mzML file
+    df = mzmldf(mzmlpath)
+
+    # Getting the plot limits
+    xlimit, ylimit = dfpltlimits(df)
+
+    # Configuring plot properties
+    fig, ax = msmplcfg(xlimit, ylimit, mzmlpath, subtitle)
+
+    # Filtering dataframe based on difference of the m/z between peaks and
+    # highest intensities
+    result_df = dfhighests(df)
+
+    # Automatic n highest intensity annotation with the m/z value
+    auto_annotate(fig, ax, result_df, n_labels)
+
+    # Manual peak annotation
+    if manual_peak_bool:
+        manual_peak(fig, ax, result_df, manual_peak_mz, manual_peak_label)
+
+    # Drawing and labeling a box in the plot
+    mpl_labelbox(fig, ax, xlimit, ylimit, label1, label2)
+
+    # Plotting the spectrum as line peaks
+    ax.stem(result_df['mz'], result_df['intensity'], markerfmt="none")
+    ax.plot
+    plt.show
+
+    # Saving the image
+    plt.savefig(os.path.splitext(mzmlpath)[0])

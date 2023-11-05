@@ -1,0 +1,8 @@
+matplotlib
+numpy
+metapub
+pandas
+astropy
+specutils
+scipy
+pybliometrics

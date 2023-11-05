@@ -1,0 +1,6 @@
+matplotlib
+numpy
+astropy
+specutils
+distinctipy
+spectrum_overload

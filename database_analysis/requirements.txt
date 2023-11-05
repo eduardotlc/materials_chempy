@@ -1,0 +1,4 @@
+metapub
+pandas
+numpy
+pybliometrics

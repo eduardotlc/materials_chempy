@@ -1,0 +1,45 @@
+name: materials_chempy
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.6
+  - pip
+  - pandas
+  - numpy
+  - matplotlib
+
+  # Test dependencies
+  - pytest
+  - coverage
+
+  # Mass spectrometry dependencies
+  - pyopenms
+
+  # Spectrophotometry dependencies
+  - astropy
+  - specutils
+  - scipy
+
+  # Database analysis dependencies
+  - metapub
+  - pybliometrics
+
+  # Chromatography dependencies
+  - astropy
+  - specutils
+  - distinctipy
+  - spectrum_overload
+
+  # Documentation dependencies
+  - sphinx
+  - qiskit-sphinx-theme
+  - reno
+  - nbsphinx
+  - sphinx_reredirects
+  - sphinx-remove-toctrees
+  - sphinx-copybutton
+  - numpydoc
+  - sphinx-design
+  - sphinx-autodoc-typehints
+  - sphinx-togglebutton
+  - docutils
