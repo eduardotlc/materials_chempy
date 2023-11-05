@@ -5,32 +5,28 @@ import materials_chempy.spectrophotometry.spec_functions as spcmcpy
 import materials_chempy.database_analysis.dban_functions as dbanmcpy
 import pandas as pd
 
+# Predefined msplot parameters
+# mzmlpath = mcpyut.absolute_path("example_data/anad2.mzML")
+# output_path = './example_data/'
 
-def main():
+resolution_thrs = 0.3
+n_highest = 15
+n_labels = 5
+subtitle = 'default'
+manual_peak_df = pd.DataFrame({})
+label1 = 'Ion Trap ESI-MS'
+label2 = 'Direct injection'
+title = None
+pubmed_start_year = 1996
+pubmed_end_year = 2023
+
+
+def add_arguments():
     """
 
-    Materials chempy package main fucntion, parsing specific submodule
-    functions by user parsed flags.
-
-    Returns
-    -------
-        None
+    Adds argparse arguments.
 
     """
-    # Predefined msplot parameters
-    # mzmlpath = mcpyut.absolute_path("example_data/anad2.mzML")
-    # output_path = './example_data/'
-    resolution_thrs = 0.3
-    n_highest = 15
-    n_labels = 5
-    subtitle = 'default'
-    manual_peak_df = pd.DataFrame({})
-    label1 = 'Ion Trap ESI-MS'
-    label2 = 'Direct injection'
-    title = None
-    pubmed_start_year = 1996
-    pubmed_end_year = 2023
-
     parser = argparse.ArgumentParser(description="Materials chempy package\
                                      main fucntion, parsing specific submodule\
                                      functions by user parsed flags.",
@@ -56,6 +52,22 @@ def main():
     parser.add_argument("--pubmed", nargs="+")
     parser.add_argument("--scopus", nargs="+")
     parser.add_argument("--dailypubmed", nargs="+")
+
+    return parser
+
+
+def main():
+    """
+
+    Materials chempy package main fucntion, parsing specific submodule
+    functions by user parsed flags.
+
+    Returns
+    -------
+        None
+
+    """
+    parser = add_arguments()
     args = parser.parse_args()
     if args.help:
         mcpyut.client_help()
@@ -108,11 +120,11 @@ def main():
             pubmed_end_year = int(args.dailypubmed[2])
         elif args.output:
             pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                           pubmed_end_year,
-                                           save_path=args.output)
+                                               pubmed_end_year,
+                                               save_path=args.output)
         else:
             pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                           pubmed_end_year)
+                                               pubmed_end_year)
         print(pubdf)
 
     return ()

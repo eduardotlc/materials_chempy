@@ -50,5 +50,5 @@ test:
 build_test:
 		 rm -rf './tmp'
 		 mkdir -p './tmp'
-		 @python -m pytest --doctest-modules -v --maxfail=4 --rootdir ./ --ignore=dev --ignore=notebooks $(TEST)
+		 @python -m pytest --doctest-modules -v --maxfail=4 --rootdir ./ --ignore=dev,notebooks $(TEST)
 		 rm -rf './tmp'

@@ -29,7 +29,9 @@ Get the latest version via github
 The complete Documentation pdf is not yet provided at
     https://Materials_Chempy.readthedocs.io/_/downloads/en/latest/pdf/
     
-    But an early stage version of it can be checked in docs as 
+    But an early stage version of it can be checked in the project `documentation`_.
+    
+    .. _documentation: https://github.com/eduardotlc/materials_chempy/blob/6bfe8f6c8471e37cca7dbc7e6cac39dcd57885f8/docs/build/singlehtml/index.html
 
 Citation
 --------

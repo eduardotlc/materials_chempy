@@ -85,13 +85,14 @@ spectra.
     <BLANKLINE>
         Articles Database Querying
         --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    \
-Query articles in PubMed database containing the keyword, starting from Year_1\ 
-ending in Year_2, save_path can be used to save the result to a csv
-        --scopus [args]    Args = keyword Year_1 Year_2    Query articles in \
-Scopus database containing the keyword, starting from Year_1 ending in Year_2
-        --dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    Like the\
---pubmed above command, but fetches the number of articles daily, usefull for \
-fetching high ocurring keywords in case of only having the free api.
+Query articles in PubMed database containing the keyword, starting from Year_1\
+    ending in Year_2, save_path can be used to save the result to a csv
+        --scopus [args]    Args = keyword Year_1 Year_2    Query articles \
+in Scopus database containing the keyword, starting from Year_1 ending in Year_2
+        --dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    \
+Like the--pubmed above command, but fetches the number of articles daily, \
+usefull for fetching high ocurring keywords in case of only having the free api.
+    <BLANKLINE>
     <BLANKLINE>
     """
     help_msg = """
@@ -121,7 +122,7 @@ label1 m/z2 label2...
 
     Articles Database Querying
     --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    \
-Query articles in PubMed database containing the keyword, starting from Year_1\ 
+Query articles in PubMed database containing the keyword, starting from Year_1\
 ending in Year_2, save_path can be used to save the result to a csv
     --scopus [args]    Args = keyword Year_1 Year_2    Query articles in \
 Scopus database containing the keyword, starting from Year_1 ending in Year_2

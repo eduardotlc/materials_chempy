@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 def file_extract(spec_file='example_data/aunu_fl.txtx'):
     """
 
@@ -67,8 +68,3 @@ def spc_plot(df):
     plt.ylabel(col2)
     ax.plot(df[col1], df[col2])
     plt.savefig('/home/eduardotc/Programação/tstfl.png')
-#|%%--%%| <TMqjuWz4KU|0Mh5udMb4f>
-
-df = file_extract('/home/eduardotc/Programação/my_gits/materials_chempy/example_data/aunu_fl.txt')
-# spc_plot(df)
-df
