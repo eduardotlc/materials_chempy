@@ -1,12 +1,22 @@
 name: materials_chempy
 channels:
   - conda-forge
+  - defaults
 dependencies:
   - python=3.11.6
   - pip
   - pandas
   - numpy
   - matplotlib
+
+  - pip:
+    - pyopenms
+    - spectrum_overload
+    - metapub
+    - qiskit_sphinx_theme
+    - sphinx-reredirects
+    - sphinx-reredirects
+    - pybliometrics
 
   # Test dependencies
   - pytest
@@ -16,8 +26,6 @@ dependencies:
   - coloredlogs
 
   # Mass spectrometry dependencies
-  - pip:
-    - pyopenms
 
   # Spectrophotometry dependencies
   - astropy
@@ -25,9 +33,6 @@ dependencies:
   - scipy
 
   # Database analysis dependencies
-  - pip:
-    - metapub
-    - pybliometrics
   - lxml
   - pytrends
 
@@ -35,14 +40,9 @@ dependencies:
   - astropy
   - specutils
   - distinctipy
-  - pip:
-    - spectrum_overload
 
   # Documentation dependencies
   - sphinx
-  - pip:
-    - qiskit_sphinx_theme
-    - sphinx-reredirects
   - reno
   - nbsphinx
   - sphinx-remove-toctrees
