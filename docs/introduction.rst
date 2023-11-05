@@ -6,11 +6,15 @@ General information
 
 Python materials chemistry different analysis techniques plotting and uttilities.
 
-**The MIT License (MIT)**
+`The MIT License (MIT)`_
+
+.. _The MIT License (MIT): https://opensource.org/license/mit/
 
 **Copyright (c) [2023] [Eduardo Toledo Campos]**
 
-[eduardotcampos@usp.br](mailto:eduardotcampos@usp.br)
+`eduardotcampos@usp.br`_
+
+.. _eduardotcampos@usp.br: mailto:eduardotcampos@usp.br
 
 Implementation
 --------------
@@ -23,18 +27,17 @@ code improvement commit is welcome and appreciated.
 Download
 --------
 
-Get the latest version via github
-    https://www.github.com/eduardotlc/Materials_Chempy
+Get the latest version in the `github repository`_.
 
-The complete Documentation pdf is not yet provided at
-    https://Materials_Chempy.readthedocs.io/_/downloads/en/latest/pdf/
-    
-    But an early stage version of it can be checked in the project `documentation`_.
+.. _github repository: https://www.github.com/eduardotlc/Materials_Chempy
+
+|
+
+An early stage version of this documentation can be checked in the project `documentation`_ (Since you are
+here you must have noticed it.)
     
     .. _documentation: https://github.com/eduardotlc/materials_chempy/blob/6bfe8f6c8471e37cca7dbc7e6cac39dcd57885f8/docs/build/singlehtml/index.html
 
-Citation
---------
 
 Installation
 ------------
@@ -84,9 +87,25 @@ Materials_Chempy requires `python`_ 3.7 or higher.
      
 
 
-Materials_Chempy requires `python`_ 3.7 or higher.
-
-.. _python: https://www.python.org/downloads/
-
 Testing
 -------
+
+This project functions tests are written in docstrings formats, as shown in this documentation 
+functions autodocs. To run all project tests, inside `docs`_ folder, run:
+
+
+.. code-block:: bash
+
+   make tests
+
+If you want to test only an specific file functions, you can run the following command, also inside `docs`_ folder    
+
+.. _docs: https://github.com/eduardotlc/materials_chempy/tree/262a91c69302bb16e8af52f2add31b751801aacc/docs
+
+.. code-block:: bash
+
+   python -m pytest --doctest-utils <path_to_file>
+
+Make sure to install the `tests requirements`_ before executing them.
+
+.. _tests requirements: https://github.com/eduardotlc/materials_chempy/blob/262a91c69302bb16e8af52f2add31b751801aacc/docs/requirements.txt

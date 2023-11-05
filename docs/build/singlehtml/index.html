@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>Materials_Chempy 0.1 documentation</title>
   <link rel="shortcut icon" href="_static/mof_logo.svg" />
@@ -145,40 +145,36 @@
             <div role="main" class="main-content" itemscope="itemscope" itemtype="http://schema.org/Article">
              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
               
-  <section id="sphinx-documentation">
-<h1>Sphinx Documentation<a class="headerlink" href="#sphinx-documentation" title="Link to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
+  <div class="toctree-wrapper compound">
 <span id="document-introduction"></span><section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
 <section id="general-information">
-<h3>General information<a class="headerlink" href="#general-information" title="Link to this heading">¶</a></h3>
+<h2>General information<a class="headerlink" href="#general-information" title="Link to this heading">¶</a></h2>
 <p>Python materials chemistry different analysis techniques plotting and uttilities.</p>
-<p><strong>The MIT License (MIT)</strong></p>
+<p><a class="reference external" href="https://opensource.org/license/mit/">The MIT License (MIT)</a></p>
 <p><strong>Copyright (c) [2023] [Eduardo Toledo Campos]</strong></p>
-<p>[<a class="reference external" href="mailto:eduardotcampos&#37;&#52;&#48;usp&#46;br">eduardotcampos<span>&#64;</span>usp<span>&#46;</span>br</a>](<a class="reference external" href="mailto:eduardotcampos&#37;&#52;&#48;usp&#46;br">mailto:eduardotcampos<span>&#64;</span>usp<span>&#46;</span>br</a>)</p>
+<p><a class="reference external" href="mailto:eduardotcampos&#37;&#52;&#48;usp&#46;br">eduardotcampos<span>&#64;</span>usp<span>&#46;</span>br</a></p>
 </section>
 <section id="implementation">
-<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h3>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">¶</a></h2>
 <p>Materials chempy requires python 3.7+, with it other necessary python packages contained in the project
 requirement.txt respective files. The module is available on <a class="reference external" href="https://www.github.com/eduardotlc/Materials_Chempy">https://www.github.com/eduardotlc/Materials_Chempy</a>
 or pypi, published under the MIT license. This project is still in pre-release early development stages, any
 code improvement commit is welcome and appreciated.</p>
 </section>
 <section id="download">
-<h3>Download<a class="headerlink" href="#download" title="Link to this heading">¶</a></h3>
-<dl>
-<dt>Get the latest version via github</dt><dd><p><a class="reference external" href="https://www.github.com/eduardotlc/Materials_Chempy">https://www.github.com/eduardotlc/Materials_Chempy</a></p>
-</dd>
-<dt>The complete Documentation pdf is not yet provided at</dt><dd><p><a class="reference external" href="https://Materials_Chempy.readthedocs.io/_/downloads/en/latest/pdf/">https://Materials_Chempy.readthedocs.io/_/downloads/en/latest/pdf/</a></p>
-<p>But an early stage version of it can be checked in docs as</p>
-</dd>
-</dl>
-</section>
-<section id="citation">
-<h3>Citation<a class="headerlink" href="#citation" title="Link to this heading">¶</a></h3>
+<h2>Download<a class="headerlink" href="#download" title="Link to this heading">¶</a></h2>
+<p>Get the latest version in the <a class="reference external" href="https://www.github.com/eduardotlc/Materials_Chempy">github repository</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>An early stage version of this documentation can be checked in the project <a class="reference external" href="https://github.com/eduardotlc/materials_chempy/blob/6bfe8f6c8471e37cca7dbc7e6cac39dcd57885f8/docs/build/singlehtml/index.html">documentation</a> (Since you are
+here you must have noticed it.)</p>
+<blockquote>
+<div></div></blockquote>
 </section>
 <section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h3>
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
 <p>Materials_Chempy requires <a class="reference external" href="https://www.python.org/downloads/">python</a> 3.7 or higher.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -221,16 +217,25 @@ its current state.</p>
 </dl>
 </div>
 </div>
-<p>Materials_Chempy requires <a class="reference external" href="https://www.python.org/downloads/">python</a> 3.7 or higher.</p>
 </section>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h3>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<p>This project functions tests are written in docstrings formats, as shown in this documentation
+functions autodocs. To run all project tests, inside <a class="reference external" href="https://github.com/eduardotlc/materials_chempy/tree/262a91c69302bb16e8af52f2add31b751801aacc/docs">docs</a> folder, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make<span class="w"> </span>tests
+</pre></div>
+</div>
+<p>If you want to test only an specific file functions, you can run the following command, also inside <a class="reference external" href="https://github.com/eduardotlc/materials_chempy/tree/262a91c69302bb16e8af52f2add31b751801aacc/docs">docs</a> folder</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>--doctest-utils<span class="w"> </span>&lt;path_to_file&gt;
+</pre></div>
+</div>
+<p>Make sure to install the <a class="reference external" href="https://github.com/eduardotlc/materials_chempy/blob/262a91c69302bb16e8af52f2add31b751801aacc/docs/requirements.txt">tests requirements</a> before executing them.</p>
 </section>
 </section>
 <span id="document-quickstart"></span><section id="quick-start">
-<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h1>
 <section id="testing">
-<h3>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h3>
+<h2>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
 <p>Modules functions tests are defined inside the functions docstring, and can be
 availed by running inside the /docs folder:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># materials_chempy/docs</span>
@@ -252,23 +257,23 @@ pytest<span class="w"> </span>--doctest-modules<span class="w"> </span>../utils.
 </div>
 </section>
 <section id="plotting-mzml-mass-spectrometry">
-<h3>Plotting mzML Mass Spectrometry<a class="headerlink" href="#plotting-mzml-mass-spectrometry" title="Link to this heading">¶</a></h3>
+<h2>Plotting mzML Mass Spectrometry<a class="headerlink" href="#plotting-mzml-mass-spectrometry" title="Link to this heading">¶</a></h2>
 </section>
 <section id="transmission-electron-microscopy-particles-histogram">
-<h3>Transmission Electron Microscopy particles histogram<a class="headerlink" href="#transmission-electron-microscopy-particles-histogram" title="Link to this heading">¶</a></h3>
+<h2>Transmission Electron Microscopy particles histogram<a class="headerlink" href="#transmission-electron-microscopy-particles-histogram" title="Link to this heading">¶</a></h2>
 </section>
 <section id="gas-chromatography-analysis">
-<h3>Gas Chromatography Analysis<a class="headerlink" href="#gas-chromatography-analysis" title="Link to this heading">¶</a></h3>
+<h2>Gas Chromatography Analysis<a class="headerlink" href="#gas-chromatography-analysis" title="Link to this heading">¶</a></h2>
 </section>
 <section id="fluorescence-emission-spectra">
-<h3>Fluorescence Emission Spectra<a class="headerlink" href="#fluorescence-emission-spectra" title="Link to this heading">¶</a></h3>
+<h2>Fluorescence Emission Spectra<a class="headerlink" href="#fluorescence-emission-spectra" title="Link to this heading">¶</a></h2>
 </section>
 <section id="notebooks-examples">
-<h3>Notebooks Examples<a class="headerlink" href="#notebooks-examples" title="Link to this heading">¶</a></h3>
+<h2>Notebooks Examples<a class="headerlink" href="#notebooks-examples" title="Link to this heading">¶</a></h2>
 </section>
 </section>
 <span id="document-client"></span><section id="client">
-<h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
+<h1>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h1>
 <p>The client cli.py file allows to run specific modules from a terminal (bash,zsh etc…).</p>
 <p>The main flags triggers specific modules features, like histogram plotting, mass spectra plotting,
 image analysis, etc… The others flags allows to parse values to this executed feature.</p>
@@ -286,7 +291,7 @@ image analysis, etc… The others flags allows to parse values to this executed 
 <div class="line"><br /></div>
 </div>
 <section id="mass-spectrometry">
-<h3>Mass spectrometry<a class="headerlink" href="#mass-spectrometry" title="Link to this heading">¶</a></h3>
+<h2>Mass spectrometry<a class="headerlink" href="#mass-spectrometry" title="Link to this heading">¶</a></h2>
 <p><strong>The flag -m triggers matplotlib spectra plotting from a .mzML file</strong></p>
 <p><strong>The following flags takes the arguments:</strong></p>
 <p>—</p>
@@ -316,7 +321,7 @@ Otherwise, if (peak 1 - peak 2) &lt; argument, the lowest intensity peak is igno
 </div>
 </section>
 <section id="articles-databases-analysis">
-<h3>Articles databases analysis<a class="headerlink" href="#articles-databases-analysis" title="Link to this heading">¶</a></h3>
+<h2>Articles databases analysis<a class="headerlink" href="#articles-databases-analysis" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
@@ -382,7 +387,7 @@ Elsevier</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="module-materials_chempy.utils">
-<span id="functions"></span><h3>Functions<a class="headerlink" href="#module-materials_chempy.utils" title="Link to this heading">¶</a></h3>
+<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-materials_chempy.utils" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="materials_chempy.utils.absolute_path">
 <span class="sig-prename descclassname"><span class="pre">materials_chempy.utils.</span></span><span class="sig-name descname"><span class="pre">absolute_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.utils.absolute_path" title="Link to this definition">¶</a></dt>
@@ -411,29 +416,51 @@ absolute.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="materials_chempy.utils.client_help">
 <span class="sig-prename descclassname"><span class="pre">materials_chempy.utils.</span></span><span class="sig-name descname"><span class="pre">client_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.utils.client_help" title="Link to this definition">¶</a></dt>
-<dd><blockquote>
-<div><p>Prints materials chempy client flags and arguments help.</p>
-</div></blockquote>
+<dd><p>Prints materials chempy client flags and arguments help.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>None</strong></dt><dd></dd>
-</dl>
+<dd class="field-odd"><p><strong>None</strong> – </p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>None</dt><dd></dd>
-</dl>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
-<dl>
-<dt>ending in Year_2, save_path can be used to save the result to a csv</dt><dd><blockquote>
-<div><p>–scopus [args]    Args = keyword Year_1 Year_2    Query articles in Scopus database containing the keyword, starting from Year_1 ending in Year_2
-–dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    Like the–pubmed above command, but fetches the number of articles daily, usefull for fetching high ocurring keywords in case of only having the free api.</p>
-</div></blockquote>
-<p>&lt;BLANKLINE&gt;</p>
-</dd>
-</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">client_help</span><span class="p">()</span>
+
+<span class="go">    -h    --help,      Print this help message.</span>
+<span class="go">    -i    --input      Input file path.</span>
+<span class="go">    -o    --output     Output file path.</span>
+
+<span class="go">    General Matplotlib plotting</span>
+<span class="go">    -M    --msplot     Run default matplotlib configure.</span>
+<span class="go">    -S    --subtitle   Define the plot subtitle.</span>
+<span class="go">    -t    --title      Define the plot title.</span>
+
+<span class="go">    Mass Spectrometry</span>
+<span class="go">    -m    --msplot     Plot .mzml file in matplotlib.</span>
+
+<span class="go">    --resolution       minimum m/z difference between two plotted peaks.</span>
+<span class="go">    -n                 Number of peaks to be plotted, based on intensity.</span>
+<span class="go">    -N                 Number of most intense peaks to be labeled with m/z.</span>
+<span class="go">    --manual_peak      m/z manual peak labeling, argument in form m/z1 label1 m/z2 label2...</span>
+<span class="go">    --label1           Top right box first annotation</span>
+<span class="go">    --label2           Top right box second annotation</span>
+
+<span class="go">    Spectrophotometry</span>
+<span class="go">    -f    --flem       Plot fluorescence emission</span>
+<span class="go">    -b    --baseline  [Args]    Args = simple       Add baseline to spectra.</span>
+
+<span class="go">    Articles Database Querying</span>
+
+<span class="go">    save_path to a csv file can be given as last flag argument, or sparetelly,     ...as the --output value.</span>
+
+<span class="go">    --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    Query articles in PubMed database containing the keyword, starting from Year_1 ending in Year_2, save_path can be used to save the result to a csv</span>
+<span class="go">    --scopus [args]    Args = keyword Year_1 Year_2    Query articles in Scopus database containing the keyword, starting from Year_1 ending in Year_2</span>
+<span class="go">    --dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    Like the --pubmed above command, but fetches the number of articles daily, usefull for fetching high ocurring keywords in case of only having the free api.</span>
+
+</pre></div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -510,6 +537,12 @@ m/z2, label2], with m/z being a float and label being strings.</p>
 </dd></dl>
 
 <span class="target" id="module-materials_chempy.cli"></span><dl class="py function">
+<dt class="sig sig-object py" id="materials_chempy.cli.add_arguments">
+<span class="sig-prename descclassname"><span class="pre">materials_chempy.cli.</span></span><span class="sig-name descname"><span class="pre">add_arguments</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.cli.add_arguments" title="Link to this definition">¶</a></dt>
+<dd><p>Adds argparse arguments.</p>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="materials_chempy.cli.main">
 <span class="sig-prename descclassname"><span class="pre">materials_chempy.cli.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.cli.main" title="Link to this definition">¶</a></dt>
 <dd><p>Materials chempy package main fucntion, parsing specific submodule
@@ -524,9 +557,9 @@ functions by user parsed flags.</p>
 </section>
 </section>
 <span id="document-mass_spectrometry"></span><section id="mass-spectrometry-module-content">
-<h2>mass_spectrometry module content<a class="headerlink" href="#mass-spectrometry-module-content" title="Link to this heading">¶</a></h2>
+<h1>mass_spectrometry module content<a class="headerlink" href="#mass-spectrometry-module-content" title="Link to this heading">¶</a></h1>
 <section id="module-materials_chempy.mass_spectrometry.ms_functions">
-<span id="functions"></span><h3>Functions<a class="headerlink" href="#module-materials_chempy.mass_spectrometry.ms_functions" title="Link to this heading">¶</a></h3>
+<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-materials_chempy.mass_spectrometry.ms_functions" title="Link to this heading">¶</a></h2>
 <p>Created on Thu Oct 12 17:58:00 2023</p>
 <p>&#64;author: <a class="reference external" href="mailto:eduardotcampos&#37;&#52;&#48;usp&#46;br">eduardotcampos<span>&#64;</span>usp<span>&#46;</span>br</a></p>
 <dl class="py function">
@@ -773,7 +806,7 @@ column, from a user given .mzML mass spectra file.</p>
 </section>
 </section>
 <span id="document-database_analysis"></span><section id="articles-database-analysis">
-<h2>Articles Database Analysis<a class="headerlink" href="#articles-database-analysis" title="Link to this heading">¶</a></h2>
+<h1>Articles Database Analysis<a class="headerlink" href="#articles-database-analysis" title="Link to this heading">¶</a></h1>
 <p><strong>Script written to query, analyze, and plot different research related databases.</strong></p>
 <p>This module presents functions for querying the number of published papers , or google searches, containing a user
 defined keyword, over a custom range of time, with subsequent plotting of this data, for demonstrating the interest
@@ -791,7 +824,7 @@ the user possesing one of these paids APIs.</p>
 </ul>
 </div></blockquote>
 <section id="api-keys">
-<h3>API_Keys<a class="headerlink" href="#api-keys" title="Link to this heading">¶</a></h3>
+<h2>API_Keys<a class="headerlink" href="#api-keys" title="Link to this heading">¶</a></h2>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-5" name="sd-tab-set-2" type="radio">
 </input><label class="sd-tab-label" for="sd-tab-item-5">
@@ -819,6 +852,19 @@ Elsevier</label><div class="sd-tab-content docutils">
       <div class="qiskit-card-image-container"><img src='_static/Elsevier.svg'></div>
     </a>
 </div>
+<input id="sd-tab-item-7" name="sd-tab-set-2" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-7">
+Springer</label><div class="sd-tab-content docutils">
+<p>Springernature <a class="reference external" href="https://dev.springernature.com/signup?cannot_be_converted_to_param">free api</a> is required to use this database functions.</p>
+
+    <a class="qiskit-card" href="https://dev.springernature.com">
+      <div class="qiskit-card-text-container">
+        <h3>Springernature Database</h3>
+        <p>Fetch Springernature database, aiming data analysis of articles subjects interest evolution.</p>
+      </div>
+      <div class="qiskit-card-image-container"><img src='_static/springernature.ico'></div>
+    </a>
+</div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
@@ -827,10 +873,10 @@ Elsevier</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="packages-installation">
-<h3>Packages Installation<a class="headerlink" href="#packages-installation" title="Link to this heading">¶</a></h3>
+<h2>Packages Installation<a class="headerlink" href="#packages-installation" title="Link to this heading">¶</a></h2>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="sd-tab-item-7" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-7">
+<input checked="checked" id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-8">
 NCBI</label><div class="sd-tab-content docutils">
 <p>All interactions with PubMed NCBI Database is done through the python package <a class="reference external" href="https://pypi.org/project/metapub/">Metapub</a>.</p>
 <p>This package can be installed running the following on a terminal:</p>
@@ -849,10 +895,15 @@ NCBI</label><div class="sd-tab-content docutils">
     </a>
 </div></blockquote>
 </div>
-<input id="sd-tab-item-8" name="sd-tab-set-3" type="radio">
-</input><label class="sd-tab-label" for="sd-tab-item-8">
+<input id="sd-tab-item-9" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-9">
 Elsevier</label><div class="sd-tab-content docutils">
 <p>All interactions with Scopus Database is done through the python package <a class="reference external" href="https://pypi.org/project/pybliometrics/">Pybliometrics</a>.</p>
+</div>
+<input id="sd-tab-item-10" name="sd-tab-set-3" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-10">
+Springer</label><div class="sd-tab-content docutils">
+<p>This DataBase interaction is done through the API key and the <a class="reference external" href="https://pypi.org/project/requests/">requests</a> python package.</p>
 </div>
 </div>
 <div class="line-block">
@@ -862,7 +913,7 @@ Elsevier</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="client-usage">
-<h3>Client usage<a class="headerlink" href="#client-usage" title="Link to this heading">¶</a></h3>
+<h2>Client usage<a class="headerlink" href="#client-usage" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>To generate a csv with published articles containing a keyword from 2000 t0 2023,
@@ -883,7 +934,7 @@ with number of articles per month, run:</p></li>
 <p>Basic workflow is executed by the client module, linke the following examples:</p>
 </section>
 <section id="module-materials_chempy.database_analysis.dban_functions">
-<span id="functions"></span><h3>Functions<a class="headerlink" href="#module-materials_chempy.database_analysis.dban_functions" title="Link to this heading">¶</a></h3>
+<span id="functions"></span><h2>Functions<a class="headerlink" href="#module-materials_chempy.database_analysis.dban_functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="materials_chempy.database_analysis.dban_functions.bar_plot_df">
 <span class="sig-prename descclassname"><span class="pre">materials_chempy.database_analysis.dban_functions.</span></span><span class="sig-name descname"><span class="pre">bar_plot_df</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.database_analysis.dban_functions.bar_plot_df" title="Link to this definition">¶</a></dt>
@@ -1331,10 +1382,10 @@ keyword ‘Upconversion’, in the year of 2015, in the Scopus database.</p>
 </section>
 </section>
 <span id="document-imaging"></span><section id="imaging-module-content">
-<h2>Imaging module content<a class="headerlink" href="#imaging-module-content" title="Link to this heading">¶</a></h2>
+<h1>Imaging module content<a class="headerlink" href="#imaging-module-content" title="Link to this heading">¶</a></h1>
 </section>
 <span id="document-spectrophotometry"></span><section id="module-materials_chempy.spectrophotometry.spec_functions">
-<span id="spectrophotometry-module"></span><h2>Spectrophotometry module<a class="headerlink" href="#module-materials_chempy.spectrophotometry.spec_functions" title="Link to this heading">¶</a></h2>
+<span id="spectrophotometry-module"></span><h1>Spectrophotometry module<a class="headerlink" href="#module-materials_chempy.spectrophotometry.spec_functions" title="Link to this heading">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="materials_chempy.spectrophotometry.spec_functions.file_extract">
 <span class="sig-prename descclassname"><span class="pre">materials_chempy.spectrophotometry.spec_functions.</span></span><span class="sig-name descname"><span class="pre">file_extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#materials_chempy.spectrophotometry.spec_functions.file_extract" title="Link to this definition">¶</a></dt>
@@ -1424,12 +1475,12 @@ the dataframe</p>
 
 </section>
 <span id="document-chromatography"></span><section id="chromatography-module-content">
-<h2>Chromatography module content<a class="headerlink" href="#chromatography-module-content" title="Link to this heading">¶</a></h2>
+<h1>Chromatography module content<a class="headerlink" href="#chromatography-module-content" title="Link to this heading">¶</a></h1>
 </section>
 <span id="document-notebooks"></span><section id="notebooks-modules-examples">
-<h2>Notebooks Modules Examples<a class="headerlink" href="#notebooks-modules-examples" title="Link to this heading">¶</a></h2>
+<h1>Notebooks Modules Examples<a class="headerlink" href="#notebooks-modules-examples" title="Link to this heading">¶</a></h1>
 <section id="articles-data-analysis">
-<h3>articles_data_analysis<a class="headerlink" href="#articles-data-analysis" title="Link to this heading">¶</a></h3>
+<h2>articles_data_analysis<a class="headerlink" href="#articles-data-analysis" title="Link to this heading">¶</a></h2>
 <p><strong>Notebok written to query, analyze, and plot different research related databases.</strong></p>
 <p>This notebook presents code cells for querying the number of published papers , or google searches, containing a user
 defined keyword, over a custom range of time, with subsequent plotting of this data, for demonstrating the interest
@@ -1454,46 +1505,52 @@ the user possesing one of these paids APIs.</p>
 </section>
 </section>
 <span id="document-extra_material"></span><section id="extra-material-further-studying">
-<h2>Extra Material further studying<a class="headerlink" href="#extra-material-further-studying" title="Link to this heading">¶</a></h2>
+<h1>Extra Material further studying<a class="headerlink" href="#extra-material-further-studying" title="Link to this heading">¶</a></h1>
 </section>
 <span id="document-TODO"></span><section id="todo">
-<h2>TODO<a class="headerlink" href="#todo" title="Link to this heading">¶</a></h2>
+<h1>TODO<a class="headerlink" href="#todo" title="Link to this heading">¶</a></h1>
 <section id="client">
-<h3>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h3>
+<h2>Client<a class="headerlink" href="#client" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Separate cli main function in smaller functions</p></li>
 <li><p>Check utils functions absolute_path and remove_duplicates (Might delete).</p></li>
+<li><p>Add spinger function</p></li>
+<li><p>add scopus function to the others db functions</p></li>
+<li><p>add db_stats, as well as any df stat</p></li>
+<li><p>add bar plot</p></li>
 </ul>
 </section>
 <section id="mass-spectrometry">
-<h3>Mass Spectrometry<a class="headerlink" href="#mass-spectrometry" title="Link to this heading">¶</a></h3>
+<h2>Mass Spectrometry<a class="headerlink" href="#mass-spectrometry" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Make script to plot MS2</p></li>
 <li><p>See the possibillity of adding peaks that have difference lower than given resolution</p></li>
 </ul>
 </section>
 <section id="documentation">
-<h3>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h3>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Correct not found class error, from docstrings, like pd.DataFrame and matplotlib types</p></li>
 <li><p>Add plots/nbs to the documentation</p></li>
+<li><p>Add springer function</p></li>
 </ul>
 </section>
 <section id="notebooks">
-<h3>Notebooks<a class="headerlink" href="#notebooks" title="Link to this heading">¶</a></h3>
+<h2>Notebooks<a class="headerlink" href="#notebooks" title="Link to this heading">¶</a></h2>
 </section>
 <section id="data-analysis">
-<h3>Data analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">¶</a></h3>
+<h2>Data analysis<a class="headerlink" href="#data-analysis" title="Link to this heading">¶</a></h2>
 <ul class="simple">
+<li><p>Check if kwargs type values are correct by testing</p></li>
 <li><p>Create an conditional if queryied articles in a month is more than 9999, to split
 the month and than add the results.</p></li>
 <li><p>Check statistic function and find_matching_postions. (Might delete them)</p></li>
 <li><p>Probably remove read_pubmed_csv function (deprecated, use clean_csv instead)</p></li>
+<li><p>Remove my springer api from the code, try to use as an environment variable</p></li>
 </ul>
 </section>
 </section>
 </div>
-</section>
 
 
              </article>
@@ -1543,7 +1600,6 @@ the month and than add the results.</p></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#general-information">General information</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#implementation">Implementation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#download">Download</a></li>
-<li class="toctree-l2"><a class="reference internal" href="index.html#citation">Citation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#testing">Testing</a></li>
 </ul>
@@ -1566,6 +1622,7 @@ the month and than add the results.</p></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#materials_chempy.utils.manual_peaks_sepparation"><code class="docutils literal notranslate"><span class="pre">manual_peaks_sepparation()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#materials_chempy.utils.matplotlib_config"><code class="docutils literal notranslate"><span class="pre">matplotlib_config()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#materials_chempy.utils.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">remove_duplicates()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#materials_chempy.cli.add_arguments"><code class="docutils literal notranslate"><span class="pre">add_arguments()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="index.html#materials_chempy.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
 </ul>
 </li>

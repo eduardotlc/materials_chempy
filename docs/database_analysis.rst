@@ -50,6 +50,18 @@ API_Keys
            :image: _static/Elsevier.svg
            :link: https://dev.elsevier.com/apikey/manage
 
+    .. tab-item:: Springer
+
+        Springernature `free api`_ is required to use this database functions.
+
+        .. _free api: https://dev.springernature.com/signup?cannot_be_converted_to_param
+
+        .. qiskit-card::
+            :header: Springernature Database
+            :card_description: Fetch Springernature database, aiming data analysis of articles subjects interest evolution.
+            :image: _static/springernature.ico
+            :link: https://dev.springernature.com
+
 |
 |
 |
@@ -82,6 +94,13 @@ Packages Installation
     .. tab-item:: Elsevier
 
        All interactions with Scopus Database is done through the python package `Pybliometrics <https://pypi.org/project/pybliometrics/>`__.
+
+
+    .. tab-item:: Springer
+
+       This DataBase interaction is done through the API key and the `requests`_ python package.
+
+       .. _requests: https://pypi.org/project/requests/
 
 |
 |
