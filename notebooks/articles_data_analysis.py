@@ -156,7 +156,7 @@ r"""°°°
 #|%%--%%| <3W1r4iiPYs|rs2LJaWmH5>
 import matplotlib.pyplot as plt
 import pandas as pd
-%matplotlib inline
+# %matplotlib inline
 fig, ax = plt.subplots(figsize=(12, 4), dpi=400)
 plt.xlabel('Year')
 plt.ylabel('PubMed Articles')

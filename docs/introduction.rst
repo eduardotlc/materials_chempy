@@ -26,14 +26,61 @@ Download
 Get the latest version via github
     https://www.github.com/eduardotlc/Materials_Chempy
 
-The complete Documentation pdf is provided
+The complete Documentation pdf is not yet provided at
     https://Materials_Chempy.readthedocs.io/_/downloads/en/latest/pdf/
+    
+    But an early stage version of it can be checked in docs as 
 
 Citation
 --------
 
 Installation
 ------------
+
+Materials_Chempy requires `python`_ 3.7 or higher.
+
+.. _python: https://www.python.org/downloads/
+
+.. tab-set::
+
+    .. tab-item:: Python
+
+      You can install the general python `requirements`_ , or each submodule
+        specific requirements (for example the `database analysis requirements`_).
+         
+      .. _requirements: https://github.com/eduardotlc/materials_chempy/blob/fea9fd5124d1d058abbb3ed55b2c9fb70c923bf9/requirements.txt
+
+      .. _database analysis requirements: https://github.com/eduardotlc/materials_chempy/blob/fea9fd5124d1d058abbb3ed55b2c9fb70c923bf9/database_analysis/requirements.txt
+       
+      The package can be installed direct from source by cloning the repo
+      
+      .. code-block:: bash
+      
+         git clone git@github.com:eduardotlc/materials_chempy
+         cd materials_chempy
+         python -m pip install -r requirements.txt
+         python -m pip install -ve .
+         
+    .. tab-item:: Conda
+      
+      You can also install the package in an conda virtual environment, which
+        is highly recommende, to do so, with conda already installed, run
+        
+      .. code-block:: bash
+              
+         git clone git@github.com:eduardotlc/materials_chempy
+         cd materials_chempy
+         conda env update --file environment.yml --name materials_chempy
+         python -m pip install -ve .
+         
+    .. tab-item:: Public repositories
+    
+       Due to the current early developement stage of this project, it is not 
+         yet available in public repos like pypi or conda-forge. This constation
+         is also a sign, to proceed with caution on the usage of this repo on
+         its current state.
+     
+
 
 Materials_Chempy requires `python`_ 3.7 or higher.
 

@@ -5,7 +5,7 @@ SOURCEDIR     = .
 BUILDDIR      = build
 TEST		  = '../mass_spectrometry/ms_functions.py' '../utils.py' '../spectrophotometry/spec_functions.py' '../database_analysis/dban_functions.py'
 PYTHON		  = '/home/eduardotc/mambaforge/bin/python'
-.PHONY: help Makefile
+.PHONY: help Makefile build_test
 # @$(SPHINXBUILD) -M help '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 # doctest:
 # @$(SPHINXBUILD) -M $@ '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
@@ -22,6 +22,7 @@ help:
 		 @printf "\e[38;2;189;146;248m  test\e[0m        Run all docstrings examples tests\n"
 		 @printf "\e[38;2;189;146;248m  show\e[0m        Open html documentation in the browser\n"
 		 @printf "\e[38;2;189;146;248m  coverage\e[0m    to run coverage check of the documentation\n"
+		 @printf "\e[38;2;189;146;248m  build_test\e[0m  to run modules testing during github workflow building\n"
 clean:
 		 @$(SPHINXBUILD) -M clean '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 		 rm -rf '$(SOURCEDIR)/build/'
@@ -45,4 +46,9 @@ coverage:
 test:
 		 mkdir -p './tmp'
 		 @python -m pytest --doctest-modules -v $(TEST)
+		 rm -rf './tmp'
+build_test:
+		 rm -rf './tmp'
+		 mkdir -p './tmp'
+		 @python -m pytest --doctest-modules -v --maxfail=4 --rootdir ./ --ignore=dev --ignore=notebooks $(TEST)
 		 rm -rf './tmp'

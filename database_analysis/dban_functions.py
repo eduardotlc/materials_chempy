@@ -3,7 +3,8 @@ from time import sleep
 import numpy as np
 import pandas as pd
 from pybliometrics.scopus import ScopusSearch
-
+import matplotlib.pyplot as plt
+import re
 
 def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     """
@@ -127,8 +128,7 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
             # Fetching all articles containing the given keyword, in the date
             # ranging from the first day (1) of the current loop month, to the
             # above defined current loop month last day
-            pmids = fetch.pmids_for_query(f'{keyword} '+str(year)+f'/{month}/01[MDAT] : '+str(year)+f'/{month}/{endsin}[MDAT]',retmax=100000000)
-
+            pmids = fetch.pmids_for_query(f'{keyword} '+str(year)+f'/{month}/1[MDAT] : '+str(year)+f'/{month}/{endsin}[MDAT]',retmax=100000000)
             # Appending to the result dataframe, in the first available row
             # (given by the dataframe length), the current loop date in the
             # format year-month, and the number of published articles in this
@@ -157,6 +157,107 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
 
     return pubmed_df
 
+def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
+    """
+
+    The same as above pubmedfethcer function, but this functions make the
+    number of articles to be fetched per day in the given data range. Usefull
+    if the month fetching aproach is trespassing the free api limit of 9999
+    api calls per command.
+
+    Parameters
+    ----------
+    keyword : str
+        Keyword to search articles tha contains it.
+        Required.
+
+    year_1 : int
+        Starting year to search for articles. Remember that pubmed was created
+        in january 1996.
+        Required.
+
+    year_2 : int
+        Ending year to search for articles.
+        Required.
+
+    save_path : str
+        Path to save the dataframe into a csv file.
+        Optional.
+
+    Returns
+    -------
+    pubmed_df : pandas.DataFrame
+        Pandas dataframe with every selected year months in a column named
+        "date", and the corresponding number of published articles in that
+         day, containing the given keyword in other column named "articles".
+
+    Examples
+    --------
+
+    """
+
+    # Defining optional argument save_path
+    save_path = kwargs.get('save_path', None)
+
+    # Fetching the PubMed database
+    fetch = PubMedFetcher()
+
+    # Creating empty pandas dataframe with 'date' and 'articles' columns
+    pubmed_df = pd.DataFrame({'Date': [],
+                              'Articles': []})
+
+    # Creating a list containing the number correspondant to every year month
+    month_list = np.arange(1, 13, 1)
+
+    # Creating a pandas dataframe with every month number in one column, named
+    # 'month', and in the other column 'ends', the corresponding months ending
+    # day
+    months_days = pd.DataFrame({'month': month_list,
+                                'ends': [31, 28, 31, 30, 31, 30, 31, 31, 30, 31,
+                                        30, 31]})
+
+    # Creating a list for with every year in the given range
+    year_list = np.arange(year_1, year_2 + 1, 1)
+
+    # Looping for every month in every year
+    for year in year_list:
+        for month in months_days['month']:
+            sleep(4)
+            # Creating a variable to store the current loop month ending day
+            endsin = (months_days.loc[months_days['month'] == month, 'ends'])[month-1]
+            days_list = np.arange(1, endsin + 1, 1)
+            # Fetching all articles containing the given keyword, in the date
+            # ranging from the first day (1) of the current loop month, to the
+            # above defined current loop month last day
+            for days in days_list:
+                pmids = fetch.pmids_for_query(f'{keyword} '+str(year)+f'/{month}/{days}[MDAT]',retmax=100000000)
+            # Appending to the result dataframe, in the first available row
+            # (given by the dataframe length), the current loop date in the
+            # format year-month, and the number of published articles in this
+            # month, given by the above articles fetch length
+                pubmed_df.loc[len(pubmed_df)] = [f'{year}-{month}-{days}', len(pmids)]
+
+            # Printing for tracking the current loop date, in the year-month
+            # format, and the number of articles containing the given keyword
+            # found in the Scoupus database with corresponding year-month
+            # publication date
+                print(f"{year}-{month}-{days}: ", len(pmids))
+
+            # Sleeping for avoiding to many/simultaneous API requests, if any
+            # error is presented during this function execution, this sleeping
+            # time may be enlarged
+                sleep(0.1)
+
+    # Converting the result dataframe 'date' column to pandas date format
+    pd.to_datetime(pubmed_df.Date, format="%Y-%m-%d")
+
+    # If optional argument save_path is given, the bellow saving loop is
+    # executed
+    if save_path:
+        pathcsv = f'{save_path}/{keyword}_pubmed.csv'
+        pubmed_df.to_csv(path_or_buf=pathcsv)
+
+    return pubmed_df
 
 def read_pubmed_csv(csv_path):
     """
@@ -345,7 +446,7 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
 
     """
     # Defining optional argument save_path
-    save_path = kwargs.get('save_path', None)
+    save_path = kwargs.get('save_path', str)
 
     # Creating a list with every month in the year
     months_list = ['january', 'february', 'march', 'april', 'june', 'july',
@@ -397,7 +498,7 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
     return scopus_df
 
 
-def df_statistics(df):
+def df_statistics(df, **kwargs):
     """
 
     Given a dataframe with 'date' column, in the format year-month, returns
@@ -410,6 +511,9 @@ def df_statistics(df):
         Pandas DataFrame, with one column named 'date', in the year-month
         format, and one column with integer values correlating to the date
         column.
+        
+    time_grouping : str
+        Time range to group data, may be 'Year' or 'Month'
 
     Returns
     -------
@@ -435,9 +539,15 @@ def df_statistics(df):
     Date ...
     2015  1552  141.090909  187
     """
+    time_grouping = kwargs.get('time_grouping', str)
     df_clean = clean_df(df)
+    if time_grouping == 'month' or time_grouping == 'Month':
+        time_grouping = 'month'
+        df_stat = df_clean.groupby(df_clean['Date'].dt.month)['Articles'].agg(['sum', 'mean', 'max'])
+    else:
+        time_grouping = 'year'
+        df_stat = df_clean.groupby(df_clean['Date'].dt.year)['Articles'].agg(['sum', 'mean', 'max'])
     # df_clean['Date'] = pd.to_datetime(df.date.astype(str), format="%Y-%m-%B")
-    df_stat = df_clean.groupby(df_clean['Date'].dt.year)['Articles'].agg(['sum', 'mean', 'max'])
     return df_stat
 
 
@@ -659,6 +769,8 @@ def clean_df(df):
 
     # Creating empty dataframe in case readed csv 'date' column is shorter
     # than 7
+    if df['date']:
+        df.rename({'date': 'Date'}, axis='columns')
     if (len(df.date[0])) < 7:
         df_split = pd.DataFrame({'a': [],
                                 'b': []})
@@ -724,3 +836,85 @@ def clean_df(df):
 
 
     return(df_clean)
+
+
+def bar_plot_df(**kwargs):
+    """
+    
+    Creates a bar plot from a pandas DataFrame or saved csv, being obrigatory
+    to give one of these two parameters.
+    
+    Parameters
+    ----------
+    df : pd.DataFrame
+        Dataframe to be plotted
+        Optional
+        
+    csv_path : str
+        Path to csv file to be readed and plotted
+        Optional
+        
+    save_path : str
+        Path to save the plot image
+        Optional
+        
+    time_grouping : str
+        String to inform desired grouping of the date axis, accepts the values:
+        'year', 'month'.
+        Optional
+        
+    title : str
+        Title of the plot, in case of plotting a dataframe, it should be given,
+        while if plotting a csv, the title defaults to be extracted from the 
+        file name if not given
+        Optional
+        
+    Returns
+    -------
+    
+    Examples
+    --------
+    
+    """
+    dirty_list = ['pubmed', 'PubMed', 'Scopus', 'scopus', 'DataBase'
+                  'database', 'Database', 'csv']
+    df = kwargs.get('df', pd.DataFrame)
+    csv_path = kwargs.get('csv_path', str)
+    save_path = kwargs.get('save_path', str)
+    time_grouping = kwargs.get('time_grouping', str)
+    title = kwargs.get('title', str)
+    
+    fig, ax = plt.subplots(figsize=(12, 4), dpi=400)
+    if time_grouping:
+        plt.xlabel(time_grouping)
+    else:
+        plt.xlabel('Year')
+        time_grouping = 'Year'
+    plt.ylabel('Published Articles')
+    if csv_path:
+        dfclean = clean_csv(csv_path)
+        title_tmp = re.split(r'_|\.|-', csv_path)
+        for n in title_tmp:
+            for j in dirty_list:
+                if n == j:
+                    title_tmp.remove(n)
+    elif df:
+        dfclean = df_clean(df)
+    elif not df and not csv_path:
+        raise Exception("a pandas dataframe or path to csv file has to be\
+                         inputted.")
+    dfstat = df_statistics(dfclean, time_grouping=time_grouping) 
+    # plt.xlim(dfclean.Year.min - 1, dfclean.Year.max + 1)
+    
+    if title:
+        ax.set_title(title)
+    elif title_tmp:
+        ax.set_title(title_tmp)
+    else:
+        raise Exception("When given a dataframe, --title argument is obrigatory")
+    # dfstat = df_statistics(dfclean, time_grouping=time_grouping)
+    ax.bar(dfstat.index.values, dfstat['sum'], label=dfstat['sum'])
+    if save_path:
+        plt.savefig(f'{save_path}/{title}.png')
+    plt.show()
+        

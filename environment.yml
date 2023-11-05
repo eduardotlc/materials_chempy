@@ -11,9 +11,11 @@ dependencies:
   # Test dependencies
   - pytest
   - coverage
+  - flake8
 
   # Mass spectrometry dependencies
-  - pyopenms
+  - pip:
+    - pyopenms
 
   # Spectrophotometry dependencies
   - astropy
@@ -21,21 +23,26 @@ dependencies:
   - scipy
 
   # Database analysis dependencies
-  - metapub
-  - pybliometrics
+  - pip:
+    - metapub
+    - pybliometrics
+  - lxml
+  - pytrends
 
   # Chromatography dependencies
   - astropy
   - specutils
   - distinctipy
-  - spectrum_overload
+  - pip:
+    - spectrum_overload
 
   # Documentation dependencies
   - sphinx
-  - qiskit-sphinx-theme
+  - pip:
+    - qiskit_sphinx_theme
+    - sphinx-reredirects
   - reno
   - nbsphinx
-  - sphinx_reredirects
   - sphinx-remove-toctrees
   - sphinx-copybutton
   - numpydoc

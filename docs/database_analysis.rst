@@ -71,7 +71,7 @@ Packages Installation
 
        Other important requirements are present in the database_analysis module folder `requirements.txt`_.
 
-       .. _requirements.txt: ../../../database_analysis/requirements.txt
+       .. _requirements.txt: https://github.com/eduardotlc/materials_chempy/blob/fea9fd5124d1d058abbb3ed55b2c9fb70c923bf9/database_analysis/requirements.txt
 
         .. qiskit-card::
            :header: Metapub Package
@@ -109,3 +109,9 @@ This notebook require the following packages to be installed to be fully execute
    python -m pip install pandas pytrends metapub matplotlib pybiometrics numpy
 
 Basic workflow is executed by the client module, linke the following examples:
+
+Functions
+---------
+
+.. automodule:: materials_chempy.database_analysis.dban_functions
+    :members:

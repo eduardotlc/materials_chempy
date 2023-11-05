@@ -4,7 +4,6 @@ import materials_chempy.mass_spectrometry.ms_functions as msmcpy
 import materials_chempy.spectrophotometry.spec_functions as spcmcpy
 import materials_chempy.database_analysis.dban_functions as dbanmcpy
 import pandas as pd
-import os
 
 
 def main():
@@ -56,6 +55,7 @@ def main():
     parser.add_argument("-b", "--baseline", type=str)
     parser.add_argument("--pubmed", nargs="+")
     parser.add_argument("--scopus", nargs="+")
+    parser.add_argument("--dailypubmed", nargs="+")
     args = parser.parse_args()
     if args.help:
         mcpyut.client_help()
@@ -91,13 +91,30 @@ def main():
         pubmed_keyword = args.pubmed[0]
         if args.pubmed[1]:
             pubmed_start_year = int(args.pubmed[1])
-        if args.pubmed[2]:
+        elif args.pubmed[2]:
             pubmed_end_year = int(args.pubmed[2])
-        if args.output:
-            dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year, pubmed_end_year, save_path=args.output)
-            dbanmcpy.
-        elif:
-            dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year, pubmed_end_year)
+        elif args.output:
+            pubdf = dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year,
+                                           pubmed_end_year,
+                                           save_path=args.output)
+        else:
+            pubdf = dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year,
+                                           pubmed_end_year)
+    if args.dailypubmed:
+        pubmed_keyword = args.dailypubmed[0]
+        if args.dailypubmed[1]:
+            pubmed_start_year = int(args.dailypubmed[1])
+        elif args.dailypubmed[2]:
+            pubmed_end_year = int(args.dailypubmed[2])
+        elif args.output:
+            pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
+                                           pubmed_end_year,
+                                           save_path=args.output)
+        else:
+            pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
+                                           pubmed_end_year)
+        print(pubdf)
+
     return ()
 
 

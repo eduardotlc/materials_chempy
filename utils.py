@@ -84,9 +84,14 @@ label1 m/z2 label2...
 spectra.
     <BLANKLINE>
         Articles Database Querying
-        --pubmed [args]    Args = keyword Year_1 Year_2    Query articles in \
-PubMed database containing the keyword, starting from Year_1 ending in Year_2
-        --scopus [args]    Args = keyword Year_1 Year_2    Query articles in Scopus database containing the keyword, starting from Year_1 ending in Year_2
+        --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    \
+Query articles in PubMed database containing the keyword, starting from Year_1\ 
+ending in Year_2, save_path can be used to save the result to a csv
+        --scopus [args]    Args = keyword Year_1 Year_2    Query articles in \
+Scopus database containing the keyword, starting from Year_1 ending in Year_2
+        --dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    Like the\
+--pubmed above command, but fetches the number of articles daily, usefull for \
+fetching high ocurring keywords in case of only having the free api.
     <BLANKLINE>
     """
     help_msg = """
@@ -115,10 +120,15 @@ label1 m/z2 label2...
     -b    --baseline  [Args]    Args = simple       Add baseline to spectra.
 
     Articles Database Querying
-    --pubmed [args]    Args = keyword Year_1 Year_2    Query articles in \
-PubMed database containing the keyword, starting from Year_1 ending in Year_2
+    --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    \
+Query articles in PubMed database containing the keyword, starting from Year_1\ 
+ending in Year_2, save_path can be used to save the result to a csv
     --scopus [args]    Args = keyword Year_1 Year_2    Query articles in \
 Scopus database containing the keyword, starting from Year_1 ending in Year_2
+    --dailypubmed [args]    Args = keyword Year_1 Year_2 save_path    Like the\
+--pubmed above command, but fetches the number of articles daily, usefull for \
+fetching high ocurring keywords in case of only having the free api.
+
                """
     print(help_msg)
 
@@ -149,9 +159,7 @@ def matplotlib_config():
     from cycler import cycler
 
     plt.rcParams["pdf.use14corefonts"] = True
-    # trigger core fonts for PS backend
     plt.rcParams["ps.useafm"] = True
-    # plt.rcParams['backend'] = 'Agg'
     plt.rcParams.update(
         {
             "figure.dpi": 400,
@@ -200,7 +208,7 @@ def matplotlib_config():
 
     plt.rcParams.update(
         {
-            "xtick.labelsize": "medium",
+            "xtick.labelsize": "small",
             "xtick.major.pad": 3.5,
             "xtick.major.size": 3.5,
             "xtick.alignment": "center",
@@ -256,6 +264,7 @@ def absolute_path(file_path):
     path = os.path.dirname(materials_chempy.__file__)
     absol_path = path + "/" + file_path
     return absol_path
+
 
 def remove_duplicates(strings_list):
     """
