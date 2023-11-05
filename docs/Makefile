@@ -26,6 +26,7 @@ clean:
 		 @$(SPHINXBUILD) -M clean '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 		 rm -rf '$(SOURCEDIR)/build/'
 		 rm -rf '$(SOURCEDIR)/sphinxext/__pycache__'
+		 rm -rf '$(SOURCEDIR)/__pycache__'
 show:
 		 @python -c 'import webbrowser'
 		 @python -m webbrowser -t '/home/eduardotc/Programação/my_gits/materials_chempy/docs/build/html/index.html'
