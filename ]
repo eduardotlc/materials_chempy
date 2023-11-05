@@ -86,7 +86,7 @@ spectra.
         Articles Database Querying
     <BLANKLINE>
         save_path to a csv file can be given as last flag argument, or sparetelly, \
-    ...as the --output value.
+        as the --output value.
     <BLANKLINE>
         --pubmed [args]    Args = keyword Year_1 Year_2 save_path=str(opt)    \
 Query articles in PubMed database containing the keyword, starting from Year_1\

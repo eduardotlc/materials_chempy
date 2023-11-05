@@ -17,9 +17,8 @@ manual_peak_df = pd.DataFrame({})
 label1 = 'Ion Trap ESI-MS'
 label2 = 'Direct injection'
 title = None
-pubmed_start_year = 1996
-pubmed_end_year = 2023
-
+year_1 = 1996
+year_2 = 2023
 
 def add_arguments():
     """
@@ -52,6 +51,7 @@ def add_arguments():
     parser.add_argument("--pubmed", nargs="+")
     parser.add_argument("--scopus", nargs="+")
     parser.add_argument("--dailypubmed", nargs="+")
+    parser.add_argument("--springer", nargs="+")
 
     return parser
 
@@ -75,6 +75,8 @@ def main():
         mcpyut.matplotlib_config()
     if args.input:
         input_path = args.input
+    if args.output:
+        output_path = args.output
     if args.title:
         title = args.title
     if args.resolution:
@@ -99,33 +101,25 @@ def main():
         if args.baseline == 'simple':
             df = spcmcpy.mean_baseline(df)
         spcmcpy.spc_plot(df, input_path, title)
-    if args.pubmed:
-        pubmed_keyword = args.pubmed[0]
-        if args.pubmed[1]:
-            pubmed_start_year = int(args.pubmed[1])
-        elif args.pubmed[2]:
-            pubmed_end_year = int(args.pubmed[2])
-        elif args.output:
-            pubdf = dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                           pubmed_end_year,
-                                           save_path=args.output)
-        else:
-            pubdf = dbanmcpy.pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                           pubmed_end_year)
-    if args.dailypubmed:
-        pubmed_keyword = args.dailypubmed[0]
-        if args.dailypubmed[1]:
-            pubmed_start_year = int(args.dailypubmed[1])
-        elif args.dailypubmed[2]:
-            pubmed_end_year = int(args.dailypubmed[2])
-        elif args.output:
-            pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                               pubmed_end_year,
-                                               save_path=args.output)
-        else:
-            pubdf = dbanmcpy.big_pubmedfetcher(pubmed_keyword, pubmed_start_year,
-                                               pubmed_end_year)
-        print(pubdf)
+
+    if args.dailypubmed or args.pubmed or args.springer:
+        for n in [args.pubmed, args.dailypubmed, args.springer]:
+            if n:
+                if len(n) == 1:
+                    n.append(year_1)
+                    n.append(year_2)
+                if len(n) == 2:
+                    n.append(year_2)
+                if args.output:
+                    n.append(output_path)
+                else:
+                    n.append(None)
+                if args.pubmed:
+                    pubdf = dbanmcpy.pubmedfetcher(n[0], int(n[1]), int(n[2]), save_path=n[3])
+                elif args.dailypubmed:
+                    pubdf = dbanmcpy.big_pubmedfetcher(n[0], int(n[1]), int(n[2]), save_path=n[3])
+                else:
+                    pubdf = dbanmcpy.fetch_springer(n[0], int(n[1]), int(n[2]), save_path=n[3])
 
     return ()
 

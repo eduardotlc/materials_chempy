@@ -5,6 +5,7 @@ import pandas as pd
 from pybliometrics.scopus import ScopusSearch
 import matplotlib.pyplot as plt
 import re
+import requests
 
 
 def pubmedfetcher(keyword, year_1, year_2, **kwargs):
@@ -113,7 +114,8 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     # 'month', and in the other column 'ends', the corresponding months ending
     # day
     months_days = pd.DataFrame(
-        {"month": month_list, "ends": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]}
+        {"month": month_list, "ends": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31,
+                                       30, 31]}
     )
 
     # Creating a list for with every year in the given range
@@ -943,7 +945,7 @@ def bar_plot_df(**kwargs):
 def fetch_springer(keyword, year_1, year_2, **kwargs):
     """
 
-    Fetches number of specific keyword containing articles, published 
+    Fetches number of specific keyword containing articles, published
     in each year from a range.
 
     Parameters
@@ -965,7 +967,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     -------
     df : pd.DataFrame
         Results dataframe, with one column containing each year, and the other
-        column containing the number of published articles that contains 
+        column containing the number of published articles that contains
         the keyword
 
     Example
@@ -986,7 +988,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     2022:  4722
     2023:  4905
     >>> print(springer_test)
-        year  articles
+        Year  Articles
     0   2010       536
     1   2011       845
     2   2012      1323
@@ -1002,6 +1004,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     12  2022      4722
     13  2023      4905
     """
+    save_path = kwargs.get('save_path', None)
     springer_api_key = "56580f5684a4934af904f1edf8f07706"
     base_url_springer = 'http://api.springer.com/metadata/json'
     date_list = np.arange(year_1, year_2 + 1, 1)
@@ -1023,5 +1026,9 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
         articles = int(articles.total[0])
         print(f'{date_int}:  {articles}')
         df.loc[len(df)] = [date_int, articles]
+
+    if save_path:
+        pathcsv = f"{save_path}/{keyword}_springer.csv"
+        df.to_csv(path_or_buf=pathcsv)
 
     return df
