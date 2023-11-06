@@ -9,6 +9,14 @@ jobs:
       max-parallel: 5
 
     steps:
+    - name: environment variables config
+    - shell: bash
+      env:
+        Elsevier_API: ${{ SCOPUS_API_KEY }}
+      run: |
+        touch ~/.config/pybliometrics.cfg
+        echo '[Authentication]' >> ~/.config/pybliometrics.cfg
+        echo "$Elsevier_API" >> ~/.config/pybliometrics.cfg
     - uses: actions/checkout@v3
     - name: Set up Python 3.11.6
       uses: actions/setup-python@v3
