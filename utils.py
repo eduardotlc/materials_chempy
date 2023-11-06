@@ -247,34 +247,6 @@ def matplotlib_config():
     )
 
 
-def absolute_path(file_path):
-    """
-
-    Concatenate the package main folder absolute path to a given string,
-    permmiting to use paths as relatives, with this function converting to
-    absolute.
-
-    parameters
-    ----------
-    file_path : str
-        str of a relative (with relation of package main folder) file path
-
-    returns
-    -------
-    absol_path : str
-        str of absolute path.
-
-    examples
-    --------
-    >>> test = absolute_path(file_path = 'example_data/anad2.mzml')
-    >>> print(test)
-    /home/eduardotc/Programação/my_gits/materials_chempy/example_data/anad2.mzml
-    """
-    path = os.path.dirname(materials_chempy.__file__)
-    absol_path = path + "/" + file_path
-    return absol_path
-
-
 def remove_duplicates(strings_list):
     """
 

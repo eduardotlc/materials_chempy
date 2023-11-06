@@ -972,7 +972,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
 
     Example
     -------
-    >>> springer_test = fetch_springer('Plasmonic', 2010, 2023)
+    >>> springer_test = fetch_springer('Plasmonic', 2010, 2022)
     2010:  536
     2011:  845
     2012:  1323
@@ -986,7 +986,6 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     2020:  3744
     2021:  4059
     2022:  4722
-    2023:  4905
     >>> print(springer_test)
         Year  Articles
     0   2010       536
@@ -1002,7 +1001,6 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     10  2020      3744
     11  2021      4059
     12  2022      4722
-    13  2023      4905
     """
     save_path = kwargs.get('save_path', None)
     springer_api_key = "56580f5684a4934af904f1edf8f07706"
