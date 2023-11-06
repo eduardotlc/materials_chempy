@@ -23,10 +23,9 @@ jobs:
         conda env update --file environment.yml --name base
     - name: API environment definition
       env:
-        SCOPUS_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
+        scopus_api_key: ${{ secrets.SCOPUS_API_KEY }}
       run: |
-        touch ~/.config/pybliometrics.cfg
-        echo "APIKey = $SCOPUS_API_KEY" >> ~/.config/pybliometrics.cfg
+        cp /docs/pybliometrics.cfg ~/.config/
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
