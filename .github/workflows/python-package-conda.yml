@@ -16,7 +16,6 @@ jobs:
         python-version: '3.11.6'
     - name: Add conda to system path
       run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
         echo $CONDA/bin >> $GITHUB_PATH
     - name: environment variables config
       env:
@@ -24,7 +23,7 @@ jobs:
       run: |
         touch ~/.config/pybliometrics.cfg
         echo '[Authentication]' >> ~/.config/pybliometrics.cfg
-        echo "$Elsevier_API" >> ~/.config/pybliometrics.cfg
+        echo "APIKey = $Elsevier_API" >> ~/.config/pybliometrics.cfg
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
