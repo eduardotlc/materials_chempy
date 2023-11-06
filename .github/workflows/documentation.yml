@@ -25,7 +25,8 @@ jobs:
           pip install -r requirements.txt
       - name: Make file build
         run: |
-          make html
+          cd /home/runner/work/materials_chempy/materials_chempy/docs
+          ./Makefile html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
