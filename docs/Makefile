@@ -45,7 +45,7 @@ coverage:
 .PHONY: test
 test:
 		 mkdir -p './tmp'
-		 @python -m pytest --doctest-modules -v -s $(TEST)
+		 @python -m pytest --doctest-modules -v -s --runxfail $(TEST)
 		 rm -rf './tmp'
 build_test:
 		 rm -rf './tmp'
