@@ -12,4 +12,5 @@ numpydoc
 sphinx-design
 sphinx-autodoc-typehints
 sphinx-togglebutton
+sphinxcontrib-svg2pdfconverter
 docutils
