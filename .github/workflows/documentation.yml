@@ -26,7 +26,6 @@ jobs:
       - name: Make file build
         run: |
           sphinx-build -M html /home/runner/work/materials_chempy/materials_chempy/docs/. /home/runner/work/materials_chempy/materials_chempy/docs/build
-          ./Makefile html
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
