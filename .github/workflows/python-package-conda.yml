@@ -24,8 +24,8 @@ jobs:
     - name: API environment definition
       env:
         SCOPUS_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
-      run:
-        python -c "import pybliometrics; import os; pytbliometrics.scopus.utils.config['Authentication']['APIKey'] =  os.environ['SCOPUS_API_KEI']"
+      run: |
+        echo "APIKey = $SCOPUS_API_KEY" >> ~/.config/pybliometrics.cfg
     - name: Lint with flake8
       run: |
         # stop the build if there are Python syntax errors or undefined names
