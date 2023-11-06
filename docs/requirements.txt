@@ -4,15 +4,12 @@ qiskit-sphinx-theme
 reno
 pandas
 matplotlib
-pytest
 nbsphinx
 sphinx_reredirects
 sphinx-remove-toctrees
-reno
 sphinx-copybutton
 numpydoc
 sphinx-design
-# Possible requirements
 sphinx-autodoc-typehints
 sphinx-togglebutton
-sphinx_rtd_theme
+docutils

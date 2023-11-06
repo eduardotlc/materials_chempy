@@ -45,6 +45,7 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     Examples
     --------
     Getting the articles published in 2010 and 2011 containing the keyword
+
     >>> test = pubmedfetcher('Plasmonic', 2010, 2011)
     2010-1:  29
     2010-2:  35
@@ -396,7 +397,6 @@ def csv_statistics(csv_path):
     return csv_stat
 
 
-@pytest.mark.xfail(run=False)
 def scopusfetcher(keyword, year_1, year_2, **kwargs):
     """
 
@@ -438,6 +438,7 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
     Querying, per month, the number of published articles containing the
     keyword 'Upconversion', in the year of 2015, in the Scopus database.
 
+    @pytest.mark.xfail(run=False)
     >>> scopus_df = scopusfetcher('Upconversion', 2015, 2015,
     ...                           save_path='./tmp')
     2015-january:  136
@@ -518,7 +519,8 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
             sleep(2)
 
     # Converting the 'date' column to pandas datetime format
-    scopus_df["date"] = pd.to_datetime(scopus_df.date.astype(str), format="%Y-%B")
+    scopus_df["date"] = pd.to_datetime(scopus_df.date.astype(str),
+                                       format="%Y-%B")
 
     # If optional argument save_path is given, the saving loop bellow is
     # executed
@@ -1018,7 +1020,8 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     df = pd.DataFrame({'Year': [],
                        'Articles': []})
     for date_int in date_list:
-        springer_keyword = "?q=("+ "%22" + keyword.replace(" ", "%20") + "%22" + "%20AND%20year:" + str(date_int) + ")"
+        springer_keyword = "?q=("+ "%22" + keyword.replace(" ", "%20") + "%22"\
+         + "%20AND%20year:" + str(date_int) + ")"
 
     # Building the Springer Metadata API parameters dictionary
         d_springer = requests.get(base_url_springer + springer_keyword,
