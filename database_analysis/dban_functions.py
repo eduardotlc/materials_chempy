@@ -434,7 +434,8 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
     Querying, per month, the number of published articles containing the
     keyword 'Upconversion', in the year of 2015, in the Scopus database.
 
-    >>> scopus_df = scopusfetcher('Upconversion', 2015, 2015, save_path="./tmp")
+    >>> scopus_df = scopusfetcher('Upconversion', 2015, 2015,
+    ...                           save_path='./tmp')
     2015-january:  136
     2015-february:  126
     2015-march:  122
