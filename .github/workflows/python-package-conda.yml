@@ -23,7 +23,8 @@ jobs:
         conda env update --file environment.yml --name base
     - name: API environment definition
       env:
-        SCOPU_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
+        SCOPUS_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
+    - name: Pybliometric API definition
       run:
         python -c "import pybliometrics; import os; pytbliometrics.scopus.utils.config['Authentication']['APIKey'] =  os.environ['SCOPUS_API_KEI']"
     - name: Lint with flake8
