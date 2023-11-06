@@ -21,10 +21,10 @@ jobs:
     - name: Install dependencies
       run: |
         conda env update --file environment.yml --name base
-    - name: API configuration
+    - name: API environment definition
       env:
-        SCOPU_API_KEY = ${{ secrets.SCOPUS_API_KEY }}
-      run:_
+        SCOPU_API_KEY: ${{ secrets.SCOPUS_API_KEY }}
+      run:
         python -c "import pybliometrics; import os; pytbliometrics.scopus.utils.config['Authentication']['APIKey'] =  os.environ['SCOPU_API_KEI']"
     - name: Lint with flake8
       run: |
