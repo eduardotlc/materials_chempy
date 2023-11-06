@@ -17,7 +17,7 @@ jobs:
           cache: 'pip'
       - name: Install dependencies
         run: |
-          cd /docs
+          cd /home/runner/work/materials_chempy/materials_chempy/docs
           python -m pip install --upgrade pip
           pip install -r requirements.txt
       - name: Make file build
