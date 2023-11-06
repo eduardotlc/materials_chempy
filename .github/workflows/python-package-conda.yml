@@ -20,7 +20,7 @@ jobs:
         echo $CONDA/bin >> $GITHUB_PATH
     - name: environment variables config
       env:
-        Elsevier_API: ${{ SCOPUS_API_KEY }}
+        Elsevier_API: ${{ secrets.SCOPUS_API_KEY }}
       run: |
         touch ~/.config/pybliometrics.cfg
         echo '[Authentication]' >> ~/.config/pybliometrics.cfg
