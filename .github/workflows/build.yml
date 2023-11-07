@@ -9,41 +9,38 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 5
-
+    env:
+      Elsevier_API: ${{ secrets.SCOPUS_API_KEY }}
+      ELSEVIER_API: ${{ secrets.SCOPUS_API_KEY }}
+      NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}     - name: checkout
     steps:
-    - name: checkout
-    - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
 
-    - name: Set up Python 3.11.6
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.11.6'
-        cache: pip, $CONDA
+      - name: Set up Python 3.11.6
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.6'
+          cache: pip, $CONDA
 
-    - name: Add conda to system path
-      run: |
-        echo $CONDA/bin >> $GITHUB_PATH
+      - name: Add conda to system path
+        run: |
+          echo $CONDA/bin >> $GITHUB_PATH
 
-    - name: environment variables config
-      env:
-        Elsevier_API: ${{ secrets.SCOPUS_API_KEY }}
-        ELSEVIER_API: ${{ secrets.SCOPUS_API_KEY }}
-        NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+      - name: Install dependencies
+        run: |
+          conda env update --file environment.yml --name base
 
-    - name: Install dependencies
-      run: |
-        conda env update --file environment.yml --name base
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev,notebooks
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev,notebooks
 
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev,notebooks
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev,notebooks
-
-    - name: Test with pytest
-      run: |
-        cd ./docs
-        mkdir -p ./tmp
-        pytest --doctest-modules --maxfail=6 -s --ignore=dev,notebooks ../mass_spectrometry/ms_functions.py ../utils.py ../spectrophotometry/spec_functions.py ../database_analysis/dban_functions.py
-        rm -rf ./tmp
+      - name: Test with pytest
+        run: |
+          cd ./docs
+          mkdir -p ./tmp
+          pytest --doctest-modules --maxfail=6 -s --ignore=dev,notebooks ../mass_spectrometry/ms_functions.py ../utils.py ../spectrophotometry/spec_functions.py ../database_analysis/dban_functions.py
+          rm -rf ./tmp
