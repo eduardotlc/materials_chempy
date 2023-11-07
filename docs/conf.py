@@ -7,13 +7,7 @@ import os
 import warnings
 import shutil
 from textwrap import dedent
-# from urllib.parse import urlsplit
-# from urllib.parse import urlunsplit
-# import yaml
-# import logging
-# from pathlib import Path
-# import subprocess
-# from datetime import timezone, datetime
+
 
 # Basic
 author = 'eduardotc'
@@ -98,27 +92,7 @@ coverage_statistics_to_report = True
 coverage_statistics_to_stdout = True
 github_url = 'http://gtihub.com/eduardotlc/materials_chempy'
 graphviz_dot = shutil.which('dot')
-_THEME = os.getenv("THEME", "qiskit")
-html_theme = _THEME
 
-# if _THEME == "qiskit_sphinx_theme":
-    # html_theme_options = {
-        # "logo_only": True,
-        # "display_version": True,
-        # "prev_next_buttons_location": "bottom",
-    # }
-    # Sets a better style for code syntax highlighting.
-    # pygments_style = "colorful"
-# elif _THEME == "qiskit-ecosystem":
-    # This tests out that ecosystem projects can change the color scheme.
-    # Only specific IBM projects should set this! Most Ecosystem projects
-    # should use the default of purple.
-    # html_theme_options = {
-        # "light_css_variables": {
-            # "color-brand-primary": "var(--qiskit-color-blue)",
-        # }
-    # }
-# # html_style = './static/custom.css',
 html_favicon = './static/mof_logo.svg'
 html_file_suffix = '.html'
 html_index = 'index.html'
@@ -126,12 +100,11 @@ html_last_updated_fmt = "2023/10/13"
 html_logo = 'logo.svg'
 html_show_sphinx = False
 html_static_path = ['./static']
-html_theme = 'qiskit_sphinx_theme'
+html_theme = 'qiskit-ecosystem'
+
+
 e = f"{project} {release}"
-html_theme_options = {
-    "disable_ecosystem_logo": True,
-    "sidebar_hide_name": True,
-}
+
 inheritance_edge_attrs = dict(penwidth=1)
 inheritance_graph_attrs = dict(dpi=100, size='1000.0', splines='polyline')
 inheritance_node_attrs = dict(height=0.02, margin=0.055, penwidth=1,
@@ -169,10 +142,7 @@ makeindexfile = True
 modindex_common_prefix = ["materials_chempy."]
 nitpicky = True
 os.environ.pop('DISPLAY', None)
-panels_css_variables = {
-    "tabs-color-label-active": "rgb(138, 63, 252)",
-    "tabs-color-label-inactive": "rgb(221, 225, 230)",
-}
+
 pygments_style = 'colorful'
 root_doc = master_doc = 'index'
 source_suffix = '.rst', '.ipynb'
