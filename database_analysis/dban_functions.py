@@ -961,7 +961,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     2019:  3383
     2020:  3744
     2021:  4059
-    2022:  4722
+    2022:  4723
     >>> print(springer_test)
         Year  Articles
     0   2010       536
