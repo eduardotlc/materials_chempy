@@ -12,7 +12,7 @@ jobs:
     env:
       Elsevier_API: ${{ secrets.SCOPUS_API_KEY }}
       ELSEVIER_API: ${{ secrets.SCOPUS_API_KEY }}
-      NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}     - name: checkout
+      NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
     steps:
       - name: checkout
         uses: actions/checkout@v4
