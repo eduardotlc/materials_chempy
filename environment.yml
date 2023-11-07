@@ -30,7 +30,6 @@ dependencies:
 
   # Spectrophotometry dependencies
   - astropy
-  - specutils
   - scipy
 
   # Database analysis dependencies
