@@ -41,5 +41,5 @@ jobs:
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir:  build/html
+          publish_dir:  /home/runner/work/materials_chempy/materials_chempy/docs/build/html
           force_orphan: true
