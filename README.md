@@ -2,9 +2,9 @@
 
 **Python tools to analyze, simulate and plot results of chemical inorganic materials.**
 
-|       build       |         PyPi          |        License         |    Update     |
-| :---------------: | :-------------------: | :--------------------: | :-----------: |
-| [![ci-badge]][ci] | [![pypi-badge]][pypi] | [![mitbadge]][license] | ![lastupdate] |
+|       build       |         PyPi          |      Documeantion      |        License         |    Update     |
+| :---------------: | :-------------------: | :--------------------: | :--------------------: | :-----------: |
+| [![ci-badge]][ci] | [![pypi-badge]][pypi] | [![documentation]][dc] | [![mitbadge]][license] | ![lastupdate] |
 
 <!--[ci-badge]: https://github.com/eduardotlc/jupyterlab_ariakedark_theme/workflows/Build/badge.svg-->
 <!--[ci]: https://github.com/eduardotlc/jupyterlab_ariakedark_theme/actions/workflows/build.yml-->
@@ -13,6 +13,8 @@
 [mitbadge]: ./docs/static/license.svg
 [license]: https://opensource.org/licenses/MIT
 [lastupdate]: ./docs/static/lastupdate.svg
+[documentation]: https://github.com/eduardotlc/materials_chempy/actions/workflows/documentation.yml/badge.svg
+[dc]: https://github.com/eduardotlc/materials_chempy/actions/workflows/documentation.yml
 
 <eduardotcampos@usp.br> **[2023]**
 
