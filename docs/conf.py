@@ -93,7 +93,7 @@ coverage_statistics_to_stdout = True
 github_url = 'http://gtihub.com/eduardotlc/materials_chempy'
 graphviz_dot = shutil.which('dot')
 
-html_favicon = './static/mof_logo.svg'
+html_favicon = 'logo.png'
 html_file_suffix = '.html'
 html_index = 'index.html'
 html_last_updated_fmt = "2023/10/13"
@@ -118,7 +118,7 @@ latex_elements['maxlistdepth'] = '10'
 latex_elements['pointsize'] = '11pt'
 latex_elements['printindex'] = r'\footnotesize\raggedright\printindex'
 latex_engine = 'lualatex'
-latex_logo = './static/mof_logo.svg'
+latex_logo = 'logo.png'
 latex_show_urls = 'inline'
 latex_show_pagerefs = True
 latex_toplevel_sectioning = 'part'
@@ -185,7 +185,6 @@ plot_html_show_formats = False
 nbsphinx_timeout = int(os.getenv("QISKIT_CELL_TIMEOUT", "300"))
 nbsphinx_execute = os.getenv("QISKIT_DOCS_BUILD_TUTORIALS", "never")
 nbsphinx_widgets_path = ""
-# nbsphinx_thumbnails = {"**": "_static/images/logo.png"}
 
 nbsphinx_prolog = """
 {% set docname = env.doc2path(env.docname, base=None) %}
