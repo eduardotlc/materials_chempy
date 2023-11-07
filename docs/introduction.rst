@@ -1,21 +1,6 @@
 Introduction
 ============
 
-General information
--------------------
-
-Python materials chemistry different analysis techniques plotting and uttilities.
-
-`The MIT License (MIT)`_
-
-.. _The MIT License (MIT): https://opensource.org/license/mit/
-
-**Copyright (c) [2023] [Eduardo Toledo Campos]**
-
-`eduardotcampos@usp.br`_
-
-.. _eduardotcampos@usp.br: mailto:eduardotcampos@usp.br
-
 Implementation
 --------------
 
