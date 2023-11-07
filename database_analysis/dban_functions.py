@@ -976,7 +976,7 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
     9   2019      3383
     10  2020      3744
     11  2021      4059
-    12  2022      4722
+    12  2022      4723
     """
     save_path = kwargs.get('save_path', None)
     springer_api_key = "56580f5684a4934af904f1edf8f07706"
