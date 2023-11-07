@@ -17,6 +17,7 @@ dependencies:
     - sphinx-reredirects
     - sphinx-reredirects
     - pybliometrics
+    - pygments-pytest
 
   # Test dependencies
   - pytest

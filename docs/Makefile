@@ -5,7 +5,7 @@ SOURCEDIR     = .
 BUILDDIR      = build
 TEST		  = '../mass_spectrometry/ms_functions.py' '../utils.py' '../spectrophotometry/spec_functions.py' '../database_analysis/dban_functions.py'
 PYTHON		  = which python
-.PHONY: help Makefile build_test
+.PHONY: help Makefile test build_test
 # @$(SPHINXBUILD) -M help '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 # doctest:
 # @$(SPHINXBUILD) -M $@ '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
@@ -42,7 +42,6 @@ linkcheck:
 		 @$(SPHINXBUILD) -M $@ '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
 coverage:
 		 @$(SPHINXBUILD) -M $@ '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
-.PHONY: test
 test:
 		 mkdir -p './tmp'
 		 @python -m pytest --doctest-modules -v -s --runxfail $(TEST)
