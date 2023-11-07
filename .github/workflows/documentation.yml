@@ -1,6 +1,8 @@
 name: documentation
 
-on: [push, pull_request, workflow_dispatch]
+on:
+  push:
+    branhces: gh-pages
 
 permissions:
   contents: write
@@ -8,24 +10,31 @@ permissions:
 jobs:
   docs:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
+
       - name: Install python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11.6'
           cache: 'pip'
+
       - name: Add docs to path
         run:
           echo '/home/runner/work/materials_chempy/materials_chempy/docs' >> $GITHUB_PATH
+
       - name: Install dependencies
         run: |
           cd /home/runner/work/materials_chempy/materials_chempy/docs
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
       - name: Make file build
         run: |
           sphinx-build -M html /home/runner/work/materials_chempy/materials_chempy/docs/. /home/runner/work/materials_chempy/materials_chempy/docs/build
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
