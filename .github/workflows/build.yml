@@ -47,7 +47,10 @@ jobs:
       - name: Update badges
         run: |
           anybadge -l 'Last Updated' -c '#49eaaf' -f ./docs/static/lastupdate.svg -v "$(date +'%B %Y')" -o
+          git config --global user.name 'eduardotlc'
+          git config --global user.email 'eduardotcampos@usp.br'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
+          git checkout "${GITHUB_REF:11}"
           git add ./docs/static/lastupdate.svg
           git commit -m "build workflow automatic badges generation"
           git push
-
