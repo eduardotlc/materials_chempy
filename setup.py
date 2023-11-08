@@ -2,15 +2,19 @@ from setuptools import setup, find_packages
 
 # Define your package information
 NAME = 'materials_chempy'
-DESCRIPTION = 'General python uttilities for materials chemistry and engineering'
+DESCRIPTION = '"Materials chemistry data analysis and visualization scripts"
 VERSION = '0.0.1'
 AUTHOR = 'Eduardo Toledo Campos'
 AUTHOR_EMAIL = 'eduardotcampos@usp.br'
 URL = 'https://github.com/eduardotlc/materials_chempy'
+INSTALL_REQUIRES = [
+    "packaging"
+]
 
 # Define the required dependencies
-INSTALL_REQUIRES = [
-    # List your dependencies here, e.g., 'numpy', 'matplotlib', 'requests'
+SETUP_REQUIRES = [
+    "setuptools",
+    "wheel"
 ]
 
 # Optional: Define additional extras or tests_require for development dependencies
@@ -34,6 +38,7 @@ setup(
     author_email=AUTHOR_EMAIL,
     url=URL,
     packages=find_packages(),
+    setup_requires=SETUP_REQUIRES,
     install_requires=INSTALL_REQUIRES,
     extras_require=EXTRAS_REQUIRE,
     python_requires=">=3.6",  # Modify the Python version as needed
@@ -41,18 +46,22 @@ setup(
     include_package_data=True,
     # Add classifiers to help others understand your project
     classifiers=[
-        "Development Status :: 3 - Alpha",
-        "Intended Audience :: Developers",
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Scientists",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.x",
-        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Science :: Libraries :: Python Modules",
+        "Topic :: Scientific/Engineering :: Image Processing",
+        "Topic :: Scientific/Engineering :: Chemistry",
+        "Topic :: Scientific/Engineering :: Information Analysis",
+        "Topic :: Scientific/Engineering :: Visualization"
     ],
     # Optional: entry_points for console scripts or plugins
     entry_points={
         'console_scripts': [
-            'your_command = your_package.module:main_function',
+            'materials_chempy = materials_chempy:cli',
         ],
     },
 )

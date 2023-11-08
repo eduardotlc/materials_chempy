@@ -43,3 +43,11 @@ jobs:
           mkdir -p ./tmp
           pytest --doctest-modules --maxfail=6 -s --ignore=dev,notebooks ../mass_spectrometry/ms_functions.py ../utils.py ../spectrophotometry/spec_functions.py ../database_analysis/dban_functions.py
           rm -rf ./tmp
+
+      - name: Update badges
+        run: |
+          anybadge -l 'Last Updated' -c '#49eaaf' -f ./docs/static/lastupdate.svg -v "$(date +'%B %Y')" -o
+          git add ./docs/static/lastupdate.svg
+          git commit -m "build workflow automatic badges generation"
+          git push
+

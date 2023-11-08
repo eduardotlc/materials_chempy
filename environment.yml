@@ -18,6 +18,7 @@ dependencies:
     - sphinx-reredirects
     - pybliometrics
     - pygments-pytest
+    - anybadge
 
   # Test dependencies
   - pytest
