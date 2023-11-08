@@ -15,4 +15,4 @@ sphinx-togglebutton
 sphinxcontrib-svg2pdfconverter
 docutils
 pygments-pytest
-anybadges
+anybadge
