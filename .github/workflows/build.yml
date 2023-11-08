@@ -47,6 +47,7 @@ jobs:
       - name: Update badges
         if: github.event_name == 'push'
         run: |
+          rm -rf ./docs/statics/lastupdate.svg
           anybadge -l 'Last Updated' -c '#49eaaf' -f ./docs/static/lastupdate.svg -v "$(date +'%B %Y')" -o
           git config --global user.name 'eduardotlc'
           git config --global user.email 'eduardotcampos@usp.br'
