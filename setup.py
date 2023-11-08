@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 # Define your package information
 NAME = 'materials_chempy'
-DESCRIPTION = '"Materials chemistry data analysis and visualization scripts"
+DESCRIPTION = 'Materials chemistry data analysis and visualization scripts'
 VERSION = '0.0.1'
 AUTHOR = 'Eduardo Toledo Campos'
 AUTHOR_EMAIL = 'eduardotcampos@usp.br'
