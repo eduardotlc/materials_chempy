@@ -1,0 +1,1258 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" />
+
+    <link rel="shortcut icon" href="_static/logo.png"/><!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19 -->
+        <title>&lt;no title&gt; - Materials_Chempy 0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=82a976d7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments_pytest.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #ffffff;
+  --color-code-foreground: black;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+      }
+    }
+  }
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<script src="_static/js/web-components/top-nav-bar.js"></script></head>
+  <body>
+    
+    <script>document.body.dataset.theme = "light";</script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <path d="M28,4H4A2,2,0,0,0,2,6V26a2,2,0,0,0,2,2H28a2,2,0,0,0,2-2V6A2,2,0,0,0,28,4ZM4,6H20V26H4ZM28,26H22V6h6Z"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+      <defs><style>.cls-1{fill:none;}</style></defs>
+      <rect x="4" y="6" width="24" height="2"/>
+      <rect x="4" y="24" width="24" height="2"/>
+      <rect x="4" y="12" width="24" height="2"/>
+      <rect x="4" y="18" width="24" height="2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+         viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve"><polygon points="22,16 12,26 10.6,24.6 19.2,16 10.6,7.4 12,6 " stroke="currentColor"/>
+      <rect id="_x3C_Transparent_Rectangle_x3E_" fill="none" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-new-tab" viewBox="0 0 32 32">
+    <svg id="icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+      <defs>
+        <style>
+          .cls-1 {
+            fill: none;
+          }
+        </style>
+      </defs>
+      <path fill="#6929C4" d="M26,28H6a2.0027,2.0027,0,0,1-2-2V6A2.0027,2.0027,0,0,1,6,4H16V6H6V26H26V16h2V26A2.0027,2.0027,0,0,1,26,28Z"/>
+      <polygon fill="#6929C4" points="20 2 20 4 26.586 4 18 12.586 19.414 14 28 5.414 28 12 30 12 30 2 20 2"/>
+      <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32" height="32"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="index.html"><div class="brand">Materials_Chempy 0.1 documentation</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky">
+<a class="sidebar-brand" href="index.html">
+  
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="_static/logo.svg" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">Materials_Chempy 0.1 documentation</span>
+  
+</a><form class="sidebar-search-container" method="get" action="search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mass_spectrometry.html">Mass Spectrometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="database_analysis.html">Database Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="imaging.html">Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spectrophotometry.html">Spectrophotometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chromatography.html">Chromatography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks.html">Notebooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extra_material.html">Extra Material</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TODO.html">TODO</a></li>
+</ul>
+
+</div></div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          
+<div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <dl>
+<dt>{</dt><dd><dl>
+<dt>“cells”: [</dt><dd><dl>
+<dt>{</dt><dd><p>“cell_type”: “code”,
+“execution_count”: 8,
+“metadata”: {},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“import pandas as pd”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “P1DOSks9fT”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“## Reading a saved google trends csv to a dataframen”,
+“n”,
+“- csvpath variable should be changed”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: 13,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “Bvj1Gf7HNG”</p>
+</div></blockquote>
+<p>},
+“outputs”: [</p>
+<blockquote>
+<div><dl>
+<dt>{</dt><dd><dl>
+<dt>“data”: {</dt><dd><dl class="simple">
+<dt>“text/html”: [</dt><dd><p>“&lt;div&gt;n”,
+“&lt;style scoped&gt;n”,
+“    .dataframe tbody tr th:only-of-type {n”,
+“        vertical-align: middle;n”,
+“    }n”,
+“n”,
+“    .dataframe tbody tr th {n”,
+“        vertical-align: top;n”,
+“    }n”,
+“n”,
+“    .dataframe thead th {n”,
+“        text-align: right;n”,
+“    }n”,
+“&lt;/style&gt;n”,
+“&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;n”,
+“  &lt;thead&gt;n”,
+“    &lt;tr style=&quot;text-align: right;&quot;&gt;n”,
+“      &lt;th&gt;&lt;/th&gt;n”,
+“      &lt;th&gt;Mês&lt;/th&gt;n”,
+“      &lt;th&gt;plasmonic: (Mundo)&lt;/th&gt;n”,
+“    &lt;/tr&gt;n”,
+“  &lt;/thead&gt;n”,
+“  &lt;tbody&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;0&lt;/th&gt;n”,
+“      &lt;td&gt;2004-01&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;1&lt;/th&gt;n”,
+“      &lt;td&gt;2004-02&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;2&lt;/th&gt;n”,
+“      &lt;td&gt;2004-03&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;3&lt;/th&gt;n”,
+“      &lt;td&gt;2004-04&lt;/td&gt;n”,
+“      &lt;td&gt;33&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;4&lt;/th&gt;n”,
+“      &lt;td&gt;2004-05&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;…&lt;/th&gt;n”,
+“      &lt;td&gt;…&lt;/td&gt;n”,
+“      &lt;td&gt;…&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;233&lt;/th&gt;n”,
+“      &lt;td&gt;2023-06&lt;/td&gt;n”,
+“      &lt;td&gt;21&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;234&lt;/th&gt;n”,
+“      &lt;td&gt;2023-07&lt;/td&gt;n”,
+“      &lt;td&gt;16&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;235&lt;/th&gt;n”,
+“      &lt;td&gt;2023-08&lt;/td&gt;n”,
+“      &lt;td&gt;17&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;236&lt;/th&gt;n”,
+“      &lt;td&gt;2023-09&lt;/td&gt;n”,
+“      &lt;td&gt;18&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;237&lt;/th&gt;n”,
+“      &lt;td&gt;2023-10&lt;/td&gt;n”,
+“      &lt;td&gt;22&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“  &lt;/tbody&gt;n”,
+“&lt;/table&gt;n”,
+“&lt;p&gt;238 rows × 2 columns&lt;/p&gt;n”,
+“&lt;/div&gt;”</p>
+</dd>
+</dl>
+<p>],
+“text/plain”: [</p>
+<blockquote>
+<div><p>“         Mês  plasmonic: (Mundo)n”,
+“0    2004-01                   0n”,
+“1    2004-02                   0n”,
+“2    2004-03                   0n”,
+“3    2004-04                  33n”,
+“4    2004-05                   0n”,
+“..       …                 …n”,
+“233  2023-06                  21n”,
+“234  2023-07                  16n”,
+“235  2023-08                  17n”,
+“236  2023-09                  18n”,
+“237  2023-10                  22n”,
+“n”,
+“[238 rows x 2 columns]”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+“execution_count”: 13,
+“metadata”: {},
+“output_type”: “execute_result”</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“source”: [</p>
+<blockquote>
+<div><p>“csvpath = &quot;/home/eduardotc/Downloads/multiTimeline(2).csv&quot;n”,
+“df = pd.read_csv(csvpath, header=1)n”,
+“dfn”,
+“ “</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “vv8du6i2s2”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“## Sum of a google trends date column by yearn”,
+“n”,
+“- df DataFrame should be definedn”,
+“n”,
+“- Considers the date column is a string, not a timestamp, which happens whenn”,
+“importing a downloaded from browser csv”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: 10,
+“metadata”: {},
+“outputs”: [</p>
+<blockquote>
+<div><dl>
+<dt>{</dt><dd><dl>
+<dt>“data”: {</dt><dd><dl class="simple">
+<dt>“text/html”: [</dt><dd><p>“&lt;div&gt;n”,
+“&lt;style scoped&gt;n”,
+“    .dataframe tbody tr th:only-of-type {n”,
+“        vertical-align: middle;n”,
+“    }n”,
+“n”,
+“    .dataframe tbody tr th {n”,
+“        vertical-align: top;n”,
+“    }n”,
+“n”,
+“    .dataframe thead th {n”,
+“        text-align: right;n”,
+“    }n”,
+“&lt;/style&gt;n”,
+“&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;n”,
+“  &lt;thead&gt;n”,
+“    &lt;tr style=&quot;text-align: right;&quot;&gt;n”,
+“      &lt;th&gt;&lt;/th&gt;n”,
+“      &lt;th&gt;date&lt;/th&gt;n”,
+“      &lt;th&gt;articles&lt;/th&gt;n”,
+“    &lt;/tr&gt;n”,
+“  &lt;/thead&gt;n”,
+“  &lt;tbody&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;0&lt;/th&gt;n”,
+“      &lt;td&gt;2000-01-01&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;1&lt;/th&gt;n”,
+“      &lt;td&gt;2000-02-01&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;2&lt;/th&gt;n”,
+“      &lt;td&gt;2000-03-01&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;3&lt;/th&gt;n”,
+“      &lt;td&gt;2000-04-01&lt;/td&gt;n”,
+“      &lt;td&gt;1&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;4&lt;/th&gt;n”,
+“      &lt;td&gt;2000-06-01&lt;/td&gt;n”,
+“      &lt;td&gt;0&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;…&lt;/th&gt;n”,
+“      &lt;td&gt;…&lt;/td&gt;n”,
+“      &lt;td&gt;…&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;259&lt;/th&gt;n”,
+“      &lt;td&gt;2023-08-01&lt;/td&gt;n”,
+“      &lt;td&gt;895&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;260&lt;/th&gt;n”,
+“      &lt;td&gt;2023-09-01&lt;/td&gt;n”,
+“      &lt;td&gt;722&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;261&lt;/th&gt;n”,
+“      &lt;td&gt;2023-10-01&lt;/td&gt;n”,
+“      &lt;td&gt;559&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;262&lt;/th&gt;n”,
+“      &lt;td&gt;2023-11-01&lt;/td&gt;n”,
+“      &lt;td&gt;321&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“    &lt;tr&gt;n”,
+“      &lt;th&gt;263&lt;/th&gt;n”,
+“      &lt;td&gt;2023-12-01&lt;/td&gt;n”,
+“      &lt;td&gt;572&lt;/td&gt;n”,
+“    &lt;/tr&gt;n”,
+“  &lt;/tbody&gt;n”,
+“&lt;/table&gt;n”,
+“&lt;p&gt;264 rows × 2 columns&lt;/p&gt;n”,
+“&lt;/div&gt;”</p>
+</dd>
+</dl>
+<p>],
+“text/plain”: [</p>
+<blockquote>
+<div><p>“           date  articlesn”,
+“0    2000-01-01         0n”,
+“1    2000-02-01         0n”,
+“2    2000-03-01         0n”,
+“3    2000-04-01         1n”,
+“4    2000-06-01         0n”,
+“..          …       …n”,
+“259  2023-08-01       895n”,
+“260  2023-09-01       722n”,
+“261  2023-10-01       559n”,
+“262  2023-11-01       321n”,
+“263  2023-12-01       572n”,
+“n”,
+“[264 rows x 2 columns]”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>},
+“execution_count”: 10,
+“metadata”: {},
+“output_type”: “execute_result”</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“source”: [</p>
+<blockquote>
+<div><p>“# Visual Python: Data Analysis &gt; Filen”,
+“vp_df = pd.read_csv(‘../../../csv/plasmonic_scopus.csv’, index_col=0)n”,
+“vp_df”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: 11,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “DvEkEyLo07”</p>
+</div></blockquote>
+<p>},
+“outputs”: [</p>
+<blockquote>
+<div><dl>
+<dt>{</dt><dd><p>“name”: “stdout”,
+“output_type”: “stream”,
+“text”: [</p>
+<blockquote>
+<div><p>“     Mês  plasmonic: (Mundo)n”,
+“0   2004                  33n”,
+“1   2005                 164n”,
+“2   2006                 148n”,
+“3   2007                  94n”,
+“4   2008                 128n”,
+“5   2009                 183n”,
+“6   2010                 190n”,
+“7   2011                 259n”,
+“8   2012                 315n”,
+“9   2013                 324n”,
+“10  2014                 335n”,
+“11  2015                 287n”,
+“12  2016                 297n”,
+“13  2017                 262n”,
+“14  2018                 251n”,
+“15  2019                 217n”,
+“16  2020                 200n”,
+“17  2021                 172n”,
+“18  2022                 224n”,
+“19  2023                 188n”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“source”: [</p>
+<blockquote>
+<div><p>“df_names = df.columns.values.tolist()n”,
+“col1 = df_names[0]n”,
+“col2 = df_names[1]n”,
+“result_df = df.groupby(df[col1].str[:4])[col2].sum().reset_index()n”,
+“print(result_df)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “VkeLXKmmC9”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“## Querying a keyword all time google trends dataframen”,
+“n”,
+“- keyword should be definedn”,
+“n”,
+“### Trends filtersn”,
+“n”,
+“- cat → Category to narrow results (integer)n”,
+“n”,
+“    - Science: 174n”,
+“        - Chemistry: 505n”,
+“        - Biological sciences: 440n”,
+“        - Computer science: 1227n”,
+“        - Ecology &amp; Environment: 442n”,
+“        - Engineering &amp; Technology: 231n”,
+“        - Mathematics: 436n”,
+“        - Physics: 444n”,
+“        - Scientific Equipment: 445n”,
+“        - Scientific Institutions: 446n”,
+“    - Health: 45n”,
+“        - Health conditions: 419n”,
+“        - Pharmacy: 248n”,
+“        - Drugs &amp; medications: 646n”,
+“        - Health Foundations &amp; Medical Research: 252n”,
+“n”,
+“- geo → Two letter country abreviationn”,
+“n”,
+“    - Defaults to worldn”,
+“    - Example USn”,
+“n”,
+“- timeframen”,
+“n”,
+“    - Date to start fromn”,
+“    - Defaults to last 5yrs, ‘today 5-y’.n”,
+“    - Everything ‘all’n”,
+“    - Specific dates, ‘YYYY-MM-DD YYYY-MM-DD’ example ‘2016-12-14 2017-01-25’n”,
+“    - Specific datetimes, ‘YYYY-MM-DDTHH YYYY-MM-DDTHH’ example ‘2017-02-06T10 2017-02-12T07’n”,
+“n”,
+“- gpropn”,
+“n”,
+“    - Can be images, news, youtube or froogle (for Google Shopping results)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: 12,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “xCNVd1SWfM”</p>
+</div></blockquote>
+<p>},
+“outputs”: [</p>
+<blockquote>
+<div><dl>
+<dt>{</dt><dd><p>“ename”: “ModuleNotFoundError”,
+“evalue”: “No module named ‘pytrends’”,
+“output_type”: “error”,
+“traceback”: [</p>
+<blockquote>
+<div><p>“u001b[0;31m—————————————————————————u001b[0m”,
+“u001b[0;31mModuleNotFoundErroru001b[0m                       Traceback (most recent call last)”,
+“u001b[1;32m/home/eduardotc/Programação/my_gits/materials_chempy/notebooks/articles_data_analysis.ipynb Cell 8u001b[0m line u001b[0;36m1nu001b[0;32m—-&gt; &lt;a href=’vscode-notebook-cell:/home/eduardotc/Programa%C3%A7%C3%A3o/my_gits/materials_chempy/notebooks/articles_data_analysis.ipynb#X10sZmlsZQ%3D%3D?line=0’&gt;1&lt;/a&gt;u001b[0m u001b[39mfromu001b[39;00m u001b[39mpytrendsu001b[39;00mu001b[39m.u001b[39;00mu001b[39mrequestu001b[39;00m u001b[39mimportu001b[39;00m TrendReqnu001b[1;32m      &lt;a href=’vscode-notebook-cell:/home/eduardotc/Programa%C3%A7%C3%A3o/my_gits/materials_chempy/notebooks/articles_data_analysis.ipynb#X10sZmlsZQ%3D%3D?line=1’&gt;2&lt;/a&gt;u001b[0m keyword u001b[39m=u001b[39m u001b[39m&quot;u001b[39mu001b[39mplasmonicu001b[39mu001b[39m&quot;u001b[39mnu001b[1;32m      &lt;a href=’vscode-notebook-cell:/home/eduardotc/Programa%C3%A7%C3%A3o/my_gits/materials_chempy/notebooks/articles_data_analysis.ipynb#X10sZmlsZQ%3D%3D?line=2’&gt;3&lt;/a&gt;u001b[0m save_path u001b[39m=u001b[39m u001b[39mfu001b[39mu001b[39m&quot;u001b[39mu001b[39m/home/eduardotc/Programação/csv/u001b[39mu001b[39m{u001b[39;00mkeywordu001b[39m}u001b[39;00mu001b[39m.csvu001b[39mu001b[39m&quot;u001b[39mn”,
+“u001b[0;31mModuleNotFoundErroru001b[0m: No module named ‘pytrends’”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“source”: [</p>
+<blockquote>
+<div><p>“from pytrends.request import TrendReqn”,
+“keyword = &quot;plasmonic&quot;n”,
+“save_path = f&quot;/home/eduardotc/Programação/csv/{keyword}.csv&quot;n”,
+“pytrends = TrendReq(hl=’en-US’, tz=360)n”,
+“kw_list = [keyword]n”,
+“pytrends.build_payload(kw_list, cat=0, timeframe=’all’, geo=’’, gprop=’’)n”,
+“df = pytrends.interest_over_time()n”,
+“df = df.reset_index()n”,
+“df = df.drop(‘isPartial’, axis=1)n”,
+“print(df)n”,
+“save_inp = str(input(&quot;Should save the dataframe to a csv? (y/n) &quot;))n”,
+“if save_inp == ‘y’:n”,
+“    df.to_csv(path_or_buf=save_path)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “jbthVjcylb”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“## Trends queryed dataframe treatmentn”,
+“n”,
+“Sum of the dataframe by same year time stamp from the first columnn”,
+“n”,
+“Statistics by pandas agg”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “9i0fsBTiZu”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“df_names = df.columns.values.tolist()n”,
+“col1 = df_names[0]n”,
+“col2 = df_names[1]n”,
+“df.groupby(df[‘date’].dt.year)[col2].agg([‘sum’, ‘mean’, ‘max’])”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “H2TPNzvB7O”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# Querying pubmed articles per year-monthn”,
+“n”,
+“- Variables ystart and yend defines first and last year to analyzen”,
+“n”,
+“- keyword to search number of published articles defined from variable”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “7Ta3GtMz9H”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“from metapub import PubMedFetchern”,
+“fetch = PubMedFetcher()n”,
+“from time import sleepn”,
+“import numpy as npn”,
+“import pandas as pdn”,
+“keyword = ‘singlet oxygen’n”,
+“save_path = f’/home/eduardotc/Programação/csv/{keyword}_pubmed.csv’n”,
+“ystart = 1990n”,
+“yend = 2023n”,
+“df = pd.DataFrame({‘date’: [],n”,
+“       ‘articles’: []})n”,
+“month_list = np.arange(1, 13, 1)n”,
+“months_days = pd.DataFrame({‘month’: month_list,n”,
+“                            ‘ends’: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31,n”,
+“                                     30, 31]})n”,
+“year_list = np.arange(ystart, yend+1, 1)n”,
+“for year in year_list:n”,
+“    for month in months_days[‘month’]:n”,
+“        endsin = (months_days.loc[months_days[‘month’] == month, ‘ends’])[month-1]n”,
+“        pmids = fetch.pmids_for_query(f’{keyword} ‘+str(year)+f’/{month}/01[MDAT] : ‘+str(year)+f’/{month}/{endsin}[MDAT]’,retmax=100000000)n”,
+“        df.loc[len(df)] = [f’{year}-{month}’, len(pmids)]n”,
+“        print(f&quot;{year}-{month}: &quot;, len(pmids))n”,
+“        sleep(0.5)n”,
+“pd.to_datetime(df.date, format=&quot;%Y-%m&quot;)n”,
+“dfn”,
+“save_inp = str(input(&quot;Should save the dataframe to a csv? (y/n) &quot;))n”,
+“if save_inp == ‘y’:n”,
+“    df.to_csv(path_or_buf=save_path)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “vTVCmfDESm”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# Reading and analysis of pubmed csvn”,
+“n”,
+“- Path to the saved pubmed dataframe defined in variablesn”,
+“n”,
+“- Grouped articles by yearn”,
+“n”,
+“- Statistics generated by pandas agg”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “JaqwjsWz46”</p>
+</div></blockquote>
+<p>},
+“outputs”: [</p>
+<blockquote>
+<div><dl>
+<dt>{</dt><dd><p>“ename”: “ValueError”,
+“evalue”: “The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().”,
+“output_type”: “error”,
+“traceback”: [</p>
+<blockquote>
+<div><p>“u001b[0;31m—————————————————————————u001b[0m”,
+“u001b[0;31mValueErroru001b[0m                                Traceback (most recent call last)”,
+“u001b[0;32m/tmp/ipykernel_158758/1324626613.pyu001b[0m in u001b[0;36m?u001b[0;34m()u001b[0mnu001b[1;32m      1u001b[0m u001b[0;32mimportu001b[0m u001b[0mpandasu001b[0m u001b[0;32masu001b[0m u001b[0mpdu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m      2u001b[0m u001b[0;32mimportu001b[0m u001b[0mluxu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m      3u001b[0m u001b[0mcsvpathu001b[0m u001b[0;34m=u001b[0m u001b[0;34m’/home/eduardotc/Programação/csv/plasmonic_pubmed.csv’u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m      4u001b[0m u001b[0mdfu001b[0m u001b[0;34m=u001b[0m u001b[0mpdu001b[0mu001b[0;34m.u001b[0mu001b[0mread_csvu001b[0mu001b[0;34m(u001b[0mu001b[0mcsvpathu001b[0mu001b[0;34m,u001b[0m u001b[0mindex_colu001b[0mu001b[0;34m=u001b[0mu001b[0;36m0u001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m—-&gt; 5u001b[0;31m u001b[0mdfu001b[0mu001b[0;34m[u001b[0mu001b[0;34m’date’u001b[0mu001b[0;34m]u001b[0m u001b[0;34m=u001b[0m u001b[0mpdu001b[0mu001b[0;34m.u001b[0mu001b[0mto_datetimeu001b[0mu001b[0;34m(u001b[0mu001b[0mdfu001b[0mu001b[0;34m.u001b[0mu001b[0mdateu001b[0mu001b[0;34m,u001b[0m u001b[0mformatu001b[0mu001b[0;34m=u001b[0mu001b[0;34m&quot;%Y-%m&quot;u001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m      6u001b[0m u001b[0mdfu001b[0m u001b[0;34m=u001b[0m u001b[0mdfu001b[0mu001b[0;34m.u001b[0mu001b[0mgroupbyu001b[0mu001b[0;34m(u001b[0mu001b[0mdfu001b[0mu001b[0;34m[u001b[0mu001b[0;34m’date’u001b[0mu001b[0;34m]u001b[0mu001b[0;34m.u001b[0mu001b[0mdtu001b[0mu001b[0;34m.u001b[0mu001b[0myearu001b[0mu001b[0;34m)u001b[0mu001b[0;34m[u001b[0mu001b[0;34m’articles’u001b[0mu001b[0;34m]u001b[0mu001b[0;34m.u001b[0mu001b[0maggu001b[0mu001b[0;34m(u001b[0mu001b[0;34m[u001b[0mu001b[0;34m’sum’u001b[0mu001b[0;34m,u001b[0m u001b[0;34m’mean’u001b[0mu001b[0;34m,u001b[0m u001b[0;34m’max’u001b[0mu001b[0;34m]u001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m      7u001b[0m u001b[0mdfu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/generic.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, name)u001b[0mnu001b[1;32m   6197u001b[0m             u001b[0;32mandu001b[0m u001b[0mnameu001b[0m u001b[0;32mnotu001b[0m u001b[0;32minu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_metadatau001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   6198u001b[0m             u001b[0;32mandu001b[0m u001b[0mnameu001b[0m u001b[0;32mnotu001b[0m u001b[0;32minu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_accessorsu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   6199u001b[0m             u001b[0;32mandu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_info_axisu001b[0mu001b[0;34m.u001b[0mu001b[0m_can_hold_identifiers_and_holds_nameu001b[0mu001b[0;34m(u001b[0mu001b[0mnameu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   6200u001b[0m         ):nu001b[0;32m-&gt; 6201u001b[0;31m             u001b[0;32mreturnu001b[0m u001b[0mselfu001b[0mu001b[0;34m[u001b[0mu001b[0mnameu001b[0mu001b[0;34m]u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m   6202u001b[0m         u001b[0;32mreturnu001b[0m u001b[0mobjectu001b[0mu001b[0;34m.u001b[0mu001b[0m__getattribute__u001b[0mu001b[0;34m(u001b[0mu001b[0mselfu001b[0mu001b[0;34m,u001b[0m u001b[0mnameu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/frame.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, key)u001b[0mnu001b[1;32m   3868u001b[0m                 u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m.u001b[0mu001b[0mis_uniqueu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3869u001b[0m                 u001b[0;32mandu001b[0m u001b[0mkeyu001b[0m u001b[0;32minu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3870u001b[0m                 u001b[0;32moru001b[0m u001b[0mkeyu001b[0m u001b[0;32minu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m.u001b[0mu001b[0mdrop_duplicatesu001b[0mu001b[0;34m(u001b[0mu001b[0mkeepu001b[0mu001b[0;34m=u001b[0mu001b[0;32mFalseu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3871u001b[0m             ):nu001b[0;32m-&gt; 3872u001b[0;31m                 u001b[0;32mreturnu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_get_item_cacheu001b[0mu001b[0;34m(u001b[0mu001b[0mkeyu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m   3873u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3874u001b[0m             u001b[0;32melifu001b[0m u001b[0mis_miu001b[0m u001b[0;32mandu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m.u001b[0mu001b[0mis_uniqueu001b[0m u001b[0;32mandu001b[0m u001b[0mkeyu001b[0m u001b[0;32minu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3875u001b[0m                 u001b[0;32mreturnu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_getitem_multilevelu001b[0mu001b[0;34m(u001b[0mu001b[0mkeyu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/frame.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, item)u001b[0mnu001b[1;32m   4414u001b[0m             u001b[0;31m# All places that call _get_item_cache have unique columns,u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4415u001b[0m             u001b[0;31m#  pending resolution of GH#33047u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4416u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4417u001b[0m             u001b[0mlocu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m.u001b[0mu001b[0mget_locu001b[0mu001b[0;34m(u001b[0mu001b[0mitemu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m-&gt; 4418u001b[0;31m             u001b[0mresu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_ixsu001b[0mu001b[0;34m(u001b[0mu001b[0mlocu001b[0mu001b[0;34m,u001b[0m u001b[0maxisu001b[0mu001b[0;34m=u001b[0mu001b[0;36m1u001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m   4419u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4420u001b[0m             u001b[0mcacheu001b[0mu001b[0;34m[u001b[0mu001b[0mitemu001b[0mu001b[0;34m]u001b[0m u001b[0;34m=u001b[0m u001b[0mresu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4421u001b[0m u001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/frame.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, i, axis)u001b[0mnu001b[1;32m   3803u001b[0m         u001b[0;32melseu001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3804u001b[0m             u001b[0mlabelu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m[u001b[0mu001b[0miu001b[0mu001b[0;34m]u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3805u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3806u001b[0m             u001b[0mcol_mgru001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_mgru001b[0mu001b[0;34m.u001b[0mu001b[0migetu001b[0mu001b[0;34m(u001b[0mu001b[0miu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m-&gt; 3807u001b[0;31m             u001b[0mresultu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_box_col_valuesu001b[0mu001b[0;34m(u001b[0mu001b[0mcol_mgru001b[0mu001b[0;34m,u001b[0m u001b[0miu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m   3808u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3809u001b[0m             u001b[0;31m# this is a cached value, mark it sou001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   3810u001b[0m             u001b[0mresultu001b[0mu001b[0;34m.u001b[0mu001b[0m_set_as_cachedu001b[0mu001b[0;34m(u001b[0mu001b[0mlabelu001b[0mu001b[0;34m,u001b[0m u001b[0mselfu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/frame.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, values, loc)u001b[0mnu001b[1;32m   4391u001b[0m         u001b[0;31m# Lookup in columns so that if e.g. a str datetime was passedu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4392u001b[0m         u001b[0;31m#  we attach the Timestamp object as the name.u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4393u001b[0m         u001b[0mnameu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0mcolumnsu001b[0mu001b[0;34m[u001b[0mu001b[0mlocu001b[0mu001b[0;34m]u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4394u001b[0m         u001b[0;31m# We get index=self.index bc values is a SingleDataManageru001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m-&gt; 4395u001b[0;31m         u001b[0mobju001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_constructor_sliced_from_mgru001b[0mu001b[0;34m(u001b[0mu001b[0mvaluesu001b[0mu001b[0;34m,u001b[0m u001b[0maxesu001b[0mu001b[0;34m=u001b[0mu001b[0mvaluesu001b[0mu001b[0;34m.u001b[0mu001b[0maxesu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m   4396u001b[0m         u001b[0mobju001b[0mu001b[0;34m.u001b[0mu001b[0m_nameu001b[0m u001b[0;34m=u001b[0m u001b[0mnameu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   4397u001b[0m         u001b[0;32mreturnu001b[0m u001b[0mobju001b[0mu001b[0;34m.u001b[0mu001b[0m__finalize__u001b[0mu001b[0;34m(u001b[0mu001b[0mselfu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/frame.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, mgr, axes)u001b[0mnu001b[1;32m    659u001b[0m         u001b[0;32mifu001b[0m u001b[0mtypeu001b[0mu001b[0;34m(u001b[0mu001b[0mselfu001b[0mu001b[0;34m)u001b[0m u001b[0;32misu001b[0m u001b[0mDataFrameu001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    660u001b[0m             u001b[0;31m# fastpath avoiding constructor callu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    661u001b[0m             u001b[0;32mreturnu001b[0m u001b[0mseru001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    662u001b[0m         u001b[0;32massertu001b[0m u001b[0maxesu001b[0m u001b[0;32misu001b[0m u001b[0mmgru001b[0mu001b[0;34m.u001b[0mu001b[0maxesu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m–&gt; 663u001b[0;31m         u001b[0;32mreturnu001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_constructor_slicedu001b[0mu001b[0;34m(u001b[0mu001b[0mseru001b[0mu001b[0;34m,u001b[0m u001b[0mcopyu001b[0mu001b[0;34m=u001b[0mu001b[0;32mFalseu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0m”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/series.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, data, index, dtype, name, copy, fastpath)u001b[0mnu001b[1;32m    471u001b[0m                 u001b[0mdatau001b[0m u001b[0;34m=u001b[0m u001b[0mdatau001b[0mu001b[0;34m.u001b[0mu001b[0mreindexu001b[0mu001b[0;34m(u001b[0mu001b[0mindexu001b[0mu001b[0;34m,u001b[0m u001b[0mcopyu001b[0mu001b[0;34m=u001b[0mu001b[0mcopyu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    472u001b[0m                 u001b[0mcopyu001b[0m u001b[0;34m=u001b[0m u001b[0;32mFalseu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    473u001b[0m                 u001b[0mdatau001b[0m u001b[0;34m=u001b[0m u001b[0mdatau001b[0mu001b[0;34m.u001b[0mu001b[0m_mgru001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    474u001b[0m         u001b[0;32melifu001b[0m u001b[0mis_dict_likeu001b[0mu001b[0;34m(u001b[0mu001b[0mdatau001b[0mu001b[0;34m)u001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m–&gt; 475u001b[0;31m             u001b[0mdatau001b[0mu001b[0;34m,u001b[0m u001b[0mindexu001b[0m u001b[0;34m=u001b[0m u001b[0mselfu001b[0mu001b[0;34m.u001b[0mu001b[0m_init_dictu001b[0mu001b[0;34m(u001b[0mu001b[0mdatau001b[0mu001b[0;34m,u001b[0m u001b[0mindexu001b[0mu001b[0;34m,u001b[0m u001b[0mdtypeu001b[0mu001b[0;34m)u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m    476u001b[0m             u001b[0mdtypeu001b[0m u001b[0;34m=u001b[0m u001b[0;32mNoneu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    477u001b[0m             u001b[0mcopyu001b[0m u001b[0;34m=u001b[0m u001b[0;32mFalseu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    478u001b[0m         u001b[0;32melifu001b[0m u001b[0misinstanceu001b[0mu001b[0;34m(u001b[0mu001b[0mdatau001b[0mu001b[0;34m,u001b[0m u001b[0;34m(u001b[0mu001b[0mSingleBlockManageru001b[0mu001b[0;34m,u001b[0m u001b[0mSingleArrayManageru001b[0mu001b[0;34m)u001b[0mu001b[0;34m)u001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/series.pyu001b[0m in u001b[0;36m?u001b[0;34m(self, data, index, dtype)u001b[0mnu001b[1;32m    545u001b[0m         u001b[0mkeysu001b[0mu001b[0;34m:u001b[0m u001b[0mIndexu001b[0m u001b[0;34m|u001b[0m u001b[0mtupleu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    546u001b[0m u001b[0;34mu001b[0mu001b[0mnu001b[1;32m    547u001b[0m         u001b[0;31m# Looking for NaN in dict doesn’t work ({np.nan : 1}[float(‘nan’)]u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    548u001b[0m         u001b[0;31m# raises KeyError), so we iterate the entire dict, and alignu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m–&gt; 549u001b[0;31m         u001b[0;32mifu001b[0m u001b[0mdatau001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0mu001b[1;32m    550u001b[0m             u001b[0;31m# GH:34717, issue was using zip to extract key and values from data.u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    551u001b[0m             u001b[0;31m# using generators in effects the performance.u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m    552u001b[0m             u001b[0;31m# Below is the new way of extracting the keys and valuesu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mn”,
+“u001b[0;32m~/mambaforge/envs/jupyterdu/lib/python3.11/site-packages/pandas/core/generic.pyu001b[0m in u001b[0;36m?u001b[0;34m(self)u001b[0mnu001b[1;32m   1517u001b[0m     u001b[0;34m&#64;u001b[0mu001b[0mfinalu001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   1518u001b[0m     u001b[0;32mdefu001b[0m u001b[0m__nonzero__u001b[0mu001b[0;34m(u001b[0mu001b[0mselfu001b[0mu001b[0;34m)u001b[0m u001b[0;34m-&gt;u001b[0m u001b[0mNoReturnu001b[0mu001b[0;34m:u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[0;32m-&gt; 1519u001b[0;31m         raise ValueError(nu001b[0mu001b[1;32m   1520u001b[0m             u001b[0;34mf&quot;The truth value of a {type(self).__name__} is ambiguous. &quot;u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   1521u001b[0m             u001b[0;34m&quot;Use a.empty, a.bool(), a.item(), a.any() or a.all().&quot;u001b[0mu001b[0;34mu001b[0mu001b[0;34mu001b[0mu001b[0mnu001b[1;32m   1522u001b[0m         )n”,
+“u001b[0;31mValueErroru001b[0m: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().”</p>
+</div></blockquote>
+<p>]</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>],
+“source”: [</p>
+<blockquote>
+<div><p>“import pandas as pdn”,
+“csvpath = ‘/home/eduardotc/Programação/csv/plasmonic_pubmed.csv’n”,
+“df = pd.read_csv(csvpath, index_col=0)n”,
+“df[‘date’] = pd.to_datetime(df.date, format=&quot;%Y-%m&quot;)n”,
+“df = df.groupby(df[‘date’].dt.year)[‘articles’].agg([‘sum’, ‘mean’, ‘max’])n”,
+“df”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “3W1r4iiPYs”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# Matplotlib bar plotting”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “rs2LJaWmH5”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“import matplotlib.pyplot as pltn”,
+“import pandas as pdn”,
+“%matplotlib inlinen”,
+“fig, ax = plt.subplots(figsize=(12, 4), dpi=400)n”,
+“plt.xlabel(‘Year’)n”,
+“plt.ylabel(‘PubMed Articles’)n”,
+“plt.xlim(2000, 2023)n”,
+“ax.set_title(&quot;Plasmonic&quot;)n”,
+“ax.bar(df.index.values, df[‘sum’], label=df[‘sum’])n”,
+“plt.savefig(‘/home/eduardotc/Programação/tstbar.png’)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “hxgNZIicjv”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# Scopus keyword per year-month queryn”,
+“n”,
+“- Keyword defined in variablesn”,
+“n”,
+“- Years defined in variables”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “WHtr1PJWVJ”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“from pybliometrics.scopus import ScopusSearchn”,
+“import numpy as npn”,
+“import pandas as pdn”,
+“keyword = ‘photodynamic therapy’n”,
+“save_path = f’/home/eduardotc/Programação/csv/{keyword}_scopus.csv’n”,
+“months_list = [‘january’, ‘february’, ‘march’, ‘april’, ‘june’, ‘july’,n”,
+“               ‘august’, ‘september’, ‘october’, ‘november’, ‘december’]n”,
+“df = pd.DataFrame({‘date’: [],n”,
+“                   ‘articles’: []})n”,
+“ystart = 2000n”,
+“yend = 2023n”,
+“years_list = np.arange(ystart, yend+1, 1)n”,
+“for year in years_list:n”,
+“    for month in months_list:n”,
+“        s = ScopusSearch(f’KEY {keyword}, PUBDATETXT({month} {year})’, subscriber=False)n”,
+“        print(f&quot;{year}-{month}: &quot;, s.get_results_size())n”,
+“        df.loc[len(df)] = [f’{year}-{month}’, s.get_results_size()]n”,
+“        sleep(9)n”,
+“df[‘date’] = pd.to_datetime(df.date.astype(str), format=&quot;%Y-%B&quot;)n”,
+“save_inp = str(input(&quot;Should save the dataframe to a csv? (y/n) &quot;))n”,
+“if save_inp == ‘y’:n”,
+“    df.to_csv(path_or_buf=save_path)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “37ci84yBZd”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“## Converting and analysing scopus dataframen”,
+“n”,
+“- Direct from above script, without reading csv”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “1ZF7R4p4dh”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“import pandas as pdn”,
+“df[‘date’] = pd.to_datetime(df.date.astype(str), format=&quot;%Y-%B&quot;)n”,
+“df = df.groupby(df[‘date’].dt.year)[‘articles’].agg([‘sum’, ‘mean’, ‘max’])n”,
+“print(df)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “DHFTmyFwDP”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# Matplotlib default configs”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “Yp3jED2upp”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“import matplotlib.pyplot as pltn”,
+“from cycler import cyclern”,
+“n”,
+“plt.rcParams[&quot;pdf.use14corefonts&quot;] = Truen”,
+“# trigger core fonts for PS backendn”,
+“plt.rcParams[&quot;ps.useafm&quot;] = Truen”,
+“# plt.rcParams[‘backend’] = ‘Agg’n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;figure.dpi&quot;: 100,n”,
+“        &quot;font.size&quot;: 18,n”,
+“        &quot;figure.facecolor&quot;: &quot;white&quot;,n”,
+“        &quot;figure.figsize&quot;: [10, 6],n”,
+“        &quot;figure.frameon&quot;: True,n”,
+“        &quot;figure.titlesize&quot;: &quot;large&quot;,n”,
+“        &quot;figure.titleweight&quot;: &quot;bold&quot;,n”,
+“        &quot;figure.labelsize&quot;: &quot;medium&quot;,n”,
+“        &quot;figure.labelweight&quot;: &quot;normal&quot;,n”,
+“        &quot;figure.edgecolor&quot;: &quot;#000000&quot;,n”,
+“    }n”,
+“)n”,
+“n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;font.style&quot;: &quot;normal&quot;,n”,
+“        &quot;font.weight&quot;: &quot;bold&quot;,n”,
+“        &quot;font.family&quot;: &quot;QTHelvet-Black&quot;,n”,
+“        &quot;font.sans-serif&quot;: &quot;QTHelvet-Black&quot;,n”,
+“        &quot;font.size&quot;: 18,n”,
+“    }n”,
+“)n”,
+“n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;axes.grid&quot;: True,n”,
+“        &quot;axes.grid.axis&quot;: &quot;both&quot;,n”,
+“        &quot;axes.grid.which&quot;: &quot;major&quot;,n”,
+“        &quot;axes.labelcolor&quot;: &quot;#172038&quot;,n”,
+“        &quot;axes.edgecolor&quot;: &quot;#bcbcbc&quot;,n”,
+“        &quot;axes.facecolor&quot;: &quot;#eeeeee&quot;,n”,
+“        &quot;axes.linewidth&quot;: 1.0,n”,
+“    }n”,
+“)n”,
+“n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;grid.alpha&quot;: 1.0,n”,
+“        &quot;grid.color&quot;: &quot;#b2b2b2&quot;,n”,
+“        &quot;grid.linestyle&quot;: &quot;–&quot;,n”,
+“        &quot;grid.linewidth&quot;: 0.5,n”,
+“        &quot;grid.alpha&quot;: 1.0,n”,
+“    }n”,
+“)n”,
+“n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;xtick.labelsize&quot;: &quot;medium&quot;,n”,
+“        &quot;xtick.major.pad&quot;: 3.5,n”,
+“        &quot;xtick.major.size&quot;: 3.5,n”,
+“        &quot;xtick.alignment&quot;: &quot;center&quot;,n”,
+“        &quot;xtick.color&quot;: &quot;#000000&quot;,n”,
+“        &quot;ytick.labelsize&quot;: &quot;x-small&quot;,n”,
+“        &quot;ytick.major.pad&quot;: 3.5,n”,
+“        &quot;ytick.major.size&quot;: 3.5,n”,
+“        &quot;ytick.alignment&quot;: &quot;center_baseline&quot;,n”,
+“        &quot;ytick.color&quot;: &quot;#000000&quot;,n”,
+“    }n”,
+“)n”,
+“plt.rcParams.update(n”,
+“    {n”,
+“        &quot;axes.prop_cycle&quot;: cycler(n”,
+“            &quot;color&quot;,n”,
+“            [n”,
+“                &quot;#7499ff&quot;,n”,
+“                &quot;#348ABD&quot;,n”,
+“                &quot;#988ED5&quot;,n”,
+“                &quot;#777777&quot;,n”,
+“                &quot;#FBC15E&quot;,n”,
+“                &quot;#8EBA42&quot;,n”,
+“                &quot;#FFB5B8&quot;,n”,
+“            ],n”,
+“        )n”,
+“    }n”,
+“)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “markdown”,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “u20TfBfLUO”</p>
+</div></blockquote>
+<p>},
+“source”: [</p>
+<blockquote>
+<div><p>“# References”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>},
+{</p>
+<blockquote>
+<div><p>“cell_type”: “code”,
+“execution_count”: null,
+“metadata”: {</p>
+<blockquote>
+<div><p>“jukit_cell_id”: “pxyxEFYoka”</p>
+</div></blockquote>
+<p>},
+“outputs”: [],
+“source”: [</p>
+<blockquote>
+<div><p>“# Converting string column to datetimen”,
+“df[‘Open’] = pd.to_datetime(df[‘OPEN TIME’],format= ‘%H:%M:%S’ ).dt.timen”,
+“df[‘Close’] = pd.to_datetime(df[‘CLOSE TIME’],format= ‘%H:%M:%S’ ).dt.timen”,
+“n”,
+“# Cleaning/removing one column or index rown”,
+“df.drop(‘column_name’, axis=1)n”,
+“df.drop(‘row_name’, axis=0)”</p>
+</div></blockquote>
+<p>]</p>
+</div></blockquote>
+<p>}</p>
+</dd>
+</dl>
+<p>],
+“metadata”: {</p>
+<blockquote>
+<div><p>“anaconda-cloud”: {},
+“kernelspec”: {</p>
+<blockquote>
+<div><p>“display_name”: “lux”,
+“language”: “python”,
+“name”: “python3”</p>
+</div></blockquote>
+<p>},
+“language_info”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“codemirror_mode”: {</dt><dd><p>“name”: “ipython”,
+“version”: 3</p>
+</dd>
+</dl>
+<p>},
+“file_extension”: “.py”,
+“mimetype”: “text/x-python”,
+“name”: “python”,
+“nbconvert_exporter”: “python”,
+“pygments_lexer”: “ipython3”,
+“version”: “3.12.0”</p>
+</div></blockquote>
+<p>},
+“widgets”: {</p>
+<blockquote>
+<div><dl class="simple">
+<dt>“application/vnd.jupyter.widget-state+json”: {</dt><dd><p>“state”: {},
+“version_major”: 2,
+“version_minor”: 0</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>},
+“nbformat”: 4,
+“nbformat_minor”: 4</p>
+</dd>
+</dl>
+<p>}</p>
+
+        </article>
+      </div>
+      <footer>
+        <div class="related-pages">
+          
+          
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2023
+            </div>
+            Made with 
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            <div class="last-updated">
+              Last updated on 2023/10/13</div>
+          </div>
+          <div class="right-details">
+            
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer no-toc">
+      
+      
+      
+    </aside>
+  </div>
+</div><script src="_static/jquery.js?v=5d32c60e"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="_static/documentation_options.js?v=2709fde1"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    </body>
+</html>
