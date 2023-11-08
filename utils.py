@@ -1,6 +1,5 @@
 import pandas as pd
 import materials_chempy
-import os
 
 
 def manual_peaks_sepparation(manual_peak):
