@@ -50,7 +50,7 @@ jobs:
           git config --global user.name 'eduardotlc'
           git config --global user.email 'eduardotcampos@usp.br'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git checkout "${GITHUB_REF:11}"
           git add ./docs/static/lastupdate.svg
           git commit -m "build workflow automatic badges generation"
           git push
+          git checkout "${GITHUB_REF:11}"
