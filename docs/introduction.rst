@@ -1,20 +1,21 @@
+============
 Introduction
 ============
 
 Implementation
---------------
+==============
 
 Materials chempy requires python 3.7+, with it other necessary python packages contained in the project
-requirement.txt respective files. The module is available on https://www.github.com/eduardotlc/Materials_Chempy
+requirement.txt respective files. The module is available on https://github.com/eduardotlc/materials_chempy
 or pypi, published under the MIT license. This project is still in pre-release early development stages, any
 code improvement commit is welcome and appreciated.
 
 Download
---------
+========
 
 Get the latest version in the `github repository`_.
 
-.. _github repository: https://www.github.com/eduardotlc/Materials_Chempy
+.. _github repository: https://github.com/eduardotlc/materials_chempy
 
 |
 
@@ -25,7 +26,7 @@ here you must have noticed it.)
 
 
 Installation
-------------
+============
 
 Materials_Chempy requires `python`_ 3.7 or higher.
 
@@ -73,7 +74,7 @@ Materials_Chempy requires `python`_ 3.7 or higher.
 
 
 Testing
--------
+=======
 
 This project functions tests are written in docstrings formats, as shown in this documentation
 functions autodocs. To run all project tests, inside `docs`_ folder, run:

@@ -19,6 +19,7 @@ dependencies:
     - pybliometrics
     - pygments-pytest
     - anybadge
+    - sphinxcontrib-plot
 
   # Test dependencies
   - pytest
@@ -36,6 +37,7 @@ dependencies:
   # Database analysis dependencies
   - lxml
   - pytrends
+  - httpx
 
   # Chromatography dependencies
   - astropy
@@ -53,3 +55,4 @@ dependencies:
   - sphinx-autodoc-typehints
   - sphinx-togglebutton
   - docutils
+  - sphinx-toolbox

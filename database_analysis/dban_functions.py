@@ -4,11 +4,10 @@ import numpy as np
 import pandas as pd
 from pybliometrics.scopus import ScopusSearch
 import matplotlib.pyplot as plt
-import re
-import requests
+import httpx
 
 
-def pubmedfetcher(keyword, year_1, year_2, **kwargs):
+def pubmedfetcher(keyword, year_1, year_2, save_path):
     """
 
     Queryes from the PubMed database the number of articles containing a
@@ -36,7 +35,7 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
 
     Returns
     -------
-    pubmed_df : pandas.DataFrame
+    pubmed_df : DataFrame
         Pandas dataframe with every selected year months in a column named
         "date", and the corresponding number of published articles in that
         month containing the given keyword in other column named "articles".
@@ -45,68 +44,29 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     --------
     Getting the articles published in 2010 and 2011 containing the keyword
 
-    >>> test = pubmedfetcher('Plasmonic', 2010, 2011)
-    2010-1:  29
-    2010-2:  35
-    2010-3:  53
-    2010-4:  80
-    2010-5:  54
-    2010-6:  37
-    2010-7:  46
-    2010-8:  29
-    2010-9:  55
-    2010-10:  20
-    2010-11:  83
-    2010-12:  39
-    2011-1:  55
-    2011-2:  32
-    2011-3:  74
-    2011-4:  56
-    2011-5:  51
-    2011-6:  82
-    2011-7:  37
-    2011-8:  94
-    2011-9:  53
-    2011-10:  49
-    2011-11:  115
-    2011-12:  40
+    >>> test = pubmedfetcher('Plasmonic', 2010, 2011, None)
+    2010-1:  2
+    ...
+    ...
+    2011-12:  4
     >>> print(test)
-           date  articles
-    0    2010-1        29
-    1    2010-2        35
-    2    2010-3        53
-    3    2010-4        80
-    4    2010-5        54
-    5    2010-6        37
-    6    2010-7        46
-    7    2010-8        29
-    8    2010-9        55
-    9   2010-10        20
-    10  2010-11        83
-    11  2010-12        39
-    12   2011-1        55
-    13   2011-2        32
-    14   2011-3        74
-    15   2011-4        56
-    16   2011-5        51
-    17   2011-6        82
-    18   2011-7        37
-    19   2011-8        94
-    20   2011-9        53
-    21  2011-10        49
-    22  2011-11       115
-    23  2011-12        40
+        Month  Year  Articles
+    0       1  2010         2
+    1       2  2010         2
+    ...
+    ...
+    22     11  2011         0
+    23     12  2011         4
 
     """
 
     # Defining optional argument save_path
-    save_path = kwargs.get("save_path", None)
 
     # Fetching the PubMed database
     fetch = PubMedFetcher()
 
     # Creating empty pandas dataframe with 'date' and 'articles' columns
-    pubmed_df = pd.DataFrame({"date": [], "articles": []})
+    pubmed_df = pd.DataFrame({"Date": [], "Articles": []})
 
     # Creating a list containing the number correspondant to every year month
     month_list = np.arange(1, 13, 1)
@@ -126,7 +86,8 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     for year in year_list:
         for month in months_days["month"]:
             # Creating a variable to store the current loop month ending day
-            endsin = (months_days.loc[months_days["month"] == month, "ends"])[month - 1]
+            endsin = [(months_days.loc[months_days["month"] == month, "ends"])
+                      [month - 1]]
 
             # Fetching all articles containing the given keyword, in the date
             # ranging from the first day (1) of the current loop month, to the
@@ -157,8 +118,13 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
             sleep(0.1)
 
     # Converting the result dataframe 'date' column to pandas date format
-    pd.to_datetime(pubmed_df.date, format="%Y-%m")
-
+    # pd.to_datetime(pubmed_df.Date, format="%Y-%m")
+    pubmed_df['Date'] = pd.to_datetime(pubmed_df.Date.astype(str),
+                                       format="%Y-%m")
+    pubmed_df['Year'] = pubmed_df['Date'].dt.year
+    pubmed_df['Month'] = pubmed_df['Date'].dt.month
+    pubmed_df = pubmed_df.drop(['Date'], axis=1)
+    pubmed_df = pubmed_df[['Month', 'Year', 'Articles']]
     # If optional argument save_path is given, the bellow saving loop is
     # executed
     if save_path:
@@ -168,7 +134,7 @@ def pubmedfetcher(keyword, year_1, year_2, **kwargs):
     return pubmed_df
 
 
-def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
+def big_pubmedfetcher(keyword, year_1, year_2, save_path):
     """
 
     The same as above pubmedfethcer function, but this functions make the
@@ -179,8 +145,8 @@ def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
     Parameters
     ----------
     keyword : str
-        Keyword to search articles tha contains it.
-        Required.
+        String with the kewyord argument, that will be used to fetch the pubmed
+        data containing this keyword in the given year range
 
     year_1 : int
         Starting year to search for articles. Remember that pubmed was created
@@ -197,19 +163,28 @@ def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
 
     Returns
     -------
-    pubmed_df : pandas.DataFrame
+    pubmed_df : DataFrame
         Pandas dataframe with every selected year months in a column named
-        "date", and the corresponding number of published articles in that
-         day, containing the given keyword in other column named "articles".
+        'date', and the corresponding number of published articles in that
+        day, containing the given keyword in other column named 'articles'
 
     Examples
     --------
-
+    Fetching and printing, day by day, the number of articles in the
+    PubMed database, presenting the 'xrd' keyword, in the year of 2012
+    >>> test_daily = big_pubmedfetcher('xrd', 2012, 2012, None)
+    2012-1-1:  0
+    2012-1-2:  2
+    2012-1-3:  1
+    2012-1-4:  0
+    ...
+    2012-12-26:  4
+    2012-12-27:  0
+    2012-12-28:  0
+    2012-12-29:  0
+    2012-12-30:  0
+    2012-12-31:  0
     """
-
-    # Defining optional argument save_path
-    save_path = kwargs.get("save_path", None)
-
     # Fetching the PubMed database
     fetch = PubMedFetcher()
 
@@ -222,20 +197,21 @@ def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
     # Creating a pandas dataframe with every month number in one column, named
     # 'month', and in the other column 'ends', the corresponding months ending
     # day
-    months_days = pd.DataFrame(
-        {"month": month_list, "ends": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31,
-                                       30, 31]}
-    )
+    months_days = pd.DataFrame({"month": month_list,
+                                "ends": [31, 28, 31, 30, 31, 30, 31, 31, 30,
+                                         31, 30, 31]})
 
     # Creating a list for with every year in the given range
     year_list = np.arange(year_1, year_2 + 1, 1)
 
     # Looping for every month in every year
     for year in year_list:
-        for month in months_days["month"]:
-            sleep(4)
+        for month in months_days['month']:
+            sleep(1)
             # Creating a variable to store the current loop month ending day
-            endsin = (months_days.loc[months_days["month"] == month, "ends"])[month - 1]
+            endsin = (
+                (months_days.loc[months_days["month"] == month, "ends"]
+                 )[month - 1])
             days_list = np.arange(1, endsin + 1, 1)
             # Fetching all articles containing the given keyword, in the date
             # ranging from the first day (1) of the current loop month, to the
@@ -252,151 +228,34 @@ def big_pubmedfetcher(keyword, year_1, year_2, **kwargs):
                 pubmed_df.loc[len(pubmed_df)] = [f"{year}-{month}-{days}",
                                                  len(pmids)]
 
-                # Printing for tracking the current loop date, in the
-                # year-month format, and the number of articles containing
-                # the given keyword found in the Scoupus database with
-                # corresponding year-month publication date
+            # Printing for tracking the current loop date, in the
+            # year-month format, and the number of articles containing
+            # the given keyword found in the Scoupus database with
+            # corresponding year-month publication date
                 print(f"{year}-{month}-{days}: ", len(pmids))
 
-                # Sleeping for avoiding to many/simultaneous API requests, if
-                # any error is presented during this function execution, this
-                # sleeping time may be enlarged
+            # Sleeping for avoiding to many/simultaneous API requests, if
+            # any error is presented during this function execution, this
+            # sleeping time may be enlarged
                 sleep(0.1)
 
     # Converting the result dataframe 'date' column to pandas date format
-    pd.to_datetime(pubmed_df.Date, format="%Y-%m-%d")
-
+    pubmed_df['Date'] = pd.to_datetime(pubmed_df.Date.astype(str),
+                                       format="%Y-%m-%d")
+    pubmed_df['Year'] = pubmed_df['Date'].dt.year
+    pubmed_df['Month'] = pubmed_df['Date'].dt.month
+    pubmed_df = [pubmed_df.groupby(['Month', 'Year']).agg
+                 ({'Articles': 'sum'}).reset_index()]
     # If optional argument save_path is given, the bellow saving loop is
     # executed
     if save_path:
-        pathcsv = f"{save_path}/{keyword}_pubmed.csv"
+        pathcsv = f"{save_path}/{keyword}_daily_pubmed.csv"
         pubmed_df.to_csv(path_or_buf=pathcsv)
 
     return pubmed_df
 
 
-def read_pubmed_csv(csv_path):
-    """
-
-    Read a saved pubmed queryied csv into a pandas DataFrame.
-
-    Parameters
-    ----------
-    csv_path : str
-        Path to the csv file to be readed
-        Required
-
-    Returns
-    -------
-    df : pd.DataFrame
-        Pandas Dataframe with a column named 'date' containing the year-month,
-        and one column named 'articles' containing the number of published
-        articles in that month.
-
-    Examples
-    --------
-    saving to a csv the number of "Upconversion" keyword containing articles
-    in the year of 2015.
-
-    >>> pubmedfetcher('Upconversion', 2015, 2015, save_path='./tmp')
-    2015-1:  17
-    2015-2:  20
-    2015-3:  33
-    2015-4:  22
-    2015-5:  20
-    2015-6:  17
-    2015-7:  20
-    2015-8:  31
-    2015-9:  20
-    2015-10:  12
-    2015-11:  64
-    2015-12:  17
-           date  articles
-    0    2015-1        17
-    1    2015-2        20
-    2    2015-3        33
-    3    2015-4        22
-    4    2015-5        20
-    5    2015-6        17
-    6    2015-7        20
-    7    2015-8        31
-    8    2015-9        20
-    9   2015-10        12
-    10  2015-11        64
-    11  2015-12        17
-    >>> csv_test = read_pubmed_csv('./tmp/Upconversion_pubmed.csv')
-    >>> print(csv_test)
-             date  articles
-    0  2015-01-01        17
-    1  2015-02-01        20
-    2  2015-03-01        33
-    3  2015-04-01        22
-    4  2015-05-01        20
-    5  2015-06-01        17
-    6  2015-07-01        20
-    7  2015-08-01        31
-    8  2015-09-01        20
-    9  2015-10-01        12
-    10 2015-11-01        64
-    11 2015-12-01        17
-
-    """
-    # Reading the csv file with pandas, stating that the file first column
-    # corresponds to the index values (row number)
-    df = pd.read_csv(csv_path, index_col=0)
-
-    # Converting 'date' column to pandas date format
-    df["date"] = pd.to_datetime(df.date, format="%Y-%m")
-
-    return df
-
-
-def csv_statistics(csv_path):
-    """
-
-    Reads a saved csv, making a per year statistic of sum, mean and max of
-    published articles per month.
-
-    Parameters
-    ----------
-    csv_path : str
-        Path to the csv file, in the format first row containing the columns
-        names 'date' and 'articles', and the sequent rows containing the row
-        number, the year-month relted to this row and the number of publised
-        articles in the month.
-        Required.
-
-    Returns
-    -------
-    csv_stat : pd.DataFrame
-        Pandas dataframe with one column named 'date' containing the years, one
-        column named sum corresponding to the sum of all the months articles in
-        that year, one column named mean containing the 'mean' of published
-        articles per month,and one column named 'max, with the number of
-        published articles in the month with the highest value.
-
-    Examples
-    --------
-    Printing the yearly statistic from the previous function saved csv.
-    >>> csvpytest = csv_statistics('../example_data/Upconversion_pubmed.csv')
-    >>> print(csvpytest)
-          sum       mean  max
-    date \t \t ...
-    2015  293  24.416667   64
-
-    """
-    # Reading in a pandas dataframe the csv
-    csv_stat = read_pubmed_csv(csv_path)
-
-    # Getting the date column sum, mean and max
-    csv_stat = csv_stat.groupby(csv_stat["date"].dt.year)["articles"].agg(
-        ["sum", "mean", "max"]
-    )
-
-    return csv_stat
-
-
-def scopusfetcher(keyword, year_1, year_2, **kwargs):
+def scopusfetcher(keyword, year_1, year_2, save_path):
     """
 
     Queryes from the Scopus database the number of articles containing a
@@ -427,16 +286,24 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
 
     Returns
     -------
-    scopus_df : pandas.DataFrame
+    scopus_df : DataFrame
         Pandas dataframe with every selected year months in a column named
         "date", and the corresponding number of published articles in that
         month containing the given keyword in other column named "articles".
 
     Examples
     --------
-        """
+    Printing number of articles in scopus database containing the keyword
+    laser, in each month, from the year 2017 to 2019
+    >>> test_scopus = scopusfetcher('laser', 2017, 2019, save_path=None)
+    2017-january:  3161
+    2017-february:  2321
+    ...
+    2019-november:  3391
+    2019-december:  4353
+    """
+
     # Defining optional argument save_path
-    save_path = kwargs.get("save_path", str)
 
     # Creating a list with every month in the year
     months_list = [
@@ -455,7 +322,7 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
 
     # Creating an empty dataframe with one column named 'date' and one column
     # named 'articles'
-    scopus_df = pd.DataFrame({"date": [], "articles": []})
+    scopus_df = pd.DataFrame({"Date": [], "Articles": []})
 
     # Creating a list containing every year in the given range
     years_list = np.arange(year_1, year_2 + 1, 1)
@@ -484,12 +351,15 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
             # Some errors have being ocurring while querying the database, to
             # try to minimize it, i setted a relatvielly large sleep time, may
             # be lowered to test your specific case results.
-            sleep(2)
+            sleep(1)
 
     # Converting the 'date' column to pandas datetime format
-    scopus_df["date"] = pd.to_datetime(scopus_df.date.astype(str),
+    scopus_df["Date"] = pd.to_datetime(scopus_df.Date.astype(str),
                                        format="%Y-%B")
-
+    scopus_df['Year'] = scopus_df['Date'].dt.year
+    scopus_df['Month'] = scopus_df['Date'].dt.month
+    scopus_df = scopus_df.drop(columns=['Date'])
+    scopus_df = scopus_df[['Month', 'Year', 'Articles']]
     # If optional argument save_path is given, the saving loop bellow is
     # executed
     if save_path:
@@ -499,26 +369,23 @@ def scopusfetcher(keyword, year_1, year_2, **kwargs):
     return scopus_df
 
 
-def df_statistics(df, **kwargs):
+def df_statistics(df):
     """
 
-    Given a dataframe with 'date' column, in the format year-month, returns
-    the sum, the mean and the max of the 'date' column, organized as well in
-    a dataframe.
+    Given a dataframe with one column 'Year' and one column 'Articles', makes
+    basic statistics of the 'Articles' numbers column, returning a dataframe
+    with the sum per year of 'Articles' value, their mean, an their max.
 
-    Paramters
-    ---------
-    df : pd.DataFrame
-        Pandas DataFrame, with one column named 'date', in the year-month
-        format, and one column with integer values correlating to the date
-        column.
-
-    time_grouping : str
-        Time range to group data, may be 'Year' or 'Month'
+    Parameters
+    ----------
+    df : DataFrame
+        Pandas DataFrame, with one column named 'Year', in datetime format,
+        and one Articles column, with integer values correlating to
+        the date column.
 
     Returns
     -------
-    df_stat : pd.DataFrame
+    df_stat : DataFrame
         Pandas dataframe with the results, one column named 'sum', one named
         'mean' and one named 'max', all the columns refers to the values
         calculated from the original dataframe 'date' column values.
@@ -532,300 +399,31 @@ def df_statistics(df, **kwargs):
     ...      '2015-06-01', '2015-07-01', '2015-08-01', '2015-09-01',
     ...      '2015-10-01', '2015-11-01', '2015-12-01']
     >>> y = [136, 126, 122, 135, 154, 178, 187, 149, 125, 120, 120]
-    >>> df_test = pd.DataFrame({'date': x,
-    ...                         'articles': y})
+    >>> df_test = pd.DataFrame({'Date': x,
+    ...                         'Articles': y})
+    >>> df_test["Date"] = pd.to_datetime(df_test.Date.astype(str),
+    ...                                  format="%Y-%m-%d")
+    >>> df_test['Year'] = df_test['Date'].dt.year
+    >>> df_test['Month'] = df_test['Date'].dt.month
+    >>> df_test = df_test.drop(columns=['Date'])
+    >>> df_test = df_test[['Month', 'Year', 'Articles']]
     >>> stat_test_df = df_statistics(df_test)
     >>> print(stat_test_df)
-           sum        mean  max
-    Date ...
-    2015  1552  141.090909  187
+       Year   sum        mean  max
+    0  2015  1552  141.090909  187
     """
-    time_grouping = kwargs.get("time_grouping", str)
-    df_clean = clean_df(df)
-    if time_grouping == "month" or time_grouping == "Month":
-        time_grouping = "month"
-        df_stat = df_clean.groupby(df_clean["Date"].dt.month)["Articles"].agg(
-            ["sum", "mean", "max"]
-        )
-    else:
-        time_grouping = "year"
-        df_stat = df_clean.groupby(df_clean["Date"].dt.year)["Articles"].agg(
-            ["sum", "mean", "max"]
-        )
-    # df_clean['Date'] = pd.to_datetime(df.date.astype(str), format="%Y-%m-%B")
+    if type(df['Year'][0]) == str:
+        df['Year'] = pd.to_datetime(df.Year.astype(str),
+                                    format="%Y")
+        df['Year'] = df['Year'].dt.year
+    df_stat = df.groupby(df["Year"])["Articles"].agg(
+        ["sum", "mean", "max"]
+    )
+    df_stat.reset_index(inplace=True)
     return df_stat
 
 
-def find_matching_positions(string1, string2):
-    """
-
-    Find the matching letters between 2 strings, and attribute the positions
-    values of the matching cases to a list variable.
-
-    Parameters
-    ----------
-    string1 : str
-        First string to check matching letters
-
-    string2 : str
-        Second string to compare matching letters
-
-    Returns
-    -------
-    matching_postions : list
-        List with the positions of matching letters between the 2 strings
-
-    Examples
-    --------
-    Find the matching letters between the strings 'hello' and 'hallo'
-
-    >>> string1 = "hello"
-    >>> string2 = "hallo"
-    >>> positions = find_matching_positions(string1, string2)
-    >>> print("Matching positions:", positions)
-    Matching positions: [0, 2, 3, 4]
-
-    Find the matching letters between '2015-02-01' and '2015-01-01'
-
-    >>> string1 = "2015-02-01"
-    >>> string2 = "2015-01-01"
-    >>> positions = find_matching_positions(string1, string2)
-    >>> print("Matching positions:", positions)
-    Matching positions: [0, 1, 2, 3, 4, 5, 7, 8, 9]
-    """
-    matching_positions = []
-
-    # Make sure both strings are of the same length
-    if len(string1) != len(string2):
-        raise ValueError("Both strings must have the same length")
-
-    for i in range(len(string1)):
-        if string1[i] == string2[i]:
-            matching_positions.append(i)
-
-    return matching_positions
-
-
-def clean_csv(csv_path):
-    """
-
-    Reads a csv file, organizing its columns, returning a dataframe with one
-    'Date' column (pandas datetime), one 'Year' column (pandas datetime), one
-    'Month' column (pandas datetime), and if the csv has an articles column,
-    the cleaned dataframe also has a 'Articles' column (integer).
-
-    Parameters
-    ----------
-    csv_path : str
-        Path to the csv file to be cleaned
-
-    Returns
-    -------
-    df_clean : Pandas.DataFrame
-        Pandas dataframe of cleaned and organized csv
-
-    Examples
-    --------
-    Clean example_data csv
-
-    >>> test_clean_csv = clean_csv('../example_data/Upconversion_pubmed.csv')
-    >>> print(test_clean_csv)
-        Year  Month       Date  Articles
-    0   2015      1 2015-01-01        17
-    1   2015      2 2015-02-01        20
-    2   2015      3 2015-03-01        33
-    3   2015      4 2015-04-01        22
-    4   2015      5 2015-05-01        20
-    5   2015      6 2015-06-01        17
-    6   2015      7 2015-07-01        20
-    7   2015      8 2015-08-01        31
-    8   2015      9 2015-09-01        20
-    9   2015      1 2015-01-01        12
-    10  2015     11 2015-11-01        64
-    11  2015     12 2015-12-01        17
-
-    """
-    month_new = []
-    df = pd.read_csv(csv_path, index_col=0)
-
-    # Creating empty dataframe in case readed csv 'date' column is shorter
-    # than 7
-    if (len(df.date[0])) < 7:
-        df_split = pd.DataFrame({"a": [], "b": []})
-
-    # Creating empty dataframe in case readed csv 'date' column is longer
-    # than 7
-    else:
-        df_split = pd.DataFrame({"a": [], "b": [], "c": []})
-
-    df_clean = pd.DataFrame({"Year": [], "Month": [], "Date": [],
-                             "Articles": []})
-
-    # Iterating for every column from inputted dataframe
-    for col in df.columns:
-        # If input dataframe has a column named 'articles'
-        if col == "articles" or col == "Articles":
-            df_clean["Articles"] = df["articles"]
-
-        # If input dataframe has a column named 'date'
-        if col == "date" or col == "Date":
-            # Iterating for every value from the row 'date'
-            for values in df.date:
-                # Adding each date element to empty dataframe
-                df_split.loc[len(df_split)] = values.split("-")
-
-            # Iterating for every column in the new created every
-            # date element df
-            for cols in df_split.columns:
-                # If length from every element from the first row >
-                # 4 (correspond (High chances of being a year column)
-                if len(df_split[cols][0]) == 4:
-                    df_clean["Year"] = df_split[cols]
-
-                # Getting total column values range (max - min)
-                col_min = int(df_split[cols].min())
-                col_max = int(df_split[cols].max())
-                col_diff = col_max - col_min
-
-                # Loop if the column range is between 17 and 4 (high chances of
-                # being a month column
-                if 17 > col_diff > 4:
-                    df_clean["Month"] = df_split[cols]
-
-    # Removing month column trailing zeroes
-    for number in df_clean.Month:
-        month_new.append(int(str(number).rstrip("0")))
-
-    # Converting year month and date columns to pandas datetime
-    df_clean["Year"] = pd.to_datetime(df_clean["Year"])
-    df_clean["Year"] = df_clean.Year.dt.year
-    df_clean["Month"] = month_new
-    df_clean["Month"] = pd.to_datetime(df_clean["Month"], format="%m")
-    df_clean["Month"] = df_clean.Month.dt.month
-    df_clean["Date"] = pd.to_datetime(df_clean[["Year", "Month"]]
-                                      .assign(Day=1))
-
-    return df_clean
-
-
-def clean_df(df):
-    """
-
-    Organize and clean a pandas DataFrame, returning a dataframe with one
-    'Date' column (pandas datetime), one 'Year' column (pandas datetime), one
-    'Month' column (pandas datetime), and if the csv has an articles column,
-    the cleaned dataframe also has a 'Articles' column (integer).
-
-    Parameters
-    ----------
-    df : pandas.DataFrame
-        Pandas Dataframe to be cleaned
-
-    Returns
-    -------
-    df_clean : pandas.DataFrame
-        Cleaned and organized pandas DataFrame
-
-    Examples
-    --------
-    Clean a fetched pubmed dataframe with the keyword 'Singlet Oxygen' in the
-    year of 2017
-
-    >>> test_df = pubmedfetcher('Singlet Oxygen', 2017, 2017)
-    2017-1:  10
-    2017-2:  20
-    2017-3:  29
-    2017-4:  8
-    2017-5:  9
-    2017-6:  8
-    2017-7:  2
-    2017-8:  11
-    2017-9:  11
-    2017-10:  16
-    2017-11:  128
-    2017-12:  27
-    >>> test_clean = clean_df(test_df)
-    >>> print(test_clean)
-        Year  Month       Date  Articles
-    0   2017      1 2017-01-01        10
-    1   2017      2 2017-02-01        20
-    2   2017      3 2017-03-01        29
-    3   2017      4 2017-04-01         8
-    4   2017      5 2017-05-01         9
-    5   2017      6 2017-06-01         8
-    6   2017      7 2017-07-01         2
-    7   2017      8 2017-08-01        11
-    8   2017      9 2017-09-01        11
-    9   2017      1 2017-01-01        16
-    10  2017     11 2017-11-01       128
-    11  2017     12 2017-12-01        27
-
-    """
-    month_new = []
-
-    # Creating empty dataframe in case readed csv 'date' column is shorter
-    # than 7
-    if 'date' in df.columns or 'Date' in df.columns:
-        df.rename({"date": "Date"}, axis="columns")
-    if (len(df.date[0])) < 7:
-        df_split = pd.DataFrame({"a": [], "b": []})
-
-    # Creating empty dataframe in case readed csv 'date' column is longer
-    # than 7
-    else:
-        df_split = pd.DataFrame({"a": [], "b": [], "c": []})
-
-    df_clean = pd.DataFrame({"Year": [], "Month": [], "Date": [],
-                             "Articles": []})
-
-    # Iterating for every column from inputted dataframe
-    for col in df.columns:
-        # If input dataframe has a column named 'articles'
-        if col == "articles" or col == "Articles":
-            df_clean["Articles"] = df["articles"]
-
-        # If input dataframe has a column named 'date'
-        if col == "date" or col == "Date":
-            # Iterating for every value from the row 'date'
-            for values in df.date:
-                # Adding each date element to empty dataframe
-                df_split.loc[len(df_split)] = values.split("-")
-
-            # Iterating for every column in the new created every
-            # date element df
-            for cols in df_split.columns:
-                # If length from every element from the first row >
-                # 4 (correspond (High chances of being a year column)
-                if len(df_split[cols][0]) == 4:
-                    df_clean["Year"] = df_split[cols]
-
-                # Getting total column values range (max - min)
-                col_min = int(df_split[cols].min())
-                col_max = int(df_split[cols].max())
-                col_diff = col_max - col_min
-
-                # Loop if the column range is between 17 and 4 (high chances of
-                # being a month column
-                if 17 > col_diff > 4:
-                    df_clean["Month"] = df_split[cols]
-
-    # Removing month column trailing zeroes
-    for number in df_clean.Month:
-        month_new.append(int(str(number).rstrip("0")))
-
-    # Converting year month and date columns to pandas datetime
-    df_clean["Year"] = pd.to_datetime(df_clean["Year"])
-    df_clean["Year"] = df_clean.Year.dt.year
-    df_clean["Month"] = month_new
-    df_clean["Month"] = pd.to_datetime(df_clean["Month"], format="%m")
-    df_clean["Month"] = df_clean.Month.dt.month
-    df_clean["Date"] = pd.to_datetime(df_clean[["Year", "Month"]]
-                                      .assign(Day=1))
-
-    return df_clean
-
-
-def bar_plot_df(**kwargs):
+def bar_plot_df(df, save_path, title):
     """
 
     Creates a bar plot from a pandas DataFrame or saved csv, being obrigatory
@@ -833,9 +431,8 @@ def bar_plot_df(**kwargs):
 
     Parameters
     ----------
-    df : pd.DataFrame
+    df : DataFrame
         Dataframe to be plotted
-        Optional
 
     csv_path : str
         Path to csv file to be readed and plotted
@@ -856,69 +453,28 @@ def bar_plot_df(**kwargs):
         file name if not given
         Optional
 
-    Returns
-    -------
-
-    Examples
-    --------
-
     """
-    dirty_list = [
-        "pubmed",
-        "PubMed",
-        "Scopus",
-        "scopus",
-        "DataBase" "database",
-        "Database",
-        "csv",
-    ]
-    df = kwargs.get("df", pd.DataFrame)
-    csv_path = kwargs.get("csv_path", str)
-    save_path = kwargs.get("save_path", str)
-    time_grouping = kwargs.get("time_grouping", str)
-    title = kwargs.get("title", str)
-
-    fig, ax = plt.subplots(figsize=(12, 4), dpi=400)
-    if time_grouping:
-        plt.xlabel(time_grouping)
-    else:
-        plt.xlabel("Year")
-        time_grouping = "Year"
-    plt.ylabel("Published Articles")
-    if csv_path:
-        dfclean = clean_csv(csv_path)
-        title_tmp = re.split(r"_|\.|-", csv_path)
-        for n in title_tmp:
-            for j in dirty_list:
-                if n == j:
-                    title_tmp.remove(n)
-    elif df:
-        dfclean = clean_df(df)
-    elif not df and not csv_path:
-        raise Exception(
-            "a pandas dataframe or path to csv file has to be\
-                         inputted."
-        )
-    dfstat = df_statistics(dfclean, time_grouping=time_grouping)
-    # plt.xlim(dfclean.Year.min - 1, dfclean.Year.max + 1)
-
+    fig, ax = plt.subplots(dpi=100)
+    plt.xlabel("Year", fontsize=14)
+    plt.ylabel("Published Articles", fontsize=14)
+    plt.xlim(df.Year.min() - 1, df.Year.max() + 1)
     if title:
-        ax.set_title(title)
-    elif title_tmp:
-        ax.set_title(title_tmp)
+        ax.set_title(title, fontsize=18)
     else:
-        raise Exception(
-            "When given a dataframe, \
-        --title argument is obrigatory"
-        )
-    # dfstat = df_statistics(dfclean, time_grouping=time_grouping)
-    ax.bar(dfstat.index.values, dfstat["sum"], label=dfstat["sum"])
+        title = 'Database'
+    ax.bar(df['Year'], df["sum"], label=df["sum"])
+    for index, value in enumerate(df['sum']):
+        plt.text(df['Year'][index], value + 0.15, str(value), ha='center',
+                 va='bottom', fontsize=8)
+    plt.xticks(df.Year[df.index % 2 == 0], fontsize=10)
+    # ytickstmp = (np.arange(df['sum'].min, df['sum'].max, 6)
+    plt.yticks(fontsize=10)
     if save_path:
         plt.savefig(f"{save_path}/{title}.png")
     plt.show()
 
 
-def fetch_springer(keyword, year_1, year_2, **kwargs):
+def fetch_springer(keyword, year_1, year_2, save_path):
     """
 
     Fetches number of specific keyword containing articles, published
@@ -941,69 +497,65 @@ def fetch_springer(keyword, year_1, year_2, **kwargs):
 
     Returns
     -------
-    df : pd.DataFrame
+    df : DataFrame
         Results dataframe, with one column containing each year, and the other
         column containing the number of published articles that contains
         the keyword
 
-    Example
-    -------
-    >>> springer_test = fetch_springer('Plasmonic', 2010, 2022)
+    Examples
+    --------
+    >>> springer_test = fetch_springer('Plasmonic', 2010, 2022, save_path=None)
     2010:  536
     2011:  845
-    2012:  1323
-    2013:  2347
-    2014:  2530
-    2015:  2964
-    2016:  3155
-    2017:  3300
-    2018:  3301
-    2019:  3383
-    2020:  3744
+    ...
+    ...
     2021:  4059
     2022:  4723
     >>> print(springer_test)
         Year  Articles
     0   2010       536
     1   2011       845
-    2   2012      1323
-    3   2013      2347
-    4   2014      2530
-    5   2015      2964
-    6   2016      3155
-    7   2017      3300
-    8   2018      3301
-    9   2019      3383
-    10  2020      3744
+    ...
+    ...
     11  2021      4059
     12  2022      4723
     """
-    save_path = kwargs.get('save_path', None)
     springer_api_key = "56580f5684a4934af904f1edf8f07706"
     base_url_springer = 'http://api.springer.com/metadata/json'
     date_list = np.arange(year_1, year_2 + 1, 1)
     url_params_springer = {}
     url_params_springer["api_key"] = springer_api_key
     url_params_springer["p"] = 200
-    df = pd.DataFrame({'Year': [],
-                       'Articles': []})
-    for date_int in date_list:
-        springer_keyword = "?q=("+ "%22" + keyword.replace(" ", "%20") + "%22"\
-         + "%20AND%20year:" + str(date_int) + ")"
+    springer_df = pd.DataFrame({'Year': [],
+                                'Articles': []})
+
+    with httpx.Client(params=url_params_springer) as client:
+        for date_int in date_list:
+            springer_keyword = ("?q=(" + "%22" + keyword.replace(" ", "%20") +
+                                "%22" + "%20AND%20year:" + str(date_int) + ")")
 
     # Building the Springer Metadata API parameters dictionary
-        d_springer = requests.get(base_url_springer + springer_keyword,
-                                  params=url_params_springer).json()
-        articles = pd.DataFrame([d_springer])
-        articles = articles.result
-        articles = articles[0]
-        articles = pd.DataFrame(articles)
-        articles = int(articles.total[0])
-        print(f'{date_int}:  {articles}')
-        df.loc[len(df)] = [date_int, articles]
+            d_springer = client.get(base_url_springer + springer_keyword)
+            d_springer = d_springer.json()
+            articles = pd.DataFrame([d_springer])
+            articles = articles.result
+            articles = articles[0]
+            articles = pd.DataFrame(articles)
+            articles = int(articles.total[0])
+            print(f'{date_int}:  {articles}')
+            springer_df.loc[len(springer_df)] = [date_int, articles]
 
+    springer_df['Year'] = pd.to_datetime(springer_df.Year.astype(str),
+                                         format="%Y")
+    springer_df['Year'] = springer_df['Year'].dt.year
     if save_path:
         pathcsv = f"{save_path}/{keyword}_springer.csv"
-        df.to_csv(path_or_buf=pathcsv)
+        springer_df.to_csv(path_or_buf=pathcsv)
 
-    return df
+    return springer_df
+
+# TODO:
+# - Adds table with arguments and functioning of client to the
+# documentation
+# - Separate docstrings doctests in high time required tests, using them only
+# in complete tests, and other functions for more usual tests.

@@ -4,10 +4,10 @@ import sys
 import doctest
 import shutil
 import os
-import warnings
-import shutil
 from textwrap import dedent
-
+sys.path.append(os.path.abspath('sphinxext'))
+sys.path.append(os.path.abspath('static'))
+sys.path.append(os.path.abspath('../'))
 
 # Basic
 author = 'eduardotc'
@@ -20,27 +20,31 @@ sys.path.append('.')
 
 # Extensions
 extensions = [
+    'IPython.sphinxext.ipython_directive',
+    'IPython.sphinxext.ipython_console_highlighting',
+    'matplotlib.sphinxext.mathmpl',
+    'matplotlib.sphinxext.plot_directive',
+    'nbsphinx',
+    'numpydoc',
     'pygments_pytest',
+    'qiskit_sphinx_theme',
+    'reno.sphinxext',
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.coverage',
-    'reno.sphinxext',
     'sphinx.ext.doctest',
     'sphinx.ext.extlinks',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
+    'sphinx.ext.inheritance_diagram',
     'sphinx.ext.intersphinx',
-    'numpydoc',
-    'matplotlib.sphinxext.mathmpl',
-    'matplotlib.sphinxext.plot_directive',
-    'sphinxcontrib.inkscapeconverter',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
     'sphinx_copybutton',
     'sphinx_design',
-    'qiskit_sphinx_theme',
-    'nbsphinx',
-    "sphinx_remove_toctrees",
-    "sphinx_reredirects",
+    'sphinx_remove_toctrees',
+    'sphinx_reredirects',
+    'sphinxcontrib.inkscapeconverter',
+    'sphinx_toolbox.code',
 ]
 
 if shutil.which("inkscape"):
@@ -85,7 +89,7 @@ autodoc_default_options = {'members': None, 'undoc-members': None}
 autodoc_docstring_signature = True
 autodoc_mock_imports = ['kimpy']
 autodoc_typehints = 'description'
-autodoc_typehints_description_target = "documented_params"
+autodoc_typehints_description_target = 'all'
 autosummary_generate = True
 coverage_show_missing_items = True
 coverage_statistics_to_report = True
@@ -93,11 +97,11 @@ coverage_statistics_to_stdout = True
 github_url = 'http://gtihub.com/eduardotlc/materials_chempy'
 graphviz_dot = shutil.which('dot')
 
-html_favicon = 'logo.png'
+html_favicon = 'static/logo.png'
 html_file_suffix = '.html'
 html_index = 'index.html'
 html_last_updated_fmt = "2023/10/13"
-html_logo = 'logo.svg'
+html_logo = 'static/logo.svg'
 html_show_sphinx = False
 html_static_path = ['./static']
 html_theme = 'qiskit-ecosystem'
@@ -148,12 +152,6 @@ root_doc = master_doc = 'index'
 source_suffix = '.rst', '.ipynb'
 today_fmt = '%B %d, %Y'
 unused_docs = []
-# warnings.filterwarnings('error', append=True)
-# warnings.filterwarnings('ignore', category=DeprecationWarning,
-                        # module='sphinx.util.inspect')
-# warnings.filterwarnings('ignore', category=DeprecationWarning,
-                        # module='importlib',  # used by sphinx.autodoc.importer
-                        # message=r'(|.)*module was deprecated.*')
 
 napoleon_google_docstring = False
 napoleon_numpy_docstring = True
@@ -174,9 +172,15 @@ doctest_default_flags = (
 # Doctest blocks are structures like this one:
 # >> code
 # output
-doctest_test_doctest_blocks = "../utils.py", "../cli.py", "../database_analysis/dban_functions.py"
+doctest_test_doctest_blocks = "../utils.py ./cli.py \
+                               ../database_analysis/dban_functions.py"
 
+# addopts = --doctest-modules
 
+# doctest_encoding = latin1
+
+doctest_optionflags = (doctest.NORMALIZE_WHITESPACE
+                       | doctest.IGNORE_EXCEPTION_DETAIL)
 # ----------------------------------------------------------------------------------
 # Plot directive
 # ----------------------------------------------------------------------------------

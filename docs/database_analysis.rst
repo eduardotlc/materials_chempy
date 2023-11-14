@@ -1,3 +1,4 @@
+==========================
 Articles Database Analysis
 ==========================
 
@@ -21,22 +22,24 @@ More specifically, this notebook presents interactions with:
 
     - PubMed Database
 
+    - Springer Database
+
 API_Keys
---------
+========
 
 .. tab-set::
 
     .. tab-item:: NCBI
 
-       PubMed NCBI API key is optional, and the script was developed aiming to a workflow without the key. Feel free to `dig further`_ the API if it interests you.
+        PubMed NCBI API key is optional, and the script was developed aiming to a workflow without the key. Feel free to `dig further`_ the API if it interests you.
 
-       .. _dig further: https://www.ncbi.nlm.nih.gov/account/
+        .. _dig further: https://account.ncbi.nlm.nih.gov/
 
-       .. qiskit-card::
+        .. qiskit-card::
            :header: PubMed NCBI Database
            :card_description: Fetch PubMed NCBI database, providing alternatives to analyze scientific articles interest over the time, on a specific subject.
            :image: _static/ncbi.svg
-           :link: https://www.ncbi.nlm.nih.gov/account/
+           :link: https://account.ncbi.nlm.nih.gov/
 
     .. tab-item:: Elsevier
 
@@ -67,7 +70,7 @@ API_Keys
 |
 
 Packages Installation
----------------------
+=====================
 
 .. tab-set::
 
@@ -88,7 +91,7 @@ Packages Installation
         .. qiskit-card::
            :header: Metapub Package
            :card_description: Interaction with the NCBI Database is done through the Metapub package
-           :image: _static/metapub.jpg
+           :image: _static/metapub.svg
            :link: https://pypi.org/project/metapub/
 
     .. tab-item:: Elsevier
@@ -106,28 +109,94 @@ Packages Installation
 |
 |
 
+
+Important informations
+======================
+
+.. tab-set::
+
+    .. tab-item:: NCBI
+
+       NCBI/PubMed database was created at 1996.
+
+       Free API limits to the user to make 9999 calls per time, if querying a much used keyword,
+        it may reach this limit, in this cases you can use the --dailypubmed function that fetch
+        data to every day in the year range given, having the drawback of a longer running time.
+        Even fetching daily data, depending of the keyword, it may still reach the free API limit.
+
+    .. tab-item:: Elsevier/Scopus
+
+        Database launched in 2004.
+
+    .. tab-item:: Springer
+
+        Fastest database to fetch data from.
+
+
 Client usage
+============
+
+Saving results to csv
+---------------------
+
+.. tab-set::
+
+   .. tab-item:: PubMed
+
+       - Printing the number of articles in the pubmed database, from 2019 to 2020, containig
+         the 'hypoxia' keyword, and saving the results to a csv file int the home folder
+
+       .. code-block:: python
+
+           >>> python cli.py --pubmed hypoxia 2019 2020 ~/
+           2019-1:  642
+           2019-2:  791
+           ...
+           ...
+           2020-11:  462
+           2020-12:  2234
+
+
+   .. tab-item:: Springer
+
+       - Printing the number of articles in the springer-nature database, containing the 'niobium'
+         keyword, from 2010 to 2023
+
+       .. code-block:: python
+
+           >>> python cli.py --springer niobium 2010 2023 ~/
+           2010:  791
+           2011:  883
+           ...
+           ...
+           2022:  2185
+           2023:  2300
+
+
+
+Bar plotting
 ------------
 
-        - To generate a csv with published articles containing a keyword from 2000 t0 2023,
-          with number of articles per month, run:
+.. tab-set::
 
-        .. code:: text
+   .. tab-item:: 'PubMed fetched'
 
-            python cli.py --pubmed '<keyword>' 2000 2023 -o <output_path>
+      - Fetching and plotting the number of articles containing keyword
+        'pdt', from 2012 to 2018, saving a csv and the plot png to ~/
 
-        - Note: PubMed database was created on january 1996
+      - Bar plotting from a saved csv file
 
-        - Default qurying interval if not inputted will be 1996-2023.
+      .. code-block:: python
+
+         python cli.py --barplot ../example_data/MOF_pubmed.csv
 
 
-This notebook require the following packages to be installed to be fully executed:
+   .. tab-item:: 'Scopu scsv'
 
-.. code-block:: bash
+      - Bar plotting the number of articles per year containing a keyword,
+        from a csv fetched from scopus saved file.
 
-   python -m pip install pandas pytrends metapub matplotlib pybiometrics numpy
 
-Basic workflow is executed by the client module, linke the following examples:
 
 Functions
 ---------

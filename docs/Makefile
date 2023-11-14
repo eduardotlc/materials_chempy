@@ -3,7 +3,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = build
-TEST		  = '../mass_spectrometry/ms_functions.py' '../utils.py' '../spectrophotometry/spec_functions.py' '../database_analysis/dban_functions.py'
+TEST		  = '../mass_spectrometry/ms_functions.py' '../utils.py' '../spectrophotometry/spec_functions.py' '../database_analysis/dban_functions.py' '../cli.py'
 PYTHON		  = which python
 .PHONY: help Makefile test build_test
 # @$(SPHINXBUILD) -M help '$(SOURCEDIR)' '$(BUILDDIR)' $(SPHINXOPTS) $(O)
@@ -28,6 +28,7 @@ clean:
 		 rm -rf '$(SOURCEDIR)/build/'
 		 rm -rf '$(SOURCEDIR)/sphinxext/__pycache__'
 		 rm -rf '$(SOURCEDIR)/__pycache__'
+		 rm -rf '$(SOURCEDIR)/tmp'
 show:
 		 @python -c 'import webbrowser'
 		 @python -m webbrowser -t '/home/eduardotc/Programação/my_gits/materials_chempy/docs/build/html/index.html'

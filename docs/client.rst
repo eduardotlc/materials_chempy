@@ -1,3 +1,4 @@
+======
 Client
 ======
 
@@ -12,6 +13,7 @@ inside the package folder:
 
     python cli.py [-flags] [-args]
 
+
 To print the help from this module exec:
 
 .. code-block:: bash
@@ -23,7 +25,7 @@ To print the help from this module exec:
 |
 
 Mass spectrometry
------------------
+=================
 
 **The flag -m triggers matplotlib spectra plotting from a .mzML file**
 
@@ -61,67 +63,76 @@ Mass spectrometry
 |
 
 Articles databases analysis
----------------------------
+===========================
 
- .. tab-set::
+Basic
+-----
 
-    .. tab-item:: NCBI
+**only printing in terminal the results of the fetched database**
 
-        - Creating an API key is optional and can be made registering `here`_.
+Prints 'plasmonic' keyword containing articles from pubmed, from 2013 to
+ 2014, without saving the results.
 
-        .. _here: https://www.ncbi.nlm.nih.gov/account/
+.. code-cell:: bash
 
-            - If desired to use api key, define an environemnt variable named
-              NCBI_API_KEY with your key
-
-        - The querying of NCBI pubmed database is made by the python
-          package `metapub`_.
-
-        .. _metapub: https://pypi.org/project/metapub/
-
-        .. code:: text
-
-            python3 -m pip install metapub
-
-        - To generate a csv with published articles containing a keyword from 2000 t0 2023,
-          with number of articles per month, run:
-
-        .. code:: text
-
-            python cli.py --pubmed -o <output_path> --interval 2000 2023
-
-        - Note: PubMed database was created on january 1996
-
-        - Default qurying interval if not inputted will be 2000-2023.
+   python cli.py --pubmed plasmonic 2013 2014
 
 
+.. output-cell::
 
-    .. tab-item:: Elsevier
-
-        The following cloud vendors have Qiskit pre-installed in their environments:
-
-       .. qiskit-card::
-          :header: IBM Quantum Lab
-          :card_description: Build quantum applications and experiments with Qiskit in a cloud programming environment.
-          :image: _static/images/ibm_qlab.png
-          :link: https://quantum-computing.ibm.com/
-
-       .. qiskit-card::
-          :header: Strangeworks
-          :card_description: A platform that enables users and organizations to easily apply quantum computing to their most pressing problems and research.
-          :image: _static/images/strangeworks.png
-          :link: https://strangeworks.com/
+   2013-1:  57
+   2013-2:  80
+   ...
+   ...
+   2014-11:  182
+   2014-12:  140
 
 
 |
+
+Prints 'MOF' keyword containing articles, from scopus, ranging 2018 to 2020.
+
+.. code-cell:: bash
+
+   python cli.py --scopus MOF 2018 2020
+
+
+.. output-cell::
+
+   2018-january:  263
+   2018-february:  287
+   ...
+   ...
+   2020-november:  866
+   2020-december:  1024
+
+
 |
-|
+
+Prints number of articles containing 'mechanochemistry' keyword, in
+ springer-nature database, from 2015 to 2020.
+
+.. code-cell::
+
+   python cli.py --springer mechanochemistry 2015 2020
+
+
+.. output-cell::
+
+   2015:  200
+   2016:  191
+   ...
+   ...
+   2019:  285
+   2020:  277
+
 
 Functions
 ---------
 
 .. automodule:: materials_chempy.utils
     :members:
+
 
 .. automodule:: materials_chempy.cli
     :members:

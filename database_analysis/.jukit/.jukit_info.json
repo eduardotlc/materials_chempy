@@ -1,0 +1,1 @@
+{"cmd": "    ax.bar(df.index.values, df[\"sum\"], label=dfstat[\"sum\"])", "cmd_opts": " -p"}

@@ -16,3 +16,5 @@ sphinxcontrib-svg2pdfconverter
 docutils
 pygments-pytest
 anybadge
+spinx-toolbox
+sphinxcontrib-plot
