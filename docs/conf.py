@@ -5,9 +5,11 @@ import doctest
 import shutil
 import os
 from textwrap import dedent
+import matplotlib.sphinxext
+import bokeh.sphinxext
 sys.path.append(os.path.abspath('sphinxext'))
-sys.path.append(os.path.abspath('static'))
-sys.path.append(os.path.abspath('../'))
+# sys.path.append(os.path.abspath('static'))
+# sys.path.append(os.path.abspath('../'))
 
 # Basic
 author = 'eduardotc'
@@ -45,43 +47,44 @@ extensions = [
     'sphinx_reredirects',
     'sphinxcontrib.inkscapeconverter',
     'sphinx_toolbox.code',
+    'bokeh.sphinxext.bokeh_dataframe',
 ]
 
 if shutil.which("inkscape"):
     extensions.append("sphinxcontrib.inkscapeconverter")
 
-doctest_global_setup = """
-import pandas as pd
-import matplotlib.pyplot as plt
-mport pytest
-import numpy
-import matplotlib
-import doctest
+# doctest_global_setup = """
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import pytest
+# import numpy
+# import matplotlib
+# import doctest
 
-matplotlib.use('agg', force=True)
+# matplotlib.use('agg', force=True)
 
-# Ignore matplotlib output such as `<matplotlib.image.AxesImage at
-# 0x7f956908c280>`. doctest monkeypatching inspired by
-# https://github.com/wooyek/pytest-doctest-ellipsis-markers (MIT license)
-OutputChecker = doctest.OutputChecker
+# # Ignore matplotlib output such as `<matplotlib.image.AxesImage at
+# # 0x7f956908c280>`. doctest monkeypatching inspired by
+# # https://github.com/wooyek/pytest-doctest-ellipsis-markers (MIT license)
+# OutputChecker = doctest.OutputChecker
 
-empty_line_markers = ['<matplotlib.', '<mpl_toolkits.mplot3d.']
-class SkipMatplotlibOutputChecker(doctest.OutputChecker):
-    def check_output(self, want, got, optionflags):
-        for marker in empty_line_markers:
-            if marker in got:
-                got = ''
-                break
-        return OutputChecker.check_output(self, want, got, optionflags)
+# empty_line_markers = ['<matplotlib.', '<mpl_toolkits.mplot3d.']
+# class SkipMatplotlibOutputChecker(doctest.OutputChecker):
+    # def check_output(self, want, got, optionflags):
+        # for marker in empty_line_markers:
+            # if marker in got:
+                # got = ''
+                # break
+        # return OutputChecker.check_output(self, want, got, optionflags)
 
 
-doctest.OutputChecker = SkipMatplotlibOutputChecker
+# doctest.OutputChecker = SkipMatplotlibOutputChecker
 
-@pytest.fixture(autouse=True)
-def add_np(doctest_namespace):
-    numpy.random.seed(1)
-    doctest_namespace['np'] = numpy
-"""
+# @pytest.fixture(autouse=True)
+# def add_np(doctest_namespace):
+    # numpy.random.seed(1)
+    # doctest_namespace['np'] = numpy
+# """
 
 # Other configs
 autoclass_content = 'both'
@@ -113,6 +116,11 @@ inheritance_edge_attrs = dict(penwidth=1)
 inheritance_graph_attrs = dict(dpi=100, size='1000.0', splines='polyline')
 inheritance_node_attrs = dict(height=0.02, margin=0.055, penwidth=1,
                               width=0.01)
+panels_css_variables = {
+    "tabs-color-label-active": "rgb(138, 63, 252)",
+    "tabs-color-label-inactive": "rgb(221, 225, 230)",
+}
+plot_html_show_formats = True
 unused_docs = []
 latex_appendices = []
 latex_elements = {'papersize': 'letter'}
@@ -121,27 +129,45 @@ latex_elements['fontenc'] = r''
 latex_elements['maxlistdepth'] = '10'
 latex_elements['pointsize'] = '11pt'
 latex_elements['printindex'] = r'\footnotesize\raggedright\printindex'
-latex_engine = 'lualatex'
-latex_logo = 'logo.png'
+# latex_engine = 'lualatex'
+latex_logo = 'static/logo.png'
 latex_show_urls = 'inline'
 latex_show_pagerefs = True
 latex_toplevel_sectioning = 'part'
 latex_use_modindex = True
+# latex_elements = {
+    # "preamble": dedent(
+        # r"""
+        # \directlua{
+            # luaotfload.add_fallback("fallbacks", {
+                # "Noto Serif CJK SC:style=Regular;",
+                # "Symbola:Style=Regular;"
+            # })
+        # }
+
+        # \setmainfont{FreeSerif}[RawFeature={fallback=fallbacks}]
+        # """
+    # )
+# }
+
+latex_engine = 'xelatex'
 latex_elements = {
-    "preamble": dedent(
-        r"""
-        \directlua{
-            luaotfload.add_fallback("fallbacks", {
-                "Noto Serif CJK SC:style=Regular;",
-                "Symbola:Style=Regular;"
-            })
-        }
-
-        \setmainfont{FreeSerif}[RawFeature={fallback=fallbacks}]
-        """
-    )
+    'fontpkg': r'''
+\setmainfont{DejaVu Serif}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+''',
+    'preamble': r'''
+\usepackage[titles]{tocloft}
+\cftsetpnumwidth {1.25cm}\cftsetrmarg{1.5cm}
+\setlength{\cftchapnumwidth}{0.75cm}
+\setlength{\cftsecindent}{\cftchapnumwidth}
+\setlength{\cftsecnumwidth}{1.25cm}
+''',
+    'fncychap': r'\usepackage[Bjornstrup]{fncychap}',
+    'printindex': r'\footnotesize\raggedright\printindex',
 }
-
+latex_show_urls = 'footnote'
 makeindexfile = True
 modindex_common_prefix = ["materials_chempy."]
 nitpicky = True
@@ -173,22 +199,22 @@ doctest_default_flags = (
 # >> code
 # output
 doctest_test_doctest_blocks = "../utils.py ./cli.py \
-                               ../database_analysis/dban_functions.py"
+                               ../database_analysis/dban_functions.py \
+                               ../cli_utils.py"
+addopts = '--doctest-modules'
 
-# addopts = --doctest-modules
+doctest_encoding = 'latin1'
 
-# doctest_encoding = latin1
-
-doctest_optionflags = (doctest.NORMALIZE_WHITESPACE
-                       | doctest.IGNORE_EXCEPTION_DETAIL)
+# doctest_optionflags = (doctest.NORMALIZE_WHITESPACE
+                       # | doctest.IGNORE_EXCEPTION_DETAIL)
 # ----------------------------------------------------------------------------------
 # Plot directive
 # ----------------------------------------------------------------------------------
 
-plot_html_show_formats = False
-nbsphinx_timeout = int(os.getenv("QISKIT_CELL_TIMEOUT", "300"))
-nbsphinx_execute = os.getenv("QISKIT_DOCS_BUILD_TUTORIALS", "never")
-nbsphinx_widgets_path = ""
+# plot_html_show_formats = False
+# nbsphinx_timeout = int(os.getenv("QISKIT_CELL_TIMEOUT", "300"))
+# nbsphinx_execute = os.getenv("QISKIT_DOCS_BUILD_TUTORIALS", "never")
+# nbsphinx_widgets_path = ""
 
 nbsphinx_prolog = """
 {% set docname = env.doc2path(env.docname, base=None) %}

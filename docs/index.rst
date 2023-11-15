@@ -16,7 +16,6 @@ Python materials chemistry different analysis techniques plotting and uttilities
 
 .. toctree::
   :caption: Contents
-  :hidden:
 
   Contents <self>
   Introduction <introduction>

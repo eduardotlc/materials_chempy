@@ -311,6 +311,7 @@ def scopusfetcher(keyword, year_1, year_2, save_path):
         "february",
         "march",
         "april",
+        "may",
         "june",
         "july",
         "august",
@@ -455,20 +456,20 @@ def bar_plot_df(df, save_path, title):
 
     """
     fig, ax = plt.subplots(dpi=100)
-    plt.xlabel("Year", fontsize=14)
-    plt.ylabel("Published Articles", fontsize=14)
+    plt.xlabel("Year", fontsize=16)
+    plt.ylabel("Published Articles", fontsize=16)
     plt.xlim(df.Year.min() - 1, df.Year.max() + 1)
     if title:
-        ax.set_title(title, fontsize=18)
+        ax.set_title(title, fontsize=21)
     else:
         title = 'Database'
     ax.bar(df['Year'], df["sum"], label=df["sum"])
     for index, value in enumerate(df['sum']):
         plt.text(df['Year'][index], value + 0.15, str(value), ha='center',
-                 va='bottom', fontsize=8)
+                 va='bottom', fontsize=10)
     plt.xticks(df.Year[df.index % 2 == 0], fontsize=10)
     # ytickstmp = (np.arange(df['sum'].min, df['sum'].max, 6)
-    plt.yticks(fontsize=10)
+    plt.yticks(fontsize=12)
     if save_path:
         plt.savefig(f"{save_path}/{title}.png")
     plt.show()
@@ -510,7 +511,7 @@ def fetch_springer(keyword, year_1, year_2, save_path):
     ...
     ...
     2021:  4059
-    2022:  4723
+    2022:  4720
     >>> print(springer_test)
         Year  Articles
     0   2010       536

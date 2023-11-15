@@ -20,6 +20,40 @@ To print the help from this module exec:
 
    python cli.py -h
 
+
+.. list-table:: Client
+   :widths: 25 25 60 20
+   :header-rows: 1
+
+   * - Flag
+     - Arguments
+     - Description
+     - Module
+   * - -h --help
+     - None
+     - Print clien module help
+     - General
+   * - -i --input
+     - str
+     - Input to another executed flag, like the path to a file
+     - General
+   * - -o --output
+     - str
+     - Output to another executed flag, like path to saved file
+     - General
+   * - -M --mplcfg
+     - None
+     - Configure matplotlib style to the developer default
+     - Matplotlib
+   * - -S --subtitle
+     - str
+     - Plot subtitle
+     - Matplotlib
+   * - -t --title
+     - str
+     - Plot title
+     - Matplotlib
+
 |
 |
 |
