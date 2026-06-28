@@ -7,7 +7,7 @@ name = "materials_chempy"
 version = "0.1.0"
 description = "Terminal tools and utils on inorganic chemistry & materials science data handling."
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.14"
 license = "MIT"
 authors = [
   { name = "Eduardo Toledo Campos", email = "eduardotcampos@hotmail.com" },
@@ -20,6 +20,10 @@ keywords = [
   "inorganic",
   "cli",
   "terminal",
+  "chromatography",
+  "spectroscopy",
+  "spectrometry",
+  "spectrophotometry",
 ]
 dependencies = [
   "matplotlib",
@@ -42,6 +46,7 @@ dependencies = [
   "pytrends",
   "astropy",
   "distinctipy",
+  "typer",
 ]
 
 [project.optional-dependencies]
@@ -62,6 +67,8 @@ dev = [
   "coverage",
   "qiskit_sphinx_theme",
   "sphinx-reredirects",
+  "kitcat",
+  "jupyterlab",
 ]
 
 [project.scripts]
@@ -70,9 +77,154 @@ materials_chempy = "materials_chempy.cli:app"
 [tool.ruff]
 line-length = 100
 target-version = "py314"
+exclude = [".bzr", ".direnv", ".eggs", ".git", ".git-rewrite", ".hg", ".mypy_cache", ".nox", ".pants.d", ".pytype", ".ruff_cache", ".svn", ".tox", ".venv", "__pypackages__", "_build", "buck-out", "dist", "node_modules", "venv", "docs", "tmp"]
+line-length = 100
+fix = true
+indent-width = 4
+output-format = "full"
+preview = true
+target-version = "py314"
+unsafe-fixes = true
+
+[tool.ruff.analyze]
+detect-string-imports = true
+preview = true
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+indent-style = "space"
+line-ending = "auto"
+preview = true
+quote-style = "double"
+skip-magic-trailing-comma = false
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+extend-select = [
+  "COM818",
+  "ARG",
+  "TD",
+  "FIX",
+  "NPY",
+  "PERF",
+  "RUF",
+  "I",
+  "E",
+  "FURB",
+  "N801",
+  "N802",
+  "N803",
+  "N804",
+  "N805",
+  "N806",
+  "N807",
+  "N811",
+  "N812",
+  "N813",
+  "N814",
+  "N815",
+  "N816",
+  "N817",
+  "N818",
+  "N999",
+  "D100",
+  "D101",
+  "D102",
+  "D103",
+  "D104",
+  "D105",
+  "D106",
+  "D200",
+  "D205",
+  "D206",
+  "D207",
+  "D208",
+  "D209",
+  "D210",
+  "D213",
+  "D214",
+  "D215",
+  "D300",
+  "D400",
+  "D401",
+  "D402",
+  "D403",
+  "D404",
+  "D405",
+  "D406",
+  "D407",
+  "D408",
+  "D409",
+  "D410",
+  "D411",
+  "D412",
+  "D414",
+  "D415",
+  "D416",
+  "D418",
+  "D419",
+  "PTH100",
+  "PTH101",
+  "PTH102",
+  "PTH103",
+  "PTH104",
+  "PTH105",
+  "PTH106",
+  "PTH107",
+  "PTH108",
+  "PTH109",
+  "PTH110",
+  "PTH111",
+  "PTH112",
+  "PTH113",
+  "PTH114",
+  "PTH115",
+  "PTH116",
+  "PTH117",
+  "PTH118",
+  "PTH119",
+  "PTH120",
+  "PTH121",
+  "PTH122",
+  "PTH123",
+  "PTH124",
+  "PTH201",
+  "PTH202",
+  "PTH203",
+  "PTH204",
+  "PTH205",
+  "PTH206",
+  "PTH207",
+  "PTH208",
+  "PTH210",
+  "PTH211",
+]
+preview = true
+task-tags = ["TODO", "HACK", "CHECK", "FIX", "FIXME", "XXX" ]
+typing-extensions = true
+fixable = ["ALL"]
+
+[tool.ruff.lint.flake8-import-conventions.aliases]
+# Declare the default aliases.
+altair = "alt"
+"matplotlib.pyplot" = "plt"
+numpy = "np"
+pandas = "pd"
+seaborn = "sns"
+scipy = "sp"
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.ruff.lint.flake8-quotes]
+avoid-escape = true
+docstring-quotes = "double"
+inline-quotes = "double"
+multiline-quotes = "double"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 
 [tool.pytest.ini_options]
 addopts = "-ra"
