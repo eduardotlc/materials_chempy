@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "materials_chempy"
+version = "0.1.0"
+description = "Terminal tools and utils on inorganic chemistry & materials science data handling."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [
+  { name = "Eduardo Toledo Campos", email = "eduardotcampos@hotmail.com" },
+  { name = "Lua Victória Coelho", email = "luavictoriacoelho@gmail.com" },
+]
+keywords = [
+  "science",
+  "chemistry",
+  "plotting",
+  "inorganic",
+  "cli",
+  "terminal",
+]
+dependencies = [
+  "matplotlib",
+  "numpy",
+  "metapub",
+  "pandas",
+  "astropy",
+  "specutils",
+  "scipy",
+  "pybliometrics",
+  "pyopenms",
+  "spectrum_overload",
+  "metapub",
+  "pybliometrics",
+  "unidecode",
+  "coloredlogs",
+  "astropy",
+  "specutils",
+  "lxml",
+  "pytrends",
+  "astropy",
+  "distinctipy",
+]
+
+[project.optional-dependencies]
+dev = [
+  "docutils",
+  "sphinx-design",
+  "sphinx-autodoc-typehints",
+  "sphinx-togglebutton",
+  "sphinx-remove-toctrees",
+  "sphinx-copybutton",
+  "numpydoc",
+  "nbsphinx",
+  "sphinx",
+  "reno",
+  "flake8",
+  "pytest",
+  "pygments-pytest",
+  "coverage",
+  "qiskit_sphinx_theme",
+  "sphinx-reredirects",
+]
+
+[project.scripts]
+materials_chempy = "materials_chempy.cli:app"
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]

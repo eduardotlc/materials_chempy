@@ -17,6 +17,8 @@
 
 2. [Installation](#installation)
 
+  2.1 [Dependencies](#dependencies)
+
 3. [Usage](#usage)
 
 4. [TODO](#todo)
@@ -36,27 +38,11 @@
 
 - [Articles Database Analysis](#articles-database-analysis)
 
+- [Mass Spectrometry](#mass-spectrometry)
 
-## Informations
+- [Structure Simulation and Visualization](#structure-simulation-and-vizualization)
 
----
-
-- Initial focus in certain imaging and spectroscopy techniques.
-
-- Developement mostly in python, matplotlib, pandas DataFrames and Qt backends, suited for using in jupyter notebooks for example
-
-- Example notebooks of in progress work will be updated to the repository /notebooks folder
-
-- Visualization and other analysis techniques are considered with a
-  focus in nanoparticles and MOFs compounds class.
-
-
-## Fluorescence emission
-
----
-
-- wavelength x CPS (counts per second)
-
+## Installation
 
 ### Dependencies
 
@@ -71,6 +57,13 @@ python -m pip install numpy pandas pytz six distinctipy astropy
 ```
 python -m pip install pyyaml yaml pandas parse_binary_file
 ```
+
+
+
+## Fluorescence emission
+
+---
+
 
 
 ## Articles Database Analysis
@@ -135,6 +128,8 @@ python -m pip install pyyaml yaml pandas parse_binary_file
 ## TODO
 
 ---
+
+- Create fallback/check on matplotlib backend on to terminals other than kitty
 
 - Implement ase notebook examples in the package client module.
 
