@@ -1,35 +1,45 @@
 # Materials Chempy
 
-**Python tools to analyze, simulate and plot results of chemical inorganic materials.**
-
-|       build       |         PyPi          |      Documeantion      |        License         |    Update     |
-| :---------------: | :-------------------: | :--------------------: | :--------------------: | :-----------: |
-| [![Build]][ci] | [![pypi-badge]][pypi] | [![documentation]][dc] | [![mitbadge]][license] | ![lastupdate] |
-
-<!--[pypi-badge]: ./images/badge_pypi.svg-->
-<!--[pypi]: https://badge.fury.io/py/jupyterlab-ariakedark-theme-->
-[mitbadge]: ./docs/static/license.svg
-[license]: https://opensource.org/licenses/MIT
-[lastupdate]: ./docs/static/lastupdate.svg
-[documentation]: https://github.com/eduardotlc/materials_chempy/actions/workflows/documentation.yml/badge.svg
-[dc]: https://github.com/eduardotlc/materials_chempy/actions/workflows/documentation.yml
-[Build]: https://github.com/eduardotlc/materials_chempy/actions/workflows/build.yml/badge.svg
-[ci]: https://github.com/eduardotlc/materials_chempy/actions/workflows/build.yml
-
-<eduardotcampos@usp.br> **[2023]**
-
-**Package not yet available in Pypi and conda repos**
-
 ---
 
----
+**Python client tools utils on inorganic chemistry & materials science data handling.**
+
+   [![Build](/.assets/build_badge.svg)](https://github.com/eduardotlc/materials_chempy/actions/workflows/build.yml)
+   [![License](/.assets/mit_badge.svg)](https://opensource.org/license/mit)
+   [![Python](/.assets/python_badge.svg)](https://www.python.org/downloads/release/python-3145/)
+   [![Contact](/.assets/contact_badge.svg)](mailto:eduardotcampos@hotmail.com)
+
+> [!CAUTION] Under development, not recomended cloning the repo yet. In case of interest, star it and wait stable release
+
+> [!INFO] Tested on Linux (Fedora gnome) with [Kitty terminal](https://sw.kovidgoyal.net/kitty/)
+
+1. [Features](#features)
+
+2. [Installation](#installation)
+
+3. [Usage](#usage)
+
+4. [TODO](#todo)
+
+5. [Development](#development)
+
+6. [Acknowledgments](#acknowledgments)
+
+
+## Features
+
+- [Fluorescence Emission](#fluorescence-emission)
+
+- [UV-Vis Absorption](#uv-vis-absorption)
+
+- [Electron Microscopy](#electron-micsoscopy)
+
+- [Articles Database Analysis](#articles-database-analysis)
 
 
 ## Informations
 
 ---
-
-- The codes in this repository are still in the early stages of developement, not being yet suited for general use.
 
 - Initial focus in certain imaging and spectroscopy techniques.
 
@@ -137,3 +147,14 @@ python -m pip install pyyaml yaml pandas parse_binary_file
 - Implement a github building workflow to the project.
 
 - Create a pypi releasing workflow
+
+## Acknowledgments
+
+- [dracula.nvim](https://github.com/Mofiqul/dracula.nvim) theme, which served as foundation for this
+  color scheme's structure.
+
+- [cherry-kde](https://github.com/nullxception/cherry-kde) theme, from which the terminal color
+  palette was inspired.
+
+**Please consider supporting and checking out the original developers and their projects - without
+their work, this theme wouldn’t have been possible.**

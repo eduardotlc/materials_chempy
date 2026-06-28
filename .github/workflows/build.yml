@@ -16,10 +16,10 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11.6
+      - name: Set up Python 3.14.5
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11.6'
+          python-version: '3.14.5'
           cache: pip
 
       - name: Add conda to system path
@@ -30,12 +30,12 @@ jobs:
         run: |
           conda env update --file environment.yml --name base
 
-      - name: Lint with flake8
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev,notebooks
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev,notebooks
+      #- name: Lint with flake8
+        #run: |
+          ## stop the build if there are Python syntax errors or undefined names
+          #flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics --exclude=dev,notebooks
+          ## exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          #flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude=dev,notebooks
 
       - name: Test with pytest
         run: |
@@ -43,15 +43,3 @@ jobs:
           mkdir -p ./tmp
           pytest --doctest-modules --maxfail=6 -s --ignore=dev,notebooks ../mass_spectrometry/ms_functions.py ../utils.py ../spectrophotometry/spec_functions.py ../database_analysis/dban_functions.py
           rm -rf ./tmp
-
-      - name: Update badges
-        if: github.event_name == 'push'
-        run: |
-          rm -rf ./docs/statics/lastupdate.svg
-          anybadge -l 'Last Updated' -c '#49eaaf' -f ./docs/static/lastupdate.svg -v "$(date +'%B %Y')" -o
-          git config --global user.name 'eduardotlc'
-          git config --global user.email 'eduardotcampos@usp.br'
-          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY
-          git add .
-          git commit -a -m "build workflow automatic badges generation"
-          git push

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" width="153.32" height="30.00" viewBox="0 0 153.32 30.00" version="1.1" id="badge">
+
+<defs>
+  <clipPath id="badge-clip">
+    <rect x="0" y="0" width="153.32" height="30.00" rx="6.00" ry="6.00"/>
+  </clipPath>
+</defs>
+  <g id="badge-content" clip-path="url(#badge-clip)">
+    <rect id="right-rect" x="40.00" y="0" width="113.32" height="30.00" style="fill:#A6C1E8;stroke:none;stroke-opacity:1.0;stroke-width:1.0"/>
+    <rect id="left-rect" x="0" y="0" width="40.00" height="30.00" style="fill:#3A3A3A;fill-opacity:0.800;stroke:none;stroke-opacity:1.0;stroke-width:1.0"/>
+    <text id="label" x="96.66" y="17.14" style="font-size:22px;text-anchor:middle;dominant-baseline:middle;fill:#000000;font-family:loma;src:/home/eduardotc/.fonts/JetBrainsMono/fonts/ttf/JetBrainsMono-Regular.ttf">Contact</text>
+  <g id="icon" transform="translate(8.0000,3.0000) scale(0.140351)"><title>Asset 19</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><circle cx="85.5" cy="85.5" r="85.5" fill="#454970"/><path d="M102.8,61.1A18.15,18.15,0,1,1,84.6,43,18.12,18.12,0,0,1,102.8,61.1Z" fill="#fff"/><path d="M84.7,85.5A33.72,33.72,0,0,0,51,119.2a8.81,8.81,0,0,0,8.8,8.8h49.7a8.81,8.81,0,0,0,8.8-8.8A33.63,33.63,0,0,0,84.7,85.5Z" fill="#fff"/></g></g></g></g>
+</svg>
