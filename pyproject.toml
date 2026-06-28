@@ -7,8 +7,10 @@ name = "materials_chempy"
 version = "0.1.0"
 description = "Terminal tools and utils on inorganic chemistry & materials science data handling."
 readme = "README.md"
-requires-python = ">=3.14"
+#readme = {file = "README.txt", content-type = "text/x-rst"}
+requires-python = ">=3.11"
 license = "MIT"
+license-files = ["LICENSE"]
 authors = [
   { name = "Eduardo Toledo Campos", email = "eduardotcampos@hotmail.com" },
   { name = "Lua Victória Coelho", email = "luavictoriacoelho@gmail.com" },
@@ -24,11 +26,31 @@ keywords = [
   "spectroscopy",
   "spectrometry",
   "spectrophotometry",
+  "mass spectrometry",
+  "uv-vis",
+  "fluorescence",
+  "fluorescence absorption",
+]
+classifiers = [
+  "Environment :: Console",
+  "Development Status :: 2 - Pre-Alpha",
+  "Framework :: Jupyter :: JupyterLab",
+  "Framework :: Jupyter",
+  "Framework :: Matplotlib",
+  "Framework :: Pytest",
+  "Framework :: Sphinx",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Topic :: Database",
+  "Topic :: Scientific/Engineering :: Chemistry",
+  "Topic :: Scientific/Engineering :: Bio-Informatics",
+  "Topic :: Scientific/Engineering :: Image Processing",
+  "Topic :: Scientific/Engineering :: Image Recognition",
+  "Topic :: Scientific/Engineering :: Visualization",
 ]
 dependencies = [
   "matplotlib",
   "numpy",
-  "metapub",
   "pandas",
   "astropy",
   "specutils",
@@ -49,10 +71,14 @@ dependencies = [
   "typer",
 ]
 
+[project.urls]
+Repository = "https://github.com/eduardotlc/materials_chempy"
+
 [project.optional-dependencies]
 dev = [
   "docutils",
   "sphinx-design",
+  "ruff",
   "sphinx-autodoc-typehints",
   "sphinx-togglebutton",
   "sphinx-remove-toctrees",
@@ -80,6 +106,8 @@ target-version = "py314"
 exclude = [".bzr", ".direnv", ".eggs", ".git", ".git-rewrite", ".hg", ".mypy_cache", ".nox", ".pants.d", ".pytype", ".ruff_cache", ".svn", ".tox", ".venv", "__pypackages__", "_build", "buck-out", "dist", "node_modules", "venv", "docs", "tmp"]
 fix = true
 indent-width = 4
+src = ["src", "tests"]
+requires-python = ">=3.11"
 output-format = "full"
 preview = true
 unsafe-fixes = true
@@ -98,16 +126,22 @@ quote-style = "double"
 skip-magic-trailing-comma = false
 
 [tool.ruff.lint]
+future-annotations = true
 extend-select = [
-  "COM818",
   "ARG",
-  "TD",
   "FIX",
   "NPY",
   "PERF",
   "RUF",
   "I",
   "E",
+  "COM818",
+  "TD001",
+  "TD002",
+  "TD004",
+  "TD005",
+  "TD006",
+  "TD007",
   "FURB",
   "N801",
   "N802",
@@ -198,12 +232,11 @@ extend-select = [
   "PTH211",
 ]
 preview = true
-task-tags = ["TODO", "HACK", "CHECK", "FIX", "FIXME", "XXX" ]
+task-tags = ["TODO", "HACK", "CHECK", "FIX", "FIXME", "XXX", "DEBUG", "OPTMIZE", "OPT" ]
 typing-extensions = true
 fixable = ["ALL"]
 
 [tool.ruff.lint.flake8-import-conventions.aliases]
-# Declare the default aliases.
 altair = "alt"
 "matplotlib.pyplot" = "plt"
 numpy = "np"
@@ -231,11 +264,15 @@ addopts = [
   "--code-highlight=yes",
   "--doctest-modules",
   "--doctest-continue-on-failure",
+  "--benchmark-sort=mean",
+  "--benchmark-columns=mean,stddev,min,max",
 ]
 testpaths = [
-  "tests",
-	"src/materials_chempy/utils.py",
+  "src/materials_chempy/test_cli.py",
   "src/materials_chempy/spectrophotometry/utils.py",
   "src/materials_chempy/logger.py",
-  "src/materials_chempy/mass_spectrometry/utils.py",
+	"src/materials_chempy/utils.py",
+  "src/materials_chempy/mass_spectrometry/treat.py",
+  "src/materials_chempy/var_handler.py",
+  "src/materials_chempy/test_utils.py",
 ]

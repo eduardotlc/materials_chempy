@@ -9,7 +9,7 @@ Global variables that are used by multiple modules definitions.
 """
 
 from pathlib import Path
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from rich.theme import Theme
@@ -68,7 +68,7 @@ class VarHandle:
 
     Examples
     --------
-    >>> from .argtypes import check_ansi_color_code
+    >>> from materials_chempy.utils import check_ansi_color_code
     >>> vars = VarHandle()
     >>> tst = vars("YLW")
     >>> print(check_ansi_color_code(tst)[0])
@@ -296,7 +296,7 @@ class VarHandle:
 
         Examples
         --------
-        >>> from .argtypes import check_ansi_color_code
+        >>> from materials_chempy.utils import check_ansi_color_code
         >>> tst_cls = VarHandle()
         >>> print(check_ansi_color_code(tst_cls("YLW"))[0])
         (38, 3)
