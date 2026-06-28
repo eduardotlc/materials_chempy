@@ -25,6 +25,8 @@
 
 5. [Development](#development)
 
+  5.1 [Tests](#tests)
+
 6. [Acknowledgments](#acknowledgments)
 
 
@@ -58,17 +60,11 @@ python -m pip install numpy pandas pytz six distinctipy astropy
 python -m pip install pyyaml yaml pandas parse_binary_file
 ```
 
+## Usage
 
+### Fluorescence emission
 
-## Fluorescence emission
-
----
-
-
-
-## Articles Database Analysis
-
----
+### Articles Database Analysis
 
 - PubMed NCBI Databasedata analysis and visualization script.
 
@@ -83,21 +79,16 @@ python -m pip install pyyaml yaml pandas parse_binary_file
   over the time.
 
 
-## UV-Vis absorption
----
+### UV-Vis absorption
 
-
-## Electron microscopy
-
----
+### Electron microscopy
 
 - [Tensorflow](https://www.tensorflow.org) automatic identification and measure of nanoparticles.
 
 - Model still needs to be finished and optimized.
 
 
-## Mass spectrometry
----
+### Mass spectrometry
 
 - Accepts data from .mzML and .ascii files
 
@@ -107,41 +98,52 @@ python -m pip install pyyaml yaml pandas parse_binary_file
   with their corresponding m/z value
 
 
-## Structures simulation and visualization
-
----
+### Structures simulation and visualization
 
 - Examples of molecular structures simulation and visualization.
 
 - Initially only in an example notebook, using the [ase](https://pypi.org/project/ase/) package
 
 
-## Documentation
-
----
-
-- The documentation present in docs folder is not yet available on the internet, however it can be build locally.
-
-- The docs folder contains a single html and a pdf version of the current early developement stages of the project.
 
 
 ## TODO
 
 ---
 
-- Create fallback/check on matplotlib backend on to terminals other than kitty
+- [ ] handle creation of docstring file tests dirs/files like "/tmp/materials_chempy/alt_stdout"
 
-- Implement ase notebook examples in the package client module.
+- [ ] handle Literal["repeat"] types from handlers
 
-- Finish tensorflow TEM image training
+- [ ] Create fallback/check on matplotlib backend on to terminals other than kitty
 
-- Implement mass spectrometry fragmentations plotting
+- [ ] Implement ase notebook examples in the package client module.
 
-- Implement more complex data normalization and correction in spectrophotometry
+- [ ] Finish tensorflow TEM image training
 
-- Implement a github building workflow to the project.
+- [ ] Implement mass spectrometry fragmentations plotting
 
-- Create a pypi releasing workflow
+- [ ] Implement more complex data normalization and correction in spectrophotometry
+
+- [ ] Implement a github building workflow to the project.
+
+- [ ] Create a pypi releasing workflow
+
+## Development
+
+### Tests
+
+on repo root dir:
+```zsh
+python -m pytest --doctest-modules \
+src/materials_chempy/utils.py
+```
+
+### Documentation
+
+- The documentation present in docs folder is not yet available on the internet, however it can be build locally.
+
+- The docs folder contains a single html and a pdf version of the current early developement stages of the project.
 
 ## Acknowledgments
 

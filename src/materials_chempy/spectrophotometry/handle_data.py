@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 def spc_plot(df, input_path, title=None):
     """
-    Plots a matplotlib spectra from a given dataframe extracted from a txt.
+    Plot a matplotlib spectra from a given dataframe extracted from a txt.
 
     Parameters
     ----------

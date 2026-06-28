@@ -225,5 +225,17 @@ multiline-quotes = "double"
 convention = "numpy"
 
 [tool.pytest.ini_options]
-addopts = "-ra"
-testpaths = ["tests"]
+addopts = [
+  "-ra",
+  "--color=yes",
+  "--code-highlight=yes",
+  "--doctest-modules",
+  "--doctest-continue-on-failure",
+]
+testpaths = [
+  "tests",
+	"src/materials_chempy/utils.py",
+  "src/materials_chempy/spectrophotometry/utils.py",
+  "src/materials_chempy/logger.py",
+  "src/materials_chempy/mass_spectrometry/utils.py",
+]

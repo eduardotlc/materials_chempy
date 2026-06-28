@@ -18,13 +18,14 @@ Matplotlib configs types and valid values:
 
     - Choices: xx-small, x-small, small, medium, large, x-large, xx-large, smaller, larger
 """
-#TODO: Check usage and defs of default paths, like ~/.fonts
+# TODO(lu4vic): Check usage and defs of default paths, like ~/.fonts
 
 from __future__ import annotations
 
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import TYPE_CHECKING, Any
+
 from materials_chempy.utils import assert_pathlib
 
 if TYPE_CHECKING:
@@ -252,7 +253,7 @@ class Plot:
             "savefig.format": self.save_format,
             "savefig.transparent": False,
         })
-        # "savefig.directory": "/home/eduardotc/Programming/python/plots",
+        # "savefig.directory": "",
 
     def _get_font_path(self, font_name: str) -> str:
         """
@@ -489,7 +490,7 @@ class Plot:
                 fontsize=24,
                 weight="bold",
                 pad=5,
-                color=VARHANDLE.rgb("BLURPLE"),
+                color=(0.64, 0.7, 0.98),
             )  # Increase title size
 
         for idx, color in enumerate(colors):
@@ -544,7 +545,7 @@ class Plot:
     def ax_set_design(self):
         """Set matplotlib subplots default designs elements and configs."""
         if self._ax is None:
-            LOGGER.error("Matplotlib axes element not set, impossible to run ax_set_design.", True)
+            print("\033[31mMatplotlib axes not set, impossible to run ax_set_design.\033[0m")
             return
 
         font_path = self._get_font_path(self.font_name)
@@ -563,7 +564,7 @@ class Plot:
     def fig_set_design(self):
         """Set matplotlib figure designs elements and configs."""
         if self._fig is None:
-            LOGGER.error("Matplotlib figure element not set, impossible to set designs.", True)
+            print("\033[31mMatplotlib figure element not set, impossible to set designs.\033[0m")
             return
 
         self._fig.patch.set_alpha(0)
@@ -653,61 +654,6 @@ class Plot:
 
         LOGGER.print_same_line(fonts, colors)
 
-
-def cli_group_plot_utils(group_plot_utils: ArgumentGroup) -> list:
-    """
-    Argparse client group for plotting related flags.
-
-    Parameters
-    ----------
-    group_plot_utils : argparse._ArgumentGroup
-        Argparse arguments group
-
-    Returns
-    -------
-    list
-        List containing all flags arguments from the group
-
-    Examples
-    --------
-    >>> from .cli_du_utils import create_parser, cli_parse_groups
-
-    >>> parser = create_parser()
-    >>> test = cli_parse_groups(parser)
-    >>> plot_group = test["Plot"]
-    >>> test_router = cli_group_plot_utils(plot_group)
-
-    >>> print(list(test_router.keys())[0])
-    bplot
-
-    """
-    router = {}
-
-    group_plot_utils.add_argument(
-        "--bplot",
-        action=ArgHandle,
-        type=argtypes.check_existing_file,
-        help="Box plot given .dat file, containing data to plot and box names.",
-    )
-    router["bplot"] = cli_args_plot_utils
-
-    group_plot_utils.add_argument(
-        "--mpl-fonts",
-        action="store_true",
-        help="Print available matplotlib fonts.",
-    )
-    router["mpl_fonts"] = cli_args_plot_utils
-
-    group_plot_utils.add_argument(
-        "--mpl-colors",
-        action="store_true",
-        help="Print available matplotlib colors.",
-    )
-    router["mpl_colors"] = cli_args_plot_utils
-
-    return router
-
-
 def cli_args_plot_utils(
     args: Namespace,
     _parser: ArgumentParser,
@@ -737,7 +683,7 @@ def cli_args_plot_utils(
         try:
             assert len(columns) == len(file_data[1])
         except AssertionError:
-            LOGGER.error("Data and columns have different lengths!", True)
+            print("\033[31mData and columns have different lengths!\033[0m")
 
         dpl.boxplot(data=file_data[1], names=columns)
         dpl.close()
@@ -747,4 +693,3 @@ def cli_args_plot_utils(
 
     if args.mpl_colors:
         Plot().get_available_mpl_colors()
-
